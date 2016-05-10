@@ -1,15 +1,15 @@
-package com.wordpress.techanand.financialcalculator.app.models;
+package com.wordpress.techanand.financialcalculator.db.models;
 
 /**
  * Created by Anand Rikka on 5/11/2016.
  */
 
-public class CalculatorInfo {
+public class CalculatorModel {
 
     private int id;
     private String name;
 
-    public CalculatorInfo(int id, String name) {
+    public CalculatorModel(int id, String name) {
         this.id = id;
         this.name = name;
     }

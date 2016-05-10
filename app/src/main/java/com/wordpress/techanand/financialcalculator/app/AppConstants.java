@@ -1,11 +1,5 @@
 package com.wordpress.techanand.financialcalculator.app;
 
-import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.models.CalculatorInfo;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Anand Rikka on 5/11/2016.
  */
