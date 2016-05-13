@@ -18,6 +18,96 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".StockPriceActivity"
+            android:label="@string/title_activity_stock_price"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MutualFundActivity"
+            android:label="@string/title_activity_mutual_fund"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity
+            android:name=".FixedDepositActivity"
+            android:label="@string/title_activity_fixed_deposit"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity
+            android:name=".RecurringDeposityActivity"
+            android:label="@string/title_activity_recurring_deposity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity
+            android:name=".LoanActivity"
+            android:label="@string/title_activity_loan"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity
+            android:name=".TaxActivity"
+            android:label="@string/title_activity_tax"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity
+            android:name=".PPFActivity"
+            android:label="@string/title_activity_ppf"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CalculatorActivity"
+            android:label="@string/title_activity_calculator"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SplitActivity"
+            android:label="@string/title_activity_split"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MiscellaneousActivity"
+            android:label="@string/title_activity_miscellaneous"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

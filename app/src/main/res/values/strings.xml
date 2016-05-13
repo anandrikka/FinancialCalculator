@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Financial Calculator</string>
-    <string name="action_settings">Settings</string>
-    <string name="constants_bank">Bank</string>
+    <string name="main_activity_list_fixedDeposit">Fixed Deposit Calculator</string>
+    <string name="title_activity_stock_price">Stock Price Calculator</string>
+    <string name="title_activity_mutual_fund">Mutual Fund Calculator</string>
+    <string name="title_activity_fixed_deposit">Fixed Deposit Calculator</string>
+    <string name="title_activity_recurring_deposity">Recurring Deposity Calculator</string>
+    <string name="title_activity_loan">Loan Calculator</string>
+    <string name="title_activity_tax">Tax Calculator</string>
+    <string name="title_activity_ppf">PPF Calculator</string>
+    <string name="title_activity_calculator">Calculator</string>
+    <string name="title_activity_split">Split Calculator</string>
+    <string name="title_activity_miscellaneous">Miscellaneous</string>
 </resources>
