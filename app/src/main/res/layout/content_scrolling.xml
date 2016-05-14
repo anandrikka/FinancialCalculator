@@ -8,11 +8,17 @@
     tools:context="com.wordpress.techanand.financialcalculator.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/content_main_mainList"
-        android:divider="#ffffff">
-    </ListView>
+        android:divider="#ffffff"
+        android:columnWidth="100dp"
+        android:numColumns="4"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="2dp"
+        android:gravity="center"
+        android:stretchMode="columnWidth">
+    </GridView>
 
 </RelativeLayout>

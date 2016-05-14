@@ -34,7 +34,7 @@ public class StockListAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(getContext()).inflate(R.layout.content_stock_price_dropdown, null);
-        StockCategory stockCategory = (StockCategory) list.get(position);
+        StockCategory stockCategory = list.get(position);
         TextView label = (TextView) convertView.findViewById(R.id.content_stock_price_category_dropdown);
         label.setText(stockCategory.getName());
         return convertView;

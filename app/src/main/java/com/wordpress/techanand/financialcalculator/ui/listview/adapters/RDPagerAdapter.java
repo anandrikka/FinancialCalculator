@@ -3,10 +3,9 @@ package com.wordpress.techanand.financialcalculator.ui.listview.adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 
-import com.wordpress.techanand.financialcalculator.RecurringDepositCalcTab;
-import com.wordpress.techanand.financialcalculator.RecurringDepositDetailsTab;
+import com.wordpress.techanand.financialcalculator.activities.recurringdeposit.RecurringDepositCalcTab;
+import com.wordpress.techanand.financialcalculator.activities.recurringdeposit.RecurringDepositDetailsTab;
 
 /**
  * Created by Anand Rikka on 5/13/2016.

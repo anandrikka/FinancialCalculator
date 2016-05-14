@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.wordpress.techanand.financialcalculator.FixedDepositCalcTab;
-import com.wordpress.techanand.financialcalculator.FixedDepositDetailsTab;
+import com.wordpress.techanand.financialcalculator.activities.fixeddeposits.FixedDepositCalcTab;
+import com.wordpress.techanand.financialcalculator.activities.fixeddeposits.FixedDepositDetailsTab;
 
 /**
  * Created by Anand Rikka on 5/13/2016.
