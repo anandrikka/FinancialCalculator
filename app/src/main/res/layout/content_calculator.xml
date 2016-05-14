@@ -12,9 +12,4 @@
     tools:context="com.wordpress.techanand.financialcalculator.CalculatorActivity"
     tools:showIn="@layout/activity_calculator">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calculator"/>
-
 </RelativeLayout>

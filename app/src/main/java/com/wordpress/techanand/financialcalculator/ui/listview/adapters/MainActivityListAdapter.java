@@ -41,7 +41,6 @@ public class MainActivityListAdapter extends ArrayAdapter {
         if (convertView == null) {
             Random rnd = new Random();
             int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.content_main_list_1, null);
             TextView textView = (TextView) convertView.findViewById(R.id.content_main_list_text);
             //TextView bigLetter = (TextView) convertView.findViewById(R.id.content_main_list_circle);
