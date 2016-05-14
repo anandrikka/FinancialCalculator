@@ -25,7 +25,7 @@ public class CalculatorDataSource extends GenericDataSource{
         ContentValues contentValues = new ContentValues();
         contentValues.put(CalculatorTable.COLUMN_NAME, calculator.getName());
         contentValues.put(CalculatorTable.COLUMN_IS_VISIBLE, calculator.getIsVisible());
-        contentValues.put(CalculatorTable.COLUMN_UNIQUE_ID, calculator.getImageName());
+        contentValues.put(CalculatorTable.COLUMN_UNIQUE_ID, calculator.getUniqueId());
         contentValues.put(CalculatorTable.COLUMN_ORDER, calculator.getOrderBy());
         getWritableDB().insert(CalculatorTable.NAME, null, contentValues);
         return true;
@@ -40,7 +40,7 @@ public class CalculatorDataSource extends GenericDataSource{
             Calculator calculator = new Calculator();
             calculator.setId(cursor.getLong(cursor.getColumnIndex(CalculatorTable.COLUMN_ID)));
             calculator.setName(cursor.getString(cursor.getColumnIndex(CalculatorTable.COLUMN_NAME)));
-            calculator.setImageName(cursor.getString(cursor.getColumnIndex(CalculatorTable.COLUMN_UNIQUE_ID)));
+            calculator.setUniqueId(cursor.getString(cursor.getColumnIndex(CalculatorTable.COLUMN_UNIQUE_ID)));
             calculator.setIsVisible(cursor.getInt(cursor.getColumnIndex(CalculatorTable.COLUMN_IS_VISIBLE)));
             calculator.setOrderBy(cursor.getInt(cursor.getColumnIndex(CalculatorTable.COLUMN_ORDER)));
             list.add(calculator);
@@ -58,7 +58,7 @@ public class CalculatorDataSource extends GenericDataSource{
             Calculator calculator = new Calculator();
             calculator.setId(cursor.getLong(cursor.getColumnIndex(CalculatorTable.COLUMN_ID)));
             calculator.setName(cursor.getString(cursor.getColumnIndex(CalculatorTable.COLUMN_NAME)));
-            calculator.setImageName(cursor.getString(cursor.getColumnIndex(CalculatorTable.COLUMN_UNIQUE_ID)));
+            calculator.setUniqueId(cursor.getString(cursor.getColumnIndex(CalculatorTable.COLUMN_UNIQUE_ID)));
             calculator.setIsVisible(cursor.getInt(cursor.getColumnIndex(CalculatorTable.COLUMN_IS_VISIBLE)));
             calculator.setOrderBy(cursor.getInt(cursor.getColumnIndex(CalculatorTable.COLUMN_ORDER)));
             list.add(calculator);
@@ -72,7 +72,7 @@ public class CalculatorDataSource extends GenericDataSource{
         Calculator calculator = (Calculator)row;
         ContentValues contentValues = new ContentValues();
         contentValues.put(CalculatorTable.COLUMN_NAME, calculator.getName());
-        contentValues.put(CalculatorTable.COLUMN_UNIQUE_ID, calculator.getImageName());
+        contentValues.put(CalculatorTable.COLUMN_UNIQUE_ID, calculator.getUniqueId());
         contentValues.put(CalculatorTable.COLUMN_IS_VISIBLE, calculator.getIsVisible());
         contentValues.put(CalculatorTable.COLUMN_ORDER, calculator.getOrderBy());
         getWritableDB().update(CalculatorTable.NAME, contentValues, "ID = ? ", new String[] { Long.toString(calculator.getId()) } );

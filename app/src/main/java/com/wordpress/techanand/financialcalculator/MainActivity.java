@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         final List<Calculator> calculators = new CalculatorDataSource(this).getAllRows();
-        calculators.addAll(calculators);
-        calculators.addAll(calculators);
 
         GridView calcList = (GridView) findViewById(R.id.content_main_mainList);
         MainActivityListAdapter arrayAdapter = new MainActivityListAdapter(this, R.id.gridText, calculators);
@@ -68,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Calculator item = calculators.get(position);
                 Intent launchItem = null;
-                switch (item.getImageName()){
+                switch (item.getUniqueId()){
                     case Calculator.UNIQUE_FD_ID:
                         launchItem = new Intent(MainActivity.this, FixedDepositActivity.class);
                         break;
@@ -96,6 +94,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case Calculator.UNIQUE_CI_ID:
                         //launchItem = new Intent(MainActivity.this, SplitActivity.class);
+                        Toast.makeText(MainActivity.this, item.getName()+" Not Defined !", Toast.LENGTH_SHORT).show();
+                        break;
+                    case Calculator.UNIQUE_BUDGET_ID:
                         Toast.makeText(MainActivity.this, item.getName()+" Not Defined !", Toast.LENGTH_SHORT).show();
                         break;
                     default:

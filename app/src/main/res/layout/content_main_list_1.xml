@@ -11,15 +11,17 @@
         android:adjustViewBounds="true"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:paddingTop="16dp"
-        android:src="@drawable/stock_price"/>
+        android:paddingTop="16dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/gridText"
         android:maxLines="2"
-        android:padding="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="12dp"
+        android:paddingTop="8dp"
         android:layout_gravity="center"
         android:textAlignment="center"
         android:textSize="12sp" />

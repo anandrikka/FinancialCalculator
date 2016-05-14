@@ -11,16 +11,17 @@ public class Calculator {
     private int isVisible;
     private int orderBy;
 
-    public final static String UNIQUE_FD_ID = "FIXED_DEPOSIT";
-    public final static String UNIQUE_RD_ID = "RECURRING_DEPOSIT";
-    public final static String UNIQUE_PPF_ID = "PPF";
-    public final static String UNIQUE_STOCK_ID = "STOCK";
-    public final static String UNIQUE_MUTUAL_FUND_ID = "MUTUAL_FUND";
-    public final static String UNIQUE_TAX_ID = "TAX";
-    public final static String UNIQUE_LOAN_ID = "LOAN";
-    public final static String UNIQUE_RETIREMENT_ID = "RETIREMENT";
-    public final static String UNIQUE_ROI_ID = "ROI";
-    public final static String UNIQUE_CI_ID = "CI";
+    public final static String UNIQUE_FD_ID = "fixed_deposit";
+    public final static String UNIQUE_RD_ID = "recurring_deposit";
+    public final static String UNIQUE_PPF_ID = "ppf";
+    public final static String UNIQUE_STOCK_ID = "stock";
+    public final static String UNIQUE_MUTUAL_FUND_ID = "mutual_fund";
+    public final static String UNIQUE_TAX_ID = "tax";
+    public final static String UNIQUE_LOAN_ID = "loan";
+    public final static String UNIQUE_RETIREMENT_ID = "retirement";
+    public final static String UNIQUE_ROI_ID = "roi_change";
+    public final static String UNIQUE_CI_ID = "ci_change";
+    public final static String UNIQUE_BUDGET_ID = "budget";
 
 
 
@@ -52,11 +53,11 @@ public class Calculator {
         this.name = name;
     }
 
-    public String getImageName() {
+    public String getUniqueId() {
         return uniqueId;
     }
 
-    public void setImageName(String uniqueId) {
+    public void setUniqueId(String uniqueId) {
         this.uniqueId = uniqueId;
     }
 

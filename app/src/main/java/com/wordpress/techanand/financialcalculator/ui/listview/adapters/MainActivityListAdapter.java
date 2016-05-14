@@ -1,16 +1,20 @@
 package com.wordpress.techanand.financialcalculator.ui.listview.adapters;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wordpress.techanand.financialcalculator.R;
+import com.wordpress.techanand.financialcalculator.app.AppConstants;
 import com.wordpress.techanand.financialcalculator.app.models.MainCalcListItem;
 import com.wordpress.techanand.financialcalculator.db.model.Calculator;
 import com.wordpress.techanand.financialcalculator.ui.listview.holders.TextViewHolder;
@@ -41,18 +45,20 @@ public class MainActivityListAdapter extends ArrayAdapter {
         TextViewHolder viewHolder = null;
         Calculator listViewItem = objects.get(position);
         if (convertView == null) {
-            Random rnd = new Random();
-            int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.content_main_list_1, null);
             TextView textView = (TextView) convertView.findViewById(R.id.gridText);
-            //TextView bigLetter = (TextView) convertView.findViewById(R.id.content_main_list_circle);
+            textView.setText(listViewItem.getName());
+            ImageView image = (ImageView) convertView.findViewById(R.id.gridImage);
+            String packageName = getContext().getPackageName();
+            Resources resources = getContext().getResources();
+            int resId =resources.getIdentifier(listViewItem.getUniqueId(), "drawable", packageName);
+            image.setImageResource(resId);
             viewHolder = new TextViewHolder(textView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (TextViewHolder) convertView.getTag();
         }
         viewHolder.getText().setText(listViewItem.getName());
-
         return convertView;
     }
 

@@ -55,14 +55,15 @@ public class AppOpenHelper extends SQLiteOpenHelper{
         initialLoadData.add(new Calculator(0, "Tax Calculator", Calculator.UNIQUE_TAX_ID, AppConstants.TRUE, 5));
         initialLoadData.add(new Calculator(0, "Loan Calculator", Calculator.UNIQUE_LOAN_ID, AppConstants.TRUE, 6));
         initialLoadData.add(new Calculator(0, "Retirement Calculator", Calculator.UNIQUE_RETIREMENT_ID, AppConstants.TRUE, 7));
-        initialLoadData.add(new Calculator(0, "PPF Calculator", Calculator.UNIQUE_PPF_ID, AppConstants.TRUE, 8));
-        initialLoadData.add(new Calculator(0, "Rate Of Interest", Calculator.UNIQUE_ROI_ID, AppConstants.TRUE, 9));
-        initialLoadData.add(new Calculator(0, "Compound Interest", Calculator.UNIQUE_CI_ID, AppConstants.TRUE, 10));
+        initialLoadData.add(new Calculator(0, "Budget Calculator", Calculator.UNIQUE_BUDGET_ID, AppConstants.TRUE, 8));
+        initialLoadData.add(new Calculator(0, "PPF Calculator", Calculator.UNIQUE_PPF_ID, AppConstants.TRUE, 9));
+        initialLoadData.add(new Calculator(0, "Rate Of Interest", Calculator.UNIQUE_ROI_ID, AppConstants.TRUE, 10));
+        initialLoadData.add(new Calculator(0, "Compound Interest", Calculator.UNIQUE_CI_ID, AppConstants.TRUE, 11));
         for (Calculator calculator:initialLoadData) {
             ContentValues values = new ContentValues();
             values.put(CalculatorTable.COLUMN_NAME, calculator.getName());
             values.put(CalculatorTable.COLUMN_IS_VISIBLE, calculator.getIsVisible());
-            values.put(CalculatorTable.COLUMN_UNIQUE_ID, calculator.getImageName());
+            values.put(CalculatorTable.COLUMN_UNIQUE_ID, calculator.getUniqueId());
             values.put(CalculatorTable.COLUMN_ORDER, calculator.getOrderBy());
             content.add(values);
         }
