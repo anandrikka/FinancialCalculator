@@ -1,15 +1,5 @@
 package com.wordpress.techanand.financialcalculator.db.tables;
 
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
-
-import com.wordpress.techanand.financialcalculator.app.AppConstants;
-import com.wordpress.techanand.financialcalculator.app.models.MainCalcListItem;
-import com.wordpress.techanand.financialcalculator.db.model.Calculator;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Anand Rikka on 5/11/2016.
  */

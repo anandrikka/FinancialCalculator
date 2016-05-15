@@ -7,7 +7,7 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/content_stock_price_category_dropdown"
+        android:id="@+id/displayText"
         android:singleLine="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activities.stock.StockPriceActivity">
+    tools:context=".app.activities.StockPriceActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,7 +21,148 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_stock_price" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/stock_scroll"
+            android:layout_alignParentStart="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="16dp"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/stock_category_list"
+                    android:spinnerMode="dialog"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/dropdown"></Spinner>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/stock_exchange_choose"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_below="@+id/stock_dropdown"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp">
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="BSE"
+                        android:id="@+id/bseExchange"
+                        android:checked="true"/>
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="NSE"
+                        android:id="@+id/nseExchange"/>
+                </RadioGroup>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/stock_type_calculation"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_below="@+id/stock_exchange_choose"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="By Unit Price"
+                        android:id="@+id/bseExchange1"
+                        android:checked="true"/>
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="By Amount"
+                        android:id="@+id/nseExchange1"/>
+                </RadioGroup>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:stretchColumns="1">
+                    <TableRow>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Buy Price"
+                            android:gravity="center_horizontal" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Sell Price"
+                            android:gravity="center_horizontal" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Quantity"
+                            android:gravity="center_horizontal" />
+                    </TableRow>
+                    <TableRow>
+                        <EditText
+                            android:id="@+id/stock_price_buy"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="numberDecimal"/>
+                        <EditText
+                            android:id="@+id/stock_price_sell"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="numberDecimal"/>
+                        <EditText
+                            android:id="@+id/stock_quantity"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="numberDecimal"/>
+                    </TableRow>
+                    <TableRow
+                        android:paddingTop="10dp"
+                        android:paddingLeft="24dp"
+                        android:paddingRight="24dp"
+                        android:paddingBottom="10dp">
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Reset" />
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Calculate" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
 
     <!--<android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

@@ -1,19 +1,20 @@
-package com.wordpress.techanand.financialcalculator.activities.stock;
+package com.wordpress.techanand.financialcalculator.app.activities;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.models.StockCategory;
-import com.wordpress.techanand.financialcalculator.ui.listview.adapters.StockListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +37,9 @@ public class StockPriceActivity extends AppCompatActivity {
             }
         });*/
 
-        final Spinner dropdownList = (Spinner) findViewById(R.id.content_stock_price_dropdownList);
+        final Spinner dropdownList = (Spinner) findViewById(R.id.stock_category_list);
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-        StockListAdapter adapter = new StockListAdapter(this, R.layout.content_stock_price_dropdown, getStockCategories());
+        StockListAdapter adapter = new StockListAdapter(this, R.layout.stock_price_dropdown, getStockCategories());
         //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdownList.setAdapter(adapter);
         dropdownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -70,4 +71,28 @@ public class StockPriceActivity extends AppCompatActivity {
         return categories;
     }
 
+
+    class StockListAdapter extends ArrayAdapter {
+
+        List<StockCategory> list;
+
+        public StockListAdapter(Context context, int resource, List<StockCategory> objects) {
+            super(context, resource, objects);
+            this.list = objects;
+        }
+
+        @Override
+        public View getDropDownView(int position, View convertView, ViewGroup parent) {
+            return getView(position, convertView, parent);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.stock_price_dropdown, null);
+            StockCategory stockCategory = list.get(position);
+            TextView label = (TextView) convertView.findViewById(R.id.displayText);
+            label.setText(stockCategory.getName());
+            return convertView;
+        }
+    }
 }
