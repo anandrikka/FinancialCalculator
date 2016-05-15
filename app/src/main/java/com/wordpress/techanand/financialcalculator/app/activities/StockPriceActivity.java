@@ -40,7 +40,7 @@ public class StockPriceActivity extends AppCompatActivity {
         final Spinner dropdownList = (Spinner) findViewById(R.id.stock_category_list);
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         StockListAdapter adapter = new StockListAdapter(this, R.layout.stock_price_dropdown, getStockCategories());
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdownList.setAdapter(adapter);
         dropdownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

@@ -42,13 +42,13 @@
 
                 <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:id="@+id/stock_category_list"
                     android:spinnerMode="dialog"
                     android:layout_marginRight="16dp"
                     android:layout_marginLeft="16dp"
-                    android:background="@drawable/dropdown"></Spinner>
+                    android:background="@drawable/border"></Spinner>
 
                 <RadioGroup
                     android:layout_width="match_parent"
@@ -126,20 +126,26 @@
                         <EditText
                             android:id="@+id/stock_price_buy"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:layout_weight="1"
-                            android:inputType="numberDecimal"/>
+                            android:background="@drawable/border"
+                            android:inputType="numberDecimal"
+                            android:layout_margin="2dp"/>
                         <EditText
                             android:id="@+id/stock_price_sell"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:layout_weight="1"
+                            android:layout_margin="2dp"
+                            android:background="@drawable/border"
                             android:inputType="numberDecimal"/>
                         <EditText
                             android:id="@+id/stock_quantity"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_margin="2dp"
                             android:layout_weight="1"
+                            android:background="@drawable/border"
                             android:inputType="numberDecimal"/>
                     </TableRow>
                     <TableRow

@@ -1,6 +1,5 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,10 +10,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositCalcTab;
-import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositDetailsTab;
+import com.wordpress.techanand.financialcalculator.app.fragments.FDStandardTab;
+import com.wordpress.techanand.financialcalculator.app.fragments.FDInterestPayoutTab;
 
 public class FixedDepositActivity extends AppCompatActivity {
+
+    public static final String[] PERIOD = {"Years", "Months", "Days"};
+    public static final String[] COMPOUNDING_FREQ = {"Monthly", "Quarterly", "Half Yearly", "Yearly"};
+    public static final String[] PAYOUT_FREQ = {"Monthly", "Yearly"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,8 @@ public class FixedDepositActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Calculate"));
-        tabLayout.addTab(tabLayout.newTab().setText("Details"));
+        tabLayout.addTab(tabLayout.newTab().setText("Standard"));
+        tabLayout.addTab(tabLayout.newTab().setText("Interest Payout"));
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewTabs);
 
@@ -69,9 +72,9 @@ public class FixedDepositActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position){
                 case 0:
-                    return new FixedDepositCalcTab();
+                    return new FDStandardTab();
                 case 1:
-                    return new FixedDepositDetailsTab();
+                    return new FDInterestPayoutTab();
                 default:
                     return null;
             }
