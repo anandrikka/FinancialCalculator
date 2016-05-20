@@ -1,0 +1,158 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".app.fragments.SIPReturnsTab">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow android:paddingBottom="16dp">
+                <TextView android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Monthly Investment"/>
+                <EditText android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/border"
+                    android:layout_weight="1"/>
+            </TableRow>
+
+            <TableRow android:paddingBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Time Period"/>
+            </TableRow>
+
+            <TableRow android:paddingBottom="16dp">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:layout_marginRight="8dp"/>
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/time_period_unit"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:spinnerMode="dialog" />
+            </TableRow>
+
+            <TableRow android:paddingBottom="16dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="Annual Returns (%)"/>
+
+                <EditText android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/border"
+                    android:layout_weight="1"/>
+            </TableRow>
+
+            <TableRow>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reset"/>
+
+                <Button android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Calculate"/>
+            </TableRow>
+
+        </TableLayout>
+
+        <!--<TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Monthly Investment"
+            android:id="@+id/monthly_investment_label"
+            android:paddingBottom="8dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/border"
+            android:id="@+id/monthly_investment_value"
+            android:layout_below="@+id/monthly_investment_label" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time Period"
+            android:id="@+id/time_period_label"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_below="@+id/monthly_investment_value" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/border"
+            android:layout_below="@+id/time_period_label"
+            android:id="@+id/time_period_value"/>
+
+        <Spinner
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/border"
+            android:layout_marginLeft="16dp"
+            android:id="@+id/time_period_unit"
+            android:layout_above="@+id/annual_return_label"
+            android:layout_toEndOf="@+id/time_period_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="Annual Return (%)"
+            android:layout_below="@+id/time_period_value"
+            android:id="@+id/annual_return_label" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/border"
+            android:layout_below="@id/annual_return_label"
+            android:id="@+id/annual_return_value" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:layout_marginTop="16dp"
+            android:id="@+id/reset"
+            android:layout_below="@+id/annual_return_value"
+            android:layout_alignEnd="@+id/annual_return_value" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculate"
+            android:id="@+id/calculate"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/time_period_unit" />-->
+
+    </RelativeLayout>
+
+</ScrollView>

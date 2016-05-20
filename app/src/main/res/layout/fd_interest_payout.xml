@@ -8,10 +8,117 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow android:paddingBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="FD Amount"/>
+            </TableRow>
+
+            <TableRow android:paddingBottom="8dp">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"/>
+            </TableRow>
+
+            <TableRow android:paddingBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Period"/>
+            </TableRow>
+
+            <TableRow android:paddingBottom="8dp">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:layout_marginRight="8dp"/>
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/period_unit"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:spinnerMode="dialog" />
+            </TableRow>
+
+            <TableRow android:paddingBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="8dp"
+                    android:text="Rate of Interest (%)"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Compounding"/>
+            </TableRow>
+
+            <TableRow android:paddingBottom="8dp">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:layout_marginRight="8dp"/>
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/compounding_interest_input"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:spinnerMode="dialog" />
+            </TableRow>
+
+            <TableRow android:paddingBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Interest Payout"/>
+            </TableRow>
+
+            <TableRow android:paddingBottom="8dp">
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/payout_input"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:spinnerMode="dialog" />
+            </TableRow>
+
+            <TableRow android:paddingBottom="8dp">
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reset"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Calculate"/>
+            </TableRow>
+
+        </TableLayout>
+
+        <!--<TextView
             android:id="@+id/fd_amount_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,7 +197,9 @@
             android:id="@+id/compounding_interest_input"
             android:layout_below="@+id/compounding_interest_label"
             android:layout_alignStart="@+id/compounding_interest_label"
-            android:background="@drawable/border"/>
+            android:background="@drawable/border"/>-->
+
+        <!--<include layout="@layout/fd_common_layout"></include>
 
         <TextView
             android:layout_width="wrap_content"
@@ -126,7 +235,7 @@
             android:text="Calculate"
             android:id="@+id/calculate"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/compounding_interest_input" />
+            android:layout_alignStart="@+id/compounding_interest_input" />-->
 
     </RelativeLayout>
 

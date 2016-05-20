@@ -27,8 +27,44 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
         </activity>
-        <activity android:name=".app.activities.FixedDepositActivity"
+        <activity
+            android:name=".app.activities.FixedDepositActivity"
             android:label="Fixed Deposit Calculator"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity
+            android:name=".app.activities.LoanActivity"
+            android:label="Loan Calculator"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity
+            android:name=".app.activities.RecurringDepositActivity"
+            android:label="Recurring Deposit Calculator"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity
+            android:name=".app.activities.MutualFundActivity"
+            android:label="Mutual Fund Calculator"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity android:name=".app.activities.RetirementActivity"
+            android:label="Retirement Calculator"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

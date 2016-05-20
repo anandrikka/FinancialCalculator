@@ -1,0 +1,215 @@
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow android:paddingBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="4dp"
+                    android:text="Installment Amount"/>
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"/>
+            </TableRow>
+
+            <TableRow android:paddingBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Duration"/>
+            </TableRow>
+
+            <TableRow android:paddingBottom="8dp">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:layout_marginRight="4dp"/>
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/period_unit"
+                    android:background="@drawable/border"/>
+            </TableRow>
+
+            <TableRow android:paddingBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="4dp"
+                    android:text="Rate of Interest(%)"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Compounding"/>
+            </TableRow>
+
+            <TableRow android:paddingBottom="16dp">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:layout_marginRight="4dp"/>
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/compounding_interest_input"
+                    android:background="@drawable/border"/>
+            </TableRow>
+
+            <TableRow>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reset"/>
+
+                <Button android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Calculate"/>
+            </TableRow>
+
+        </TableLayout>
+
+        <!--<TextView
+            android:id="@+id/rd_amount_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Installment Amount"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:paddingBottom="8dp" />
+
+        <EditText
+            android:id="@+id/rd_amount_input"
+            android:layout_below="@+id/rd_amount_label"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:paddingBottom="8dp"
+            android:background="@drawable/border"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rd_amount_input"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:id="@+id/period_label"
+            android:text="Duration"/>
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/border"
+            android:id="@+id/period_value"
+            android:inputType="number"
+            android:layout_below="@+id/period_label"
+            android:layout_marginRight="16dp" />
+
+        <Spinner
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/border"
+            android:id="@+id/period_unit"
+            android:layout_above="@+id/compounding_interest_label"
+            android:layout_toEndOf="@+id/period_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/interest_label"
+            android:text="Rate Of Interest (%)"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_below="@+id/period_value"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:id="@+id/interest_input"
+            android:inputType="numberDecimal"
+            android:layout_below="@+id/interest_label"
+            android:background="@drawable/border" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compounding"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:id="@+id/compounding_interest_label"
+            android:layout_above="@+id/interest_input"
+            android:layout_toEndOf="@+id/period_value" />
+
+        <Spinner
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:id="@+id/compounding_interest_input"
+            android:layout_below="@+id/compounding_interest_label"
+            android:layout_alignStart="@+id/compounding_interest_label"
+            android:background="@drawable/border"/>
+
+        &lt;!&ndash;<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maturity Amount"
+            android:id="@+id/maturity_label"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_below="@+id/compounding_interest_input" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:background="@drawable/border"
+            android:id="@+id/maturity_value"
+            android:layout_below="@+id/maturity_label" />&ndash;&gt;
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Reset"
+            android:id="@+id/reset"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/compounding_interest_input"
+            android:layout_alignEnd="@+id/interest_input" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Calculate"
+            android:id="@+id/calculate"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/compounding_interest_input" />-->
+
+    </RelativeLayout>
+
+</ScrollView>

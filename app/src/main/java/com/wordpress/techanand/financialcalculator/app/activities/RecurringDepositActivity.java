@@ -1,5 +1,6 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
+import android.content.pm.PackageInfo;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,32 +9,37 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.fragments.FDStandardTab;
-import com.wordpress.techanand.financialcalculator.app.fragments.FDInterestPayoutTab;
+import com.wordpress.techanand.financialcalculator.app.fragments.RDByInstallmentTab;
+import com.wordpress.techanand.financialcalculator.app.fragments.RDByMaturityTab;
 
-public class FixedDepositActivity extends AppCompatActivity {
+public class RecurringDepositActivity extends AppCompatActivity {
 
-    public static final String[] PERIOD = {"Years", "Months", "Days"};
-    public static final String[] COMPOUNDING_FREQ = {"Monthly", "Quarterly", "Half Yearly", "Yearly", "Simple Interest"};
-    public static final String[] PAYOUT_FREQ = {"Monthly", "Yearly"};
+    public static final String[] COMPOUNDING_FREQ = {"Monthly", "Quarterly", "Yearly"};
+    public static final String[] PERIOD = {"Months", "Years"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fixed_deposit);
+        setContentView(R.layout.activity_recurring_deposit);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Standard"));
-        tabLayout.addTab(tabLayout.newTab().setText("Interest Payout"));
+        tabLayout.addTab(tabLayout.newTab().setText("By Installment"));
+        tabLayout.addTab(tabLayout.newTab().setText("By Maturity"));
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewTabs);
 
-        FDPagerAdapter pagerAdapter = new FDPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        RDPagerAdapter pagerAdapter = new RDPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
         viewPager.setAdapter(pagerAdapter);
 
@@ -55,15 +61,15 @@ public class FixedDepositActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
 
+    class RDPagerAdapter extends FragmentStatePagerAdapter {
 
-
-    public class FDPagerAdapter extends FragmentStatePagerAdapter {
         int numTabs;
 
-        public FDPagerAdapter(FragmentManager fm, int numTabs) {
+        public RDPagerAdapter(FragmentManager fm, int numTabs) {
             super(fm);
             this.numTabs = numTabs;
         }
@@ -72,9 +78,9 @@ public class FixedDepositActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position){
                 case 0:
-                    return new FDStandardTab();
+                    return new RDByInstallmentTab();
                 case 1:
-                    return new FDInterestPayoutTab();
+                    return new RDByMaturityTab();
                 default:
                     return null;
             }

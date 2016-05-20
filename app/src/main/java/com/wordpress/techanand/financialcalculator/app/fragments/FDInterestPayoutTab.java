@@ -28,7 +28,7 @@ public class FDInterestPayoutTab extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fixed_deposit_interest_payout, container, false);
+        View view = inflater.inflate(R.layout.fd_interest_payout, container, false);
 
         final Spinner periodUnitSpinner = (Spinner) view.findViewById(R.id.period_unit);
         ArrayAdapter<String> periodUnitAdapter = new ArrayAdapter<String>(view.getContext(), R.layout.custom_spinner_dropdown, FixedDepositActivity.PERIOD);

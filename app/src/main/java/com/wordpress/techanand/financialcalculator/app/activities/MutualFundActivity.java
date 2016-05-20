@@ -10,32 +10,31 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.fragments.FDStandardTab;
-import com.wordpress.techanand.financialcalculator.app.fragments.FDInterestPayoutTab;
+import com.wordpress.techanand.financialcalculator.app.fragments.SIPCalculateTab;
+import com.wordpress.techanand.financialcalculator.app.fragments.SIPForGoal;
+import com.wordpress.techanand.financialcalculator.app.fragments.SIPReturnsTab;
 
-public class FixedDepositActivity extends AppCompatActivity {
+public class MutualFundActivity extends AppCompatActivity {
 
-    public static final String[] PERIOD = {"Years", "Months", "Days"};
-    public static final String[] COMPOUNDING_FREQ = {"Monthly", "Quarterly", "Half Yearly", "Yearly", "Simple Interest"};
-    public static final String[] PAYOUT_FREQ = {"Monthly", "Yearly"};
+    public static final String[] PERIOD = {"Months", "Years"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fixed_deposit);
+        setContentView(R.layout.activity_mutual_fund);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Standard"));
-        tabLayout.addTab(tabLayout.newTab().setText("Interest Payout"));
+        tabLayout.addTab(tabLayout.newTab().setText("SIP Returns"));
+        tabLayout.addTab(tabLayout.newTab().setText("Calculate SIP"));
+        tabLayout.addTab(tabLayout.newTab().setText("Goal Calculator"));
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewTabs);
-
-        FDPagerAdapter pagerAdapter = new FDPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-
-        viewPager.setAdapter(pagerAdapter);
+        MutualFundViewAdapter adapter = new MutualFundViewAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -55,15 +54,15 @@ public class FixedDepositActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
 
+    class MutualFundViewAdapter extends FragmentStatePagerAdapter {
 
-
-    public class FDPagerAdapter extends FragmentStatePagerAdapter {
         int numTabs;
 
-        public FDPagerAdapter(FragmentManager fm, int numTabs) {
+        public MutualFundViewAdapter(FragmentManager fm, int numTabs) {
             super(fm);
             this.numTabs = numTabs;
         }
@@ -72,9 +71,11 @@ public class FixedDepositActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position){
                 case 0:
-                    return new FDStandardTab();
+                    return new SIPReturnsTab();
                 case 1:
-                    return new FDInterestPayoutTab();
+                    return new SIPCalculateTab();
+                case 2:
+                    return new SIPForGoal();
                 default:
                     return null;
             }
