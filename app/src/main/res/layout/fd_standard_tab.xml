@@ -7,13 +7,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="16dp">
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="1">
+            android:stretchColumns="1"
+            android:id="@+id/table">
 
             <TableRow android:paddingBottom="8dp">
                 <TextView
@@ -28,7 +29,9 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:background="@drawable/border"/>
+                    android:background="@drawable/border"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/fd_amount"/>
             </TableRow>
 
             <TableRow android:paddingBottom="8dp">
@@ -45,7 +48,9 @@
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:background="@drawable/border"
-                    android:layout_marginRight="8dp"/>
+                    android:layout_marginRight="8dp"
+                    android:inputType="number"
+                    android:id="@+id/period_value"/>
                 <Spinner
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -75,7 +80,9 @@
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:background="@drawable/border"
-                    android:layout_marginRight="8dp"/>
+                    android:layout_marginRight="8dp"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/roi"/>
                 <Spinner
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -90,127 +97,41 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Reset"/>
+                    android:text="Reset"
+                    android:id="@+id/reset_data"/>
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Calculate"/>
+                    android:text="Calculate"
+                    android:id="@+id/calculate"/>
+            </TableRow>
+
+            <TableRow android:paddingTop="20dp" android:id="@+id/maturity_row">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical"
+                    android:text="Maturity Amount"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:textSize="20sp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:id="@+id/maturity_amount"/>
             </TableRow>
 
         </TableLayout>
 
-    </RelativeLayout>
-
-    <!--<RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_below="@+id/gridLayout"
-            android:id="@+id/fd_amount_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="FD Amount"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:paddingBottom="8dp" />
-
-        <EditText
-            android:id="@+id/fd_amount_input"
-            android:layout_below="@+id/fd_amount_label"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:inputType="number"
-            android:paddingBottom="8dp"
-            android:background="@drawable/border"/>
-
-        <TextView
+        <com.github.mikephil.charting.charts.PieChart
+            android:layout_below="@+id/table"
+            android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/fd_amount_input"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:id="@+id/period_label"
-            android:text="Period"/>
+            android:layout_height="300dp" />
 
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:gravity="fill_horizontal"
-            android:background="@drawable/border"
-            android:id="@+id/period_input"
-            android:inputType="number"
-            android:layout_below="@+id/period_label"
-            android:layout_marginRight="16dp" />
-
-        <Spinner
-            android:layout_width="150dp"
-            android:gravity="fill_horizontal"
-            android:layout_height="wrap_content"
-            android:id="@+id/period_unit"
-            android:background="@drawable/border"
-            android:layout_alignTop="@+id/period_input"
-            android:layout_toEndOf="@+id/period_input"
-            android:layout_alignBottom="@+id/period_input"></Spinner>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/interest_label"
-            android:text="Rate Of Interest (%)"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:layout_below="@+id/period_input"
-            android:layout_alignParentStart="true" />
-
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:id="@+id/interest_input"
-            android:inputType="numberDecimal"
-            android:layout_below="@+id/interest_label"
-            android:background="@drawable/border" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Compounding"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:id="@+id/compounding_interest_label"
-            android:layout_below="@+id/period_unit"
-            android:layout_toEndOf="@+id/period_input" />
-
-        <Spinner
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:id="@+id/compounding_interest_input"
-            android:layout_below="@+id/compounding_interest_label"
-            android:layout_alignStart="@+id/compounding_interest_label"
-            android:background="@drawable/border"/>
-        &lt;!&ndash;<include layout="@layout/fd_common_layout"></include>&ndash;&gt;
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Reset"
-            android:id="@+id/reset"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@+id/interest_input"
-            android:layout_alignEnd="@+id/interest_input" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Calculate"
-            android:id="@+id/calculate"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/compounding_interest_input" />
-
-    </RelativeLayout>-->
+    </RelativeLayout>
 
 </ScrollView>

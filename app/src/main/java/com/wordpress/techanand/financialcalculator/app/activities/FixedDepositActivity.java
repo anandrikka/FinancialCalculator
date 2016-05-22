@@ -8,8 +8,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.wordpress.techanand.financialcalculator.R;
+import com.wordpress.techanand.financialcalculator.app.AppConstants;
 import com.wordpress.techanand.financialcalculator.app.fragments.FDStandardTab;
 import com.wordpress.techanand.financialcalculator.app.fragments.FDInterestPayoutTab;
 
@@ -18,6 +23,24 @@ public class FixedDepositActivity extends AppCompatActivity {
     public static final String[] PERIOD = {"Years", "Months", "Days"};
     public static final String[] COMPOUNDING_FREQ = {"Monthly", "Quarterly", "Half Yearly", "Yearly", "Simple Interest"};
     public static final String[] PAYOUT_FREQ = {"Monthly", "Yearly"};
+
+    /*Formula for fixed deposit:
+    *
+    * A = P * (1+r/n)^nt
+    *
+    * P - Principle Amount
+    * r - Rate of Interest
+    * t - Number of Years
+    * n - No' of compounding periods, example: for quarterly (4), for half yearly (2) etc..
+    *
+    * */
+
+    private double P;
+    private int t;
+    private double r;
+    private int n;
+    private String tUnit;
+    private String nUnit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +79,6 @@ public class FixedDepositActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 
     public class FDPagerAdapter extends FragmentStatePagerAdapter {
         int numTabs;

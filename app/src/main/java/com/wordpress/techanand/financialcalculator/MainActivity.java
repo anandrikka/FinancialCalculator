@@ -22,12 +22,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wordpress.techanand.financialcalculator.app.activities.BudgetActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.FixedDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.LoanActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.MutualFundActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.RecurringDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.RetirementActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.StockPriceActivity;
+import com.wordpress.techanand.financialcalculator.app.activities.TaxActivity;
 import com.wordpress.techanand.financialcalculator.db.AppOpenHelper;
 import com.wordpress.techanand.financialcalculator.db.datasources.CalculatorDataSource;
 import com.wordpress.techanand.financialcalculator.db.model.Calculator;
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         launchItem = new Intent(MainActivity.this, LoanActivity.class);
                         break;
                     case Calculator.UNIQUE_TAX_ID:
-                        launchItem = new Intent(MainActivity.this, StockPriceActivity.class);
+                        launchItem = new Intent(MainActivity.this, TaxActivity.class);
                         break;
                     case Calculator.UNIQUE_ROI_ID:
                         //launchItem = new Intent(MainActivity.this, MiscellaneousActivity.class);
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Toast.makeText(MainActivity.this, item.getName()+" Not Defined !", Toast.LENGTH_SHORT).show();
                         break;
                     case Calculator.UNIQUE_BUDGET_ID:
-                        Toast.makeText(MainActivity.this, item.getName()+" Not Defined !", Toast.LENGTH_SHORT).show();
+                        launchItem = new Intent(MainActivity.this, BudgetActivity.class);
                         break;
                     case Calculator.UNIQUE_RETIREMENT_ID:
                         launchItem = new Intent(MainActivity.this, RetirementActivity.class);
