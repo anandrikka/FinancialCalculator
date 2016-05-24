@@ -61,7 +61,7 @@ public class FDInterestPayoutTab extends Fragment {
         compoundingFreq.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), FixedDepositActivity.COMPOUNDING_FREQ[position], Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), FixedDepositActivity.COMPOUNDING_FREQ[position], Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -73,7 +73,7 @@ public class FDInterestPayoutTab extends Fragment {
         interestPayout.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), FixedDepositActivity.PAYOUT_FREQ[position], Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), FixedDepositActivity.PAYOUT_FREQ[position], Toast.LENGTH_SHORT).show();
             }
 
             @Override

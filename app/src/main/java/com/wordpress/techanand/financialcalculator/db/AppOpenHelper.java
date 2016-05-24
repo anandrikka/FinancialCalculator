@@ -2,16 +2,14 @@ package com.wordpress.techanand.financialcalculator.db;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.wordpress.techanand.financialcalculator.app.AppConstants;
+import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.db.model.Calculator;
 import com.wordpress.techanand.financialcalculator.db.tables.CalculatorTable;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +35,7 @@ public class AppOpenHelper extends SQLiteOpenHelper{
         for (ContentValues values: calculators) {
             db.insert(CalculatorTable.NAME, null, values);
         }
-        Log.d(AppConstants.LOG, "Database Created");
+        Log.d(AppMain.LOG, "Database Created");
     }
 
     @Override
@@ -48,14 +46,14 @@ public class AppOpenHelper extends SQLiteOpenHelper{
     private List loadInitialDataForCalculators() {
         List<Calculator> initialLoadData = new ArrayList();
         List<ContentValues> content = new ArrayList();
-        initialLoadData.add(new Calculator(0, "Stock Calculator", Calculator.UNIQUE_STOCK_ID, AppConstants.TRUE, 1));
-        initialLoadData.add(new Calculator(0, "Mutual Fund", Calculator.UNIQUE_MUTUAL_FUND_ID, AppConstants.TRUE, 2));
-        initialLoadData.add(new Calculator(0, "Fixed Deposit", Calculator.UNIQUE_FD_ID, AppConstants.TRUE, 3));
-        initialLoadData.add(new Calculator(0, "Recurring Deposit", Calculator.UNIQUE_RD_ID, AppConstants.TRUE, 4));
-        initialLoadData.add(new Calculator(0, "Tax Calculator", Calculator.UNIQUE_TAX_ID, AppConstants.TRUE, 5));
-        initialLoadData.add(new Calculator(0, "Loan Calculator", Calculator.UNIQUE_LOAN_ID, AppConstants.TRUE, 6));
-        initialLoadData.add(new Calculator(0, "Retirement Calculator", Calculator.UNIQUE_RETIREMENT_ID, AppConstants.TRUE, 7));
-        initialLoadData.add(new Calculator(0, "Budget Calculator", Calculator.UNIQUE_BUDGET_ID, AppConstants.TRUE, 8));
+        initialLoadData.add(new Calculator(0, "Stock Calculator", Calculator.UNIQUE_STOCK_ID, AppMain.TRUE, 1));
+        initialLoadData.add(new Calculator(0, "Mutual Fund", Calculator.UNIQUE_MUTUAL_FUND_ID, AppMain.TRUE, 2));
+        initialLoadData.add(new Calculator(0, "Fixed Deposit", Calculator.UNIQUE_FD_ID, AppMain.TRUE, 3));
+        initialLoadData.add(new Calculator(0, "Recurring Deposit", Calculator.UNIQUE_RD_ID, AppMain.TRUE, 4));
+        initialLoadData.add(new Calculator(0, "Tax Calculator", Calculator.UNIQUE_TAX_ID, AppMain.TRUE, 5));
+        initialLoadData.add(new Calculator(0, "Loan Calculator", Calculator.UNIQUE_LOAN_ID, AppMain.TRUE, 6));
+        initialLoadData.add(new Calculator(0, "Retirement Calculator", Calculator.UNIQUE_RETIREMENT_ID, AppMain.TRUE, 7));
+        initialLoadData.add(new Calculator(0, "Budget Calculator", Calculator.UNIQUE_BUDGET_ID, AppMain.TRUE, 8));
         for (Calculator calculator:initialLoadData) {
             ContentValues values = new ContentValues();
             values.put(CalculatorTable.COLUMN_NAME, calculator.getName());
