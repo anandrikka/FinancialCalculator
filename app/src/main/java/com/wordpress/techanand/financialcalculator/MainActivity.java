@@ -28,6 +28,7 @@ import com.wordpress.techanand.financialcalculator.app.activities.LoanActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.MutualFundActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.RecurringDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.RetirementActivity;
+import com.wordpress.techanand.financialcalculator.app.activities.SettingsActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.StockPriceActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.TaxActivity;
 import com.wordpress.techanand.financialcalculator.db.AppOpenHelper;
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.edit) {
 
         } else if (id == R.id.settings) {
-
+            startActivity(new Intent(this, SettingsActivity.class));
         } else if (id == R.id.about) {
 
         } else if (id == R.id.nav_share) {

@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Anand Rikka on 5/11/2016.
@@ -41,6 +42,10 @@ public class AppMain {
                     }
                 });
         return builder;
+    }
+
+    public static void toast(Context context, String message, int toastLength){
+        Toast.makeText(context, message, toastLength).show();
     }
 
 }

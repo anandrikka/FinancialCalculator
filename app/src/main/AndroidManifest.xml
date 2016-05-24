@@ -29,10 +29,10 @@
         </activity>
         <activity
             android:name=".app.activities.FixedDepositActivity"
+            android:configChanges="orientation|screenSize"
             android:label="Fixed Deposit Calculator"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="orientation|screenSize">
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
@@ -82,8 +82,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
         </activity>
-        <activity android:name=".app.activities.BudgetActivity"
+        <activity
+            android:name=".app.activities.BudgetActivity"
             android:label="Budget Calculator"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity android:name=".app.activities.SettingsActivity"
+            android:label="Settings"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

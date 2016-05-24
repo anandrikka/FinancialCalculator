@@ -16,7 +16,7 @@ import com.wordpress.techanand.financialcalculator.app.fragments.FDInterestPayou
 public class FixedDepositActivity extends AppCompatActivity {
 
     public static final String[] PERIOD = {"Years", "Months", "Days"};
-    public static final String[] COMPOUNDING_FREQ = {"Monthly", "Quarterly", "Half Yearly", "Yearly", "Simple Interest"};
+    public static final String[] COMPOUNDING_FREQ = {"Monthly", "Quarterly", "Half Yearly", "Simple Interest"};
     public static final String[] PAYOUT_FREQ = {"Monthly", "Yearly"};
 
     /*Formula for fixed deposit:
