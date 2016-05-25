@@ -8,6 +8,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/settings_item"
         android:padding="16dp"
-        android:textSize="12sp" />
+        android:textSize="16sp" />
 
 </LinearLayout>

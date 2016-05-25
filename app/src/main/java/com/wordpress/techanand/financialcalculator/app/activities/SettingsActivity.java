@@ -30,8 +30,8 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final List<String> settings = new ArrayList<>();
-        settings.add("NSE");
-        settings.add("BSE");
+        settings.add("Brokerage Settings");
+        settings.add("Exchange Settings");
 
         ListView settingsList = (ListView) findViewById(R.id.list);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.settings_list, R.id.settings_item, settings);
@@ -43,11 +43,15 @@ public class SettingsActivity extends AppCompatActivity {
                 String item = settings.get(position);
                 Intent launchItem = null;
                 switch (item) {
-                    case "NSE":
-                        AppMain.toast(SettingsActivity.this, item, Toast.LENGTH_LONG);
+                    case "Brokerage Settings":
+                        launchItem = new Intent(SettingsActivity.this, PreferencesActivity.class);
+                        launchItem.putExtra("PrefsType", "Brokerage");
+                        startActivity(launchItem);
                         break;
-                    case "BSE":
-                        AppMain.toast(SettingsActivity.this, item, Toast.LENGTH_LONG);
+                    case "Exchange Settings":
+                        launchItem = new Intent(SettingsActivity.this, PreferencesActivity.class);
+                        launchItem.putExtra("PrefsType", "Exchange");
+                        startActivity(launchItem);
                         break;
                     default:
                         AppMain.toast(SettingsActivity.this, "Not Applicable", Toast.LENGTH_LONG);

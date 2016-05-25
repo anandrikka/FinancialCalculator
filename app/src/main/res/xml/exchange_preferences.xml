@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference android:title="Service Tax (%)"
+        android:key="exchange_service_tax"
+        android:defaultValue="14.5"
+        android:inputType="numberDecimal"/>
+    <EditTextPreference android:title="SEBI Charges/Crore"
+        android:key="exchange_sebi_charges"
+        android:defaultValue="20"
+        android:inputType="numberDecimal"/>
+    <EditTextPreference android:title="Stamp Duty Charges (%)"
+        android:key="exchange_stamp_duty"
+        android:defaultValue="0.01"
+        android:inputType="numberDecimal"/>
+
+    <PreferenceCategory android:title="Security Transaction Tax (%)">
+        <EditTextPreference android:title="Delivery"
+            android:key="exchange_stt_delivery"
+            android:defaultValue="0.1"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="Intraday"
+            android:key="exchange_stt_intraday"
+            android:defaultValue="0.025"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="Futures"
+            android:key="exchange_stt_futures"
+            android:defaultValue="0.01"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="Options"
+            android:key="exchange_stt_options"
+            android:defaultValue="0.017"
+            android:inputType="numberDecimal"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="NSE Turnover Charges (%)">
+        <EditTextPreference android:title="Delivery"
+            android:key="nse_charges_delivery"
+            android:defaultValue="0.00325"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="Intraday"
+            android:key="nse_charges_intraday"
+            android:defaultValue="0.00325"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="Futures"
+            android:key="nse_charges_futures"
+            android:defaultValue="0.0021"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="Options"
+            android:key="nse_charges_options"
+            android:defaultValue="0.053"
+            android:inputType="numberDecimal"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="BSE Turnover Charges (%)">
+        <EditTextPreference android:title="Delivery"
+            android:key="bse_charges_delivery"
+            android:defaultValue="0.00275"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="Intraday"
+            android:key="bse_charges_intraday"
+            android:defaultValue="0.00275"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="Futures"
+            android:key="bse_charges_futures"
+            android:defaultValue="0.0007"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="Options"
+            android:key="bse_charges_options"
+            android:defaultValue="0.027"
+            android:inputType="numberDecimal"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

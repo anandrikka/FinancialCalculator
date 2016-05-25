@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    android:fragment="com.wordpress.techanand.financialcalculator.app.fragments.BrokeragePrefs"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="DELIVERY">
+        <SwitchPreference android:title="Flat Rate"
+            android:key="delivery_is_flat_rate"
+            android:defaultValue="true"/>
+        <EditTextPreference android:title="Flat Charges"
+            android:key="delivery_flat_rate"
+            android:inputType="numberDecimal"
+            android:defaultValue="20"/>
+        <EditTextPreference android:title="Percentage (%)"
+            android:inputType="numberDecimal"
+            android:key="delivery_percentage"
+            android:defaultValue="0.3"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="INTRA DAY">
+        <SwitchPreference android:title="Flat Rate"
+            android:key="intraday_is_flat_rate"
+            android:defaultValue="false"/>
+        <EditTextPreference android:title="Flat Charges"
+            android:defaultValue="20"
+            android:key="intraday_flat_rate"/>
+        <EditTextPreference android:title="Percentage (%)"
+            android:defaultValue="0.03"
+            android:key="intraday_percentage"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="FUTURES">
+        <SwitchPreference android:title="Flat Rate"
+            android:key="futures_is_flat_rate"
+            android:defaultValue="false"/>
+        <EditTextPreference android:title="Flat Charges "
+            android:defaultValue="20"
+            android:key="futures_flat_rate"/>
+        <EditTextPreference android:title="Percentage (%)"
+            android:defaultValue="0.03"
+            android:key="futures_percentage"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="OPTIONS">
+        <SwitchPreference android:title="Flat Rate"
+            android:key="options_is_flat_rate"
+            android:defaultValue="false"/>
+        <EditTextPreference android:title="Flat Charges "
+            android:defaultValue="20"
+            android:key="options_flat_rate"/>
+        <EditTextPreference android:title="Percentage (%)"
+            android:defaultValue="0.03"
+            android:key="options_percentage"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
