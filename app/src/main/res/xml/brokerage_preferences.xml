@@ -3,54 +3,72 @@
     android:fragment="com.wordpress.techanand.financialcalculator.app.fragments.BrokeragePrefs"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="DELIVERY">
-        <SwitchPreference android:title="Flat Rate"
-            android:key="delivery_is_flat_rate"
-            android:defaultValue="true"/>
-        <EditTextPreference android:title="Flat Charges"
-            android:key="delivery_flat_rate"
+    <PreferenceCategory android:title="@string/prefs.brokerage.delivery_title">
+        <SwitchPreference android:title="@string/prefs.brokerage.delivery_use_flat_charges"
+            android:key="@string/prefs.brokerage.delivery_use_flat_charges_key"
+            android:inputType="numberDecimal" />
+        <EditTextPreference android:title="@string/prefs.brokerage.delivery_flat_charges_title"
+            android:key="@string/prefs.brokerage.delivery_flat_charges_key"
             android:inputType="numberDecimal"
-            android:defaultValue="20"/>
-        <EditTextPreference android:title="Percentage (%)"
+            android:defaultValue="@string/prefs.brokerage.delivery_flat_charges_default"/>
+        <EditTextPreference android:title="@string/prefs.brokerage.delivery_percent_title"
             android:inputType="numberDecimal"
-            android:key="delivery_percentage"
-            android:defaultValue="0.3"/>
+            android:key="@string/prefs.brokerage.delivery_percent_key"
+            android:defaultValue="@string/prefs.brokerage.delivery_percent_default"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="INTRA DAY">
-        <SwitchPreference android:title="Flat Rate"
-            android:key="intraday_is_flat_rate"
-            android:defaultValue="false"/>
-        <EditTextPreference android:title="Flat Charges"
-            android:defaultValue="20"
-            android:key="intraday_flat_rate"/>
-        <EditTextPreference android:title="Percentage (%)"
-            android:defaultValue="0.03"
-            android:key="intraday_percentage"/>
+    <PreferenceCategory android:title="@string/prefs.brokerage.intraday_title">
+        <SwitchPreference android:title="@string/prefs.brokerage.intraday_use_flat_charges"
+            android:key="@string/prefs.brokerage.intraday_use_flat_charges_key"
+            android:inputType="numberDecimal" />
+        <EditTextPreference android:title="@string/prefs.brokerage.intraday_flat_charges_title"
+            android:defaultValue="@string/prefs.brokerage.intraday_flat_charges_default"
+            android:key="@string/prefs.brokerage.intraday_flat_charges_key"/>
+        <EditTextPreference android:title="@string/prefs.brokerage.intraday_percent_title"
+            android:defaultValue="@string/prefs.brokerage.intraday_percent_default"
+            android:key="@string/prefs.brokerage.intraday_percent_key"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="FUTURES">
-        <SwitchPreference android:title="Flat Rate"
-            android:key="futures_is_flat_rate"
-            android:defaultValue="false"/>
-        <EditTextPreference android:title="Flat Charges "
-            android:defaultValue="20"
-            android:key="futures_flat_rate"/>
-        <EditTextPreference android:title="Percentage (%)"
-            android:defaultValue="0.03"
-            android:key="futures_percentage"/>
+    <PreferenceCategory android:title="@string/prefs.brokerage.futures_title">
+        <SwitchPreference android:title="@string/prefs.brokerage.futures_use_flat_charges"
+            android:key="@string/prefs.brokerage.futures_use_flat_charges_key"
+            android:inputType="numberDecimal" />
+        <EditTextPreference android:title="@string/prefs.brokerage.futures_flat_charges_title"
+            android:defaultValue="@string/prefs.brokerage.futures_flat_charges_default"
+            android:key="@string/prefs.brokerage.futures_flat_rate_key"/>
+        <EditTextPreference android:title="@string/prefs.brokerage.futures_percent_title"
+            android:defaultValue="@string/prefs.brokerage.futures_percent_default"
+            android:key="@string/prefs.brokerage.futures_percent_key"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="OPTIONS">
-        <SwitchPreference android:title="Flat Rate"
-            android:key="options_is_flat_rate"
-            android:defaultValue="false"/>
-        <EditTextPreference android:title="Flat Charges "
-            android:defaultValue="20"
-            android:key="options_flat_rate"/>
-        <EditTextPreference android:title="Percentage (%)"
-            android:defaultValue="0.03"
-            android:key="options_percentage"/>
+    <PreferenceCategory android:title="@string/prefs.brokerage.options_title">
+        <SwitchPreference android:title="@string/prefs.brokerage.options_use_flat_charges"
+            android:key="@string/prefs.brokerage.options_use_flat_charges_key"
+            android:inputType="numberDecimal" />
+        <EditTextPreference android:title="@string/prefs.brokerage.options_flat_charges_title"
+            android:defaultValue="@string/prefs.brokerage.options_flat_charges_default"
+            android:key="@string/prefs.brokerage.options_flat_charges_key"/>
+        <EditTextPreference android:title="@string/prefs.brokerage.options_percent_title"
+            android:defaultValue="@string/prefs.brokerage.options_percent_default"
+            android:key="@string/prefs.brokerage.options_percent_key"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/prefs.brokerage.currency_title">
+        <EditTextPreference android:title="@string/prefs.brokerage.currency_minimum_title"
+            android:defaultValue="@string/prefs.brokerage.currency_minimum_default"
+            android:key="@string/prefs.brokerage_currency_minimum_key"/>
+        <EditTextPreference android:title="@string/prefs.brokerage.currency_percent_title"
+            android:defaultValue="@string/prefs.brokerage.currency_percent_default"
+            android:key="@string/prefs.brokerage.currency_percent_key"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/prefs.brokerage.commodities_title">
+        <EditTextPreference android:title="@string/prefs.brokerage.commodities_minimum_title"
+            android:defaultValue="@string/prefs.brokerage.commodities_minimum_default"
+            android:key="@string/prefs.brokerage.commodities_minimum_key"/>
+        <EditTextPreference android:title="@string/prefs.brokerage.commodities_percent_title"
+            android:defaultValue="@string/prefs.brokerage.commodities_percent_default"
+            android:key="@string/prefs.brokerage.commodities_percent_key"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -37,14 +37,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="BSE"
+                    android:text="@string/app.stocks.bse"
                     android:id="@+id/bseExchange"
                     android:checked="true"/>
                 <RadioButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="NSE"
+                    android:text="@string/app.stocks.nse"
                     android:id="@+id/nseExchange"/>
             </RadioGroup>
 
@@ -58,19 +58,19 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Buy Price"
+                        android:text="@string/app.stocks.buy_price_label"
                         android:gravity="center_horizontal" />
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Sell Price"
+                        android:text="@string/app.stocks.sell_price_label"
                         android:gravity="center_horizontal" />
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Quantity"
+                        android:text="@string/app.stocks.quantity_label"
                         android:gravity="center_horizontal" />
                 </TableRow>
                 <TableRow>
@@ -108,12 +108,14 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Reset" />
+                        android:text="@string/app.stocks_reset_label"
+                        android:id="@+id/reset"/>
                     <Button
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Calculate" />
+                        android:text="@string/app.stocks.calculate"
+                        android:id="@+id/calculate"/>
                 </TableRow>
             </TableLayout>
         </LinearLayout>

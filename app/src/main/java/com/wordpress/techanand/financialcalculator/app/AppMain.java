@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -26,6 +27,14 @@ public class AppMain {
                 InputMethodManager.RESULT_UNCHANGED_SHOWN);
     }
 
+    public static void debug(String value){
+        Log.d(LOG, value);
+    }
+
+    public static void info(String value){
+        Log.i(LOG, value);
+    }
+
     public static AlertDialog.Builder dialogBuilder(Context context, String title, String message, String buttonText){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Error");
@@ -46,6 +55,10 @@ public class AppMain {
 
     public static void toast(Context context, String message, int toastLength){
         Toast.makeText(context, message, toastLength).show();
+    }
+
+    public static String getResource(Context context, int id){
+        return context.getResources().getString(id);
     }
 
 }

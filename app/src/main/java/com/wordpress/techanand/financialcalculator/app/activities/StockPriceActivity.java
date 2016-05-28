@@ -33,7 +33,7 @@ public class StockPriceActivity extends AppCompatActivity {
     public static final String[] CATEGORIES = {
             "Equity - Delivery",
             "Equity - Intraday",
-            "Equity - Equity Futures",
+            "Equity - Futures",
             "Equity - Options",
             "Currency",
             "Commodities"
@@ -86,44 +86,6 @@ public class StockPriceActivity extends AppCompatActivity {
             }
         });*/
 
-    }
-
-    private List<StockCategory> getStockCategories(){
-        List<StockCategory> categories = new ArrayList<>();
-
-        categories.add(new StockCategory(StockCategory.EQUITY_DELIVERY, "Equity - Delivery"));
-        categories.add(new StockCategory(StockCategory.EQUITY_INTRADAY, "Equity - Intraday"));
-        categories.add(new StockCategory(StockCategory.EQUITY_FUTURES, "Equity - Futures"));
-        categories.add(new StockCategory(StockCategory.EQUITY_OPTIONS, "Equity - Options"));
-        categories.add(new StockCategory(StockCategory.CURRENCY, "Currency"));
-        categories.add(new StockCategory(StockCategory.COMMODITIES, "Commodities"));
-
-        return categories;
-    }
-
-
-    public static class StockListAdapter extends ArrayAdapter {
-
-        List<StockCategory> list;
-
-        public StockListAdapter(Context context, int resource, List<StockCategory> objects) {
-            super(context, resource, objects);
-            this.list = objects;
-        }
-
-        @Override
-        public View getDropDownView(int position, View convertView, ViewGroup parent) {
-            return getView(position, convertView, parent);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.stock_price_dropdown, null);
-            StockCategory stockCategory = list.get(position);
-            TextView label = (TextView) convertView.findViewById(R.id.displayText);
-            label.setText(stockCategory.getName());
-            return convertView;
-        }
     }
 
     public class StockPricePagerAdapter extends FragmentStatePagerAdapter {

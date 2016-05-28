@@ -1,73 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <EditTextPreference android:title="Service Tax (%)"
-        android:key="exchange_service_tax"
-        android:defaultValue="14.5"
+    <EditTextPreference android:title="@string/prefs.exchange_service_tax_title"
+        android:key="@string/prefs.exchange_service_tax_key"
+        android:defaultValue="@string/prefs.exchange_service_tax_default"
         android:inputType="numberDecimal"/>
-    <EditTextPreference android:title="SEBI Charges/Crore"
-        android:key="exchange_sebi_charges"
-        android:defaultValue="20"
-        android:inputType="numberDecimal"/>
-    <EditTextPreference android:title="Stamp Duty Charges (%)"
-        android:key="exchange_stamp_duty"
-        android:defaultValue="0.01"
+    <EditTextPreference android:title="@string/prefs.sebi_charges_title"
+        android:key="@string/prefs.sebi_charges_key"
+        android:defaultValue="@string/prefs.sebi_charges_default"
         android:inputType="numberDecimal"/>
 
-    <PreferenceCategory android:title="Security Transaction Tax (%)">
-        <EditTextPreference android:title="Delivery"
-            android:key="exchange_stt_delivery"
-            android:defaultValue="0.1"
+    <PreferenceCategory android:title="@string/prefs.exchange_stamp_duty_title">
+        <EditTextPreference android:title="@string/prefs.exchange_stamp_duty_min_title"
+            android:key="@string/prefs.exchange_stamp_duty_min_key"
+            android:defaultValue="@string/prefs.exchange_stamp_duty_min_default"
             android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="Intraday"
-            android:key="exchange_stt_intraday"
-            android:defaultValue="0.025"
-            android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="Futures"
-            android:key="exchange_stt_futures"
-            android:defaultValue="0.01"
-            android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="Options"
-            android:key="exchange_stt_options"
-            android:defaultValue="0.017"
+        <EditTextPreference android:title="@string/prefs.exchange_stamp_duty_percent_title"
+            android:key="@string/prefs.exchange_stamp_duty_percent_key"
+            android:defaultValue="@string/prefs.exchange_stamp_duty_percent_default"
             android:inputType="numberDecimal"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="NSE Turnover Charges (%)">
-        <EditTextPreference android:title="Delivery"
-            android:key="nse_charges_delivery"
-            android:defaultValue="0.00325"
+    <PreferenceCategory android:title="@string/prefs.exchange_sst_title">
+        <EditTextPreference android:title="@string/prefs.exchange.stt.delivery_title"
+            android:key="@string/prefs.exchange.stt.delivery_key"
+            android:defaultValue="@string/prefs.exchange.stt.delivery_default"
             android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="Intraday"
-            android:key="nse_charges_intraday"
-            android:defaultValue="0.00325"
+        <EditTextPreference android:title="@string/prefs.exchange.stt.intraday_title"
+            android:key="@string/prefs.exchange.stt.intraday_key"
+            android:defaultValue="@string/prefs.exchange.stt.intraday_default"
             android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="Futures"
-            android:key="nse_charges_futures"
-            android:defaultValue="0.0021"
+        <EditTextPreference android:title="@string/prefs.exchange.stt.futures_title"
+            android:key="@string/prefs.exchange.stt.futures_key"
+            android:defaultValue="@string/prefs.exchange.stt.futures_default"
             android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="Options"
-            android:key="nse_charges_options"
-            android:defaultValue="0.053"
+        <EditTextPreference android:title="@string/prefs.exchange.stt.options_title"
+            android:key="@string/prefs.exchange.stt.options_key"
+            android:defaultValue="@string/prefs.exchange.stt.options_default"
             android:inputType="numberDecimal"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="BSE Turnover Charges (%)">
-        <EditTextPreference android:title="Delivery"
-            android:key="bse_charges_delivery"
-            android:defaultValue="0.00275"
+    <PreferenceCategory android:title="@string/prefs.exchange.nsecharges_title">
+        <EditTextPreference android:title="@string/prefs.exchange.nsecharges.delivery_title"
+            android:key="@string/prefs.exchange.nsecharges.delivery_key"
+            android:defaultValue="@string/prefs.exchange.nsecharges.delivery_default"
             android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="Intraday"
-            android:key="bse_charges_intraday"
-            android:defaultValue="0.00275"
+        <EditTextPreference android:title="@string/prefs.exchange.nsecharges.intraday_title"
+            android:key="@string/prefs.exchange.nsecharges.intraday_key"
+            android:defaultValue="@string/prefs.exchange.nsecharges.intraday_default"
             android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="Futures"
-            android:key="bse_charges_futures"
-            android:defaultValue="0.0007"
+        <EditTextPreference android:title="@string/prefs.exchange.nsecharges.futures_title"
+            android:key="@string/prefs.exchange.nsecharges.futures_key"
+            android:defaultValue="@string/prefs.exchange.nsecharges.futures_default"
             android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="Options"
-            android:key="bse_charges_options"
-            android:defaultValue="0.027"
+        <EditTextPreference android:title="@string/prefs.exchange.nsecharges.options_title"
+            android:key="@string/prefs.exchange.nsecharges.options_key"
+            android:defaultValue="@string/prefs.exchange.nsecharges.options_default"
+            android:inputType="numberDecimal"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/prefs.exchange.bsecharges_title">
+        <EditTextPreference android:title="@string/prefs.exchange.bsecharges.delivery_title"
+            android:key="@string/prefs.exchange.bsecharges.delivery_key"
+            android:defaultValue="@string/prefs.exchange.bsecharges.delivery_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.bsecharges.intraday_title"
+            android:key="@string/prefs.exchange.bsecharges.intraday_key"
+            android:defaultValue="@string/prefs.exchange.bsecharges.intraday_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.bsecharges.futures_title"
+            android:key="@string/prefs.exchange.bsecharges.futures_key"
+            android:defaultValue="@string/prefs.exchange.bsecharges.futures_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.bsecharges.options_title"
+            android:key="@string/prefs.exchange.bsecharges.options_key"
+            android:defaultValue="@string/prefs.exchange.bsecharges.options_default"
             android:inputType="numberDecimal"/>
     </PreferenceCategory>
 
