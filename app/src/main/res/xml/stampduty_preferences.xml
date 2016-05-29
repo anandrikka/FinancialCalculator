@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/prefs.exchange.stampduty_title">
+    <PreferenceCategory android:title="@string/prefs.exchange.stampduty.delivery_title">
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_min_title"
+            android:key="@string/prefs.exchange.stampduty.delivery_min_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.delivery_min_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_max_title"
+            android:key="@string/prefs.exchange.stampduty.delivery_max_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.delivery_max_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_percent_title"
+            android:key="@string/prefs.exchange.stampduty.delivery_percent_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.delivery_percent_default"
+            android:inputType="numberDecimal"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/prefs.exchange.stampduty.intraday_title">
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_min_title"
+            android:key="@string/prefs.exchange.stampduty.intraday_min_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.intraday_min_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_max_title"
+            android:key="@string/prefs.exchange.stampduty.intraday_max_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.intraday_max_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_percent_title"
+            android:key="@string/prefs.exchange.stampduty.intraday_percent_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.intraday_percent_default"
+            android:inputType="numberDecimal"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/prefs.exchange.stampduty.futures_title">
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_min_title"
+            android:key="@string/prefs.exchange.stampduty.futures_min_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.futures_min_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_max_title"
+            android:key="@string/prefs.exchange.stampduty.futures_max_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.futures_max_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_percent_title"
+            android:key="@string/prefs.exchange.stampduty.futures_percent_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.futures_percent_default"
+            android:inputType="numberDecimal"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/prefs.exchange.stampduty.options_title">
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_min_title"
+            android:key="@string/prefs.exchange.stampduty.options_min_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.options_min_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_max_title"
+            android:key="@string/prefs.exchange.stampduty.options_max_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.options_max_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_percent_title"
+            android:key="@string/prefs.exchange.stampduty.options_percent_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.options_percent_default"
+            android:inputType="numberDecimal"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/prefs.exchange.stampduty.currencies_title">
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_min_title"
+            android:key="@string/prefs.exchange.stampduty.currencies_min_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.currencies_min_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_max_title"
+            android:key="@string/prefs.exchange.stampduty.currencies_max_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.currencies_max_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_percent_title"
+            android:key="@string/prefs.exchange.stampduty.currencies_percent_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.currencies_percent_default"
+            android:inputType="numberDecimal"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/prefs.exchange.stampduty.commodities_title">
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_min_title"
+            android:key="@string/prefs.exchange.stampduty.commodities_min_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.commodities_min_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_max_title"
+            android:key="@string/prefs.exchange.stampduty.commodities_max_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.commodities_max_default"
+            android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stampduty_percent_title"
+            android:key="@string/prefs.exchange.stampduty.commodities_percent_key"
+            android:defaultValue="@string/prefs.exchange.stampduty.commodities_percent_default"
+            android:inputType="numberDecimal"/>
+    </PreferenceCategory>
+</PreferenceScreen>

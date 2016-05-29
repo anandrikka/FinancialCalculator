@@ -91,22 +91,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
         </activity>
-        <activity
-            android:name=".app.activities.SettingsActivity"
-            android:label="Preferences"
-            android:parentActivityName=".MainActivity"
+        <activity android:name=".app.activities.AppPreferencesActivity"
+            android:label="Settings"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
+            <!--<meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
-        </activity>
-        <activity android:name=".app.activities.PreferencesActivity"
-            android:label="Preferences"
-            android:parentActivityName=".app.activities.SettingsActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.wordpress.techanand.financialcalculator.app.activities.SettingsActivity" />
+                android:value="com.wordpress.techanand.financialcalculator.app.activities.SettingsActivity" />-->
         </activity>
     </application>
 

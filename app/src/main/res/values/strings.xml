@@ -25,108 +25,48 @@
     <string name="stock_price_category">Category</string>
     <string name="title_activity_edit_calc_list">Settings</string>
 
-    <!-- Strings related to Settings -->
 
-    <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
+    <!-- ......................Preferences Main Level: Start ....................................-->
 
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
+    <string name="prefs.brokerage_title">Brokerage</string>
+    <string name="prefs.exchange_title">Exchange</string>
+    <string name="prefs.brokerage_summary"><![CDATA[Brokerage charged for Equity - Delivery, Intraday, F&0, Currencies & Commodities.\n\nFeel free to ask your broker for more information.]]></string>
+    <string name="prefs.exchange_summary"><![CDATA[Government & Exchange charges for Trading.\n\nFeel free to ask your broker for more information]]></string>
 
-    <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
+    <string name="prefs.brokerage_key">brokerage</string>
+    <string name="prefs.exchange_key">exchange</string>
 
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
+    <!-- ......................Preferences Main Level: End ....................................-->
 
-    <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
-
-    <string name="pref_title_sync_frequency">Sync frequency</string>
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>
-
-    <string name="pref_title_system_sync_settings">System sync settings</string>
-
-    <!-- Example settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
-
-    <string name="pref_title_new_message_notifications">New message notifications</string>
-
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-
-    <string name="pref_title_vibrate">Vibrate</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!--Brokerage Preferences-->
+    <!-- ...................... Brokerage Preferences : Start .................................-->
+    <string name="prefs.brokerage_use_flat_charges_title">Use Flat Charges</string>
+    <string name="prefs.brokerage.flat_charges_title">Flat Charges</string>
+    <string name="prefs.brokerage_minimum_title">Minimum</string>
+    <string name="prefs.brokerage_percent_title">Percentage (%)</string>
     <string name="prefs.brokerage.delivery_title">DELIVERY</string>
-    <string name="prefs.brokerage.delivery_flat_charges_title">Flat Charges</string>
-    <string name="prefs.brokerage.delivery_flat_charges_key" translatable="false">delivery_flat_rate</string>
-    <string name="prefs.brokerage.delivery_percent_title">Percentage (%)</string>
-    <string name="prefs.brokerage.delivery_percent_key" translatable="false">delivery_percentage</string>
     <string name="prefs.brokerage.intraday_title">INTRA DAY</string>
-    <string name="prefs.brokerage.intraday_flat_charges_title">Flat Charges</string>
-    <string name="prefs.brokerage.intraday_flat_charges_key" translatable="false">intraday_flat_rate</string>
-    <string name="prefs.brokerage.intraday_percent_title">Percentage (%)</string>
-    <string name="prefs.brokerage.intraday_percent_key" translatable="false">intraday_percentage</string>
     <string name="prefs.brokerage.futures_title">FUTURES</string>
-    <string name="prefs.brokerage.futures_flat_charges_title">Flat Charges</string>
-    <string name="prefs.brokerage.futures_flat_rate_key" translatable="false">futures_flat_rate</string>
-    <string name="prefs.brokerage.futures_percent_title">Percentage (%)</string>
-    <string name="prefs.brokerage.futures_percent_key" translatable="false">futures_percentage</string>
     <string name="prefs.brokerage.options_title">OPTIONS</string>
-    <string name="prefs.brokerage.options_flat_charges_title">Flat Charges</string>
-    <string name="prefs.brokerage.options_flat_charges_key" translatable="false">options_flat_rate</string>
-    <string name="prefs.brokerage.options_percent_title">Percentage (%)</string>
-    <string name="prefs.brokerage.options_percent_key" translatable="false">options_percentage</string>
     <string name="prefs.brokerage.currency_title">CURRENCY</string>
-    <string name="prefs.brokerage.currency_minimum_title">Minimum</string>
-    <string name="prefs.brokerage_currency_minimum_key" translatable="false">currency_minimum</string>
-    <string name="prefs.brokerage.currency_percent_title">Percentage (%)</string>
-    <string name="prefs.brokerage.currency_percent_key" translatable="false">currency_percentage</string>
     <string name="prefs.brokerage.commodities_title">COMMODITIES</string>
-    <string name="prefs.brokerage.commodities_minimum_title">Minimum</string>
-    <string name="prefs.brokerage.commodities_minimum_key" translatable="false">commodities_minimum</string>
-    <string name="prefs.brokerage.commodities_percent_title">Percentage (%)</string>
-    <string name="prefs.brokerage.commodities_percent_key" translatable="false">commodities_percentage</string>
-    <string name="prefs.brokerage.delivery_use_flat_charges">Use Flat Charges</string>
-    <string name="prefs.brokerage.delivery_use_flat_charges_key">delivery_use_flat_rate</string>
-    <string name="prefs.brokerage.intraday_use_flat_charges">Use Flat Charges</string>
-    <string name="prefs.brokerage.intraday_use_flat_charges_key">intraday_use_flat_rate</string>
-    <string name="prefs.brokerage.futures_use_flat_charges">Use Flat Charges</string>
-    <string name="prefs.brokerage.futures_use_flat_charges_key">futures_user_flat_rate</string>
-    <string name="prefs.brokerage.options_use_flat_charges">Use Flat Charges</string>
-    <string name="prefs.brokerage.options_use_flat_charges_key">options_use_flat_rate</string>
 
-    <!--Brokerage Constants-->
+    <string name="prefs.brokerage.delivery_use_flat_charges_key" translatable="false">delivery_use_flat_rate</string>
+    <string name="prefs.brokerage.delivery_flat_charges_key" translatable="false">delivery_flat_rate</string>
+    <string name="prefs.brokerage.delivery_percent_key" translatable="false">delivery_percentage</string>
+    <string name="prefs.brokerage.intraday_use_flat_charges_key">intraday_use_flat_rate</string>
+    <string name="prefs.brokerage.intraday_flat_charges_key" translatable="false">intraday_flat_rate</string>
+    <string name="prefs.brokerage.intraday_percent_key" translatable="false">intraday_percentage</string>
+    <string name="prefs.brokerage.futures_use_flat_charges_key">futures_user_flat_rate</string>
+    <string name="prefs.brokerage.futures_flat_rate_key" translatable="false">futures_flat_rate</string>
+    <string name="prefs.brokerage.futures_percent_key" translatable="false">futures_percentage</string>
+    <string name="prefs.brokerage.options_use_flat_charges_key" translatable="false">options_use_flat_rate</string>
+    <string name="prefs.brokerage.options_flat_charges_key" translatable="false">options_flat_rate</string>
+    <string name="prefs.brokerage.options_percent_key" translatable="false">options_percentage</string>
+    <string name="prefs.brokerage_currency_minimum_key" translatable="false">currency_minimum</string>
+    <string name="prefs.brokerage.currency_percent_key" translatable="false">currency_percentage</string>
+    <string name="prefs.brokerage.commodities_percent_key" translatable="false">commodities_percentage</string>
+    <string name="prefs.brokerage.commodities_minimum_key" translatable="false">commodities_minimum</string>
+
     <string name="prefs.brokerage.delivery_flat_charges_default" translatable="false">20</string>
     <string name="prefs.brokerage.delivery_percent_default" translatable="false">0.3</string>
     <string name="prefs.brokerage.intraday_flat_charges_default" translatable="false">20</string>
@@ -139,77 +79,67 @@
     <string name="prefs.brokerage.currency_percent_default" translatable="false">0.01</string>
     <string name="prefs.brokerage.commodities_minimum_default" translatable="false">20</string>
     <string name="prefs.brokerage.commodities_percent_default" translatable="false">0.03</string>
+    <string name="prefs.brokerage.delivery_use_flat_charges_default" translatable="false">false</string>
+    <string name="prefs.brokerage.intraday_use_flat_charges_default" translatable="false">false</string>
+    <string name="prefs.brokerage.futures_use_flat_charges_default" translatable="false">false</string>
+    <string name="prefs.brokerage.options_use_flat_charges_default" translatable="false">false</string>
 
-    <!--<fraction name="prefs.brokerage.delivery_flat_charges_default" translatable="false">20</fraction>
-    <fraction name="prefs.brokerage.delivery_percent_default" translatable="false">0.3</fraction>
-    <fraction name="prefs.brokerage.intraday_flat_charges_default" translatable="false">20</fraction>
-    <fraction name="prefs.brokerage.intraday_percent_default" translatable="false">0.03</fraction>
-    <fraction name="prefs.brokerage.futures_flat_charges_default" translatable="false">20</fraction>
-    <fraction name="prefs.brokerage.futures_percent_default" translatable="false">0.03</fraction>
-    <fraction name="prefs.brokerage.options_flat_charges_default" translatable="false">20</fraction>
-    <fraction name="prefs.brokerage.options_percent_default" translatable="false">0.03</fraction>
-    <fraction name="prefs.brokerage.currency_minimum_default" translatable="false">20</fraction>
-    <fraction name="prefs.brokerage.currency_percent_default" translatable="false">0.01</fraction>
-    <fraction name="prefs.brokerage.commodities_minimum_default" translatable="false">20</fraction>
-    <fraction name="prefs.brokerage.commodities_percent_default" translatable="false">0.03</fraction>-->
+    <bool name="prefs.brokerage.delivery_use_flat_charges_default" translatable="false">false</bool>
+    <bool name="prefs.brokerage.intraday_use_flat_charges_default" translatable="false">false</bool>
+    <bool name="prefs.brokerage.futures_use_flat_charges_default" translatable="false">false</bool>
+    <bool name="prefs.brokerage.options_use_flat_charges_default" translatable="false">false</bool>
 
-    <string name="prefs.brokerage.delivery_use_flat_charges_default">false</string>
-    <string name="prefs.brokerage.intraday_use_flat_charges_default">false</string>
-    <string name="prefs.brokerage.futures_use_flat_charges_default">false</string>
-    <string name="prefs.brokerage.options_use_flat_charges_default">false</string>
+    <!-- ...................... Brokerage Preferences : End .................................-->
 
-    <bool name="prefs.brokerage.delivery_use_flat_charges_default">false</bool>
-    <bool name="prefs.brokerage.intraday_use_flat_charges_default">false</bool>
-    <bool name="prefs.brokerage.futures_use_flat_charges_default">false</bool>
-    <bool name="prefs.brokerage.options_use_flat_charges_default">false</bool>
-
-    <!--Exchange Preferences-->
+    <!-- ...................... Exchange Preferences : Start .................................-->
     <string name="prefs.exchange_service_tax_title">Service Tax % (On Brokerage)</string>
-    <string name="prefs.exchange_service_tax_key">exchange_service_tax</string>
     <string name="prefs.sebi_charges_title">SEBI charges per Crore</string>
-    <string name="prefs.sebi_charges_key">exchange_sebi_charges</string>
-    <string name="prefs.exchange_stamp_duty_title">Stamp Duty Charges (On Turnover)</string>
-    <string name="prefs.exchange_stamp_duty_min_title">Minimum Charges</string>
-    <string name="prefs.exchange_stamp_duty_percent_title">Percentage</string>
-    <string name="prefs.exchange_stamp_duty_min_key">exchange_stamp_duty_min</string>
-    <string name="prefs.exchange_stamp_duty_percent_key">exchange_stamp_duty_percent</string>
     <string name="prefs.exchange_sst_title">Security Transaction Tax % (On Turnover)</string>
     <string name="prefs.exchange.stt.delivery_title">Delivery</string>
-    <string name="prefs.exchange.stt.delivery_key">exchange_stt_delivery</string>
     <string name="prefs.exchange.stt.intraday_title">Intraday</string>
-    <string name="prefs.exchange.stt.intraday_key">exchange_stt_intraday</string>
-    <string name="prefs.exchange.stt.futures_title">Futures</string>
-    <string name="prefs.exchange.stt.futures_key">exchange_stt_futures</string>
     <string name="prefs.exchange.stt.options_title">Options</string>
-    <string name="prefs.exchange.stt.options_key">exchange_stt_options</string>
-    <string name="prefs.exchange.nsecharges_title">NSE Turnover Charges % (On Turnover)</string>
-    <string name="prefs.exchange.nsecharges.delivery_title">Delivery</string>
-    <string name="prefs.exchange.nsecharges.delivery_key">nse_charges_delivery</string>
-    <string name="prefs.exchange.nsecharges.intraday_title">Intraday</string>
-    <string name="prefs.exchange.nsecharges.intraday_key">nse_charges_intraday</string>
-    <string name="prefs.exchange.nsecharges.futures_title">Futures</string>
-    <string name="prefs.exchange.nsecharges.futures_key">nse_charges_futures</string>
-    <string name="prefs.exchange.nsecharges.options_title">Options</string>
-    <string name="prefs.exchange.nsecharges.options_key">nse_charges_options</string>
-    <string name="prefs.exchange.bsecharges_title">BSE Turnover Charges %(On Turnover)</string>
-    <string name="prefs.exchange.bsecharges.delivery_title">Delivery</string>
-    <string name="prefs.exchange.bsecharges.delivery_key">bse_charges_delivery</string>
-    <string name="prefs.exchange.bsecharges.intraday_title">Intraday</string>
-    <string name="prefs.exchange.bsecharges.intraday_key">bse_charges_intraday</string>
-    <string name="prefs.exchange.bsecharges.futures_title">Futures</string>
-    <string name="prefs.exchange.bsecharges.futures_key">bse_charges_futures</string>
-    <string name="prefs.exchange.bsecharges.options_title">Options</string>
-    <string name="prefs.exchange.bsecharges.options_key">bse_charges_options</string>
+    <string name="prefs.exchange.stt.futures_title">Futures</string>
 
-    <!--Exchange Preferences Constants-->
+    <string name="prefs.exchange_service_tax_key" translatable="false">exchange_service_tax</string>
+    <string name="prefs.sebi_charges_key" translatable="false">exchange_sebi_charges</string>
+    <string name="prefs.exchange.stt.delivery_key" translatable="false">exchange_stt_delivery</string>
+    <string name="prefs.exchange.stt.intraday_key" translatable="false">exchange_stt_intraday</string>
+    <string name="prefs.exchange.stt.futures_key" translatable="false">exchange_stt_futures</string>
+    <string name="prefs.exchange.stt.options_key" translatable="false">exchange_stt_options</string>
+
     <string name="prefs.exchange_service_tax_default">14.5</string>
     <string name="prefs.sebi_charges_default">20</string>
-    <string name="prefs.exchange_stamp_duty_percent_default">0.01</string>
-    <string name="prefs.exchange_stamp_duty_min_default">1</string>
     <string name="prefs.exchange.stt.delivery_default">0.1</string>
     <string name="prefs.exchange.stt.intraday_default">0.025</string>
     <string name="prefs.exchange.stt.futures_default">0.01</string>
     <string name="prefs.exchange.stt.options_default">0.017</string>
+
+    <!-- ...................... Exchange Preferences : End .................................-->
+
+    <!-- ...................... Exchange Turnover Preferences : Start .................................-->
+    <string name="prefs.exchange.turnover_charges_title">Turnover Charges % (On Turnover)</string>
+
+    <string name="prefs.exchange.nsecharges_title">NSE Turnover Charges % (On Turnover)</string>
+    <string name="prefs.exchange.nsecharges.delivery_title">Delivery</string>
+    <string name="prefs.exchange.nsecharges.intraday_title">Intraday</string>
+    <string name="prefs.exchange.nsecharges.futures_title">Futures</string>
+    <string name="prefs.exchange.nsecharges.options_title">Options</string>
+    <string name="prefs.exchange.bsecharges_title">BSE Turnover Charges %(On Turnover)</string>
+    <string name="prefs.exchange.bsecharges.delivery_title">Delivery</string>
+    <string name="prefs.exchange.bsecharges.intraday_title">Intraday</string>
+    <string name="prefs.exchange.bsecharges.futures_title">Futures</string>
+    <string name="prefs.exchange.bsecharges.options_title">Options</string>
+
+
+    <string name="prefs.exchange.nsecharges.delivery_key">nse_charges_delivery</string>
+    <string name="prefs.exchange.nsecharges.intraday_key">nse_charges_intraday</string>
+    <string name="prefs.exchange.nsecharges.futures_key">nse_charges_futures</string>
+    <string name="prefs.exchange.nsecharges.options_key">nse_charges_options</string>
+    <string name="prefs.exchange.bsecharges.delivery_key">bse_charges_delivery</string>
+    <string name="prefs.exchange.bsecharges.intraday_key">bse_charges_intraday</string>
+    <string name="prefs.exchange.bsecharges.futures_key">bse_charges_futures</string>
+    <string name="prefs.exchange.bsecharges.options_key">bse_charges_options</string>
+
     <string name="prefs.exchange.nsecharges.delivery_default">0.00325</string>
     <string name="prefs.exchange.nsecharges.intraday_default">0.00325</string>
     <string name="prefs.exchange.nsecharges.futures_default">0.0021</string>
@@ -219,7 +149,66 @@
     <string name="prefs.exchange.bsecharges.futures_default">0.0007</string>
     <string name="prefs.exchange.bsecharges.options_default">0.027</string>
 
-    <!--Stock Calculator-->
+    <!-- ...................... Exchange Turnover Preferences : End .................................-->
+
+    <!-- ...................... Exchange Stampduty Preferences : Start .................................-->
+
+    <string name="prefs.exchange.stampduty_title">Stamp Duty Charges (On Turnover)</string>
+    <string name="prefs.exchange.stampduty_min_title">Minimum charges</string>
+    <string name="prefs.exchange.stampduty_max_title">Maximum charges per day</string>
+    <string name="prefs.exchange.stampduty_percent_title">Percentage</string>
+    <string name="prefs.exchange.stampduty.delivery_title">Delivery</string>
+    <string name="prefs.exchange.stampduty.intraday_title">Intraday</string>
+    <string name="prefs.exchange.stampduty.futures_title">Futures</string>
+    <string name="prefs.exchange.stampduty.options_title">Options</string>
+    <string name="prefs.exchange.stampduty.currencies_title">Currencies</string>
+    <string name="prefs.exchange.stampduty.commodities_title">Commodities</string>
+
+    <string name="prefs.exchange.stampduty.delivery_min_key" translatable="false">exchange_stamp_duty_delivery_min</string>
+    <string name="prefs.exchange.stampduty.delivery_max_key" translatable="false">exchange_stamp_duty_delivery_max</string>
+    <string name="prefs.exchange.stampduty.delivery_percent_key" translatable="false">exchange_stamp_duty_delivery_percent</string>
+    <string name="prefs.exchange.stampduty.intraday_min_key" translatable="false">exchange_stamp_duty_intraday_min</string>
+    <string name="prefs.exchange.stampduty.intraday_max_key" translatable="false">exchange_stamp_duty_intraday_max</string>
+    <string name="prefs.exchange.stampduty.intraday_percent_key" translatable="false">exchange_stamp_duty_intraday_percent</string>
+    <string name="prefs.exchange.stampduty.futures_min_key" translatable="false">exchange_stamp_duty_futures_min</string>
+    <string name="prefs.exchange.stampduty.futures_max_key" translatable="false">exchange_stamp_duty_futures_max</string>
+    <string name="prefs.exchange.stampduty.futures_percent_key" translatable="false">exchange_stamp_duty_futures_percent</string>
+    <string name="prefs.exchange.stampduty.options_min_key" translatable="false">exchange_stamp_duty_options_min</string>
+    <string name="prefs.exchange.stampduty.options_max_key" translatable="false">exchange_stamp_duty_options_max</string>
+    <string name="prefs.exchange.stampduty.options_percent_key" translatable="false">exchange_stamp_duty_options_percent</string>
+    <string name="prefs.exchange.stampduty.currencies_min_key" translatable="false">exchange_stamp_duty_currencies_min</string>
+    <string name="prefs.exchange.stampduty.currencies_max_key" translatable="false">exchange_stamp_duty_currencies_max</string>
+    <string name="prefs.exchange.stampduty.currencies_percent_key" translatable="false">exchange_stamp_duty_currencies_percent</string>
+    <string name="prefs.exchange.stampduty.commodities_min_key" translatable="false">exchange_stamp_duty_commodities_min</string>
+    <string name="prefs.exchange.stampduty.commodities_max_key" translatable="false">exchange_stamp_duty_commodities_max</string>
+    <string name="prefs.exchange.stampduty.commodities_percent_key" translatable="false">exchange_stamp_duty_commodities_percent</string>
+    <string name="prefs.exchange.stampduty_screen">stampduty_screen</string>
+    <string name="prefs.exchange.turnover_nse_screen">turnover_nse_screen</string>
+    <string name="prefs.exchange.turnover_bse_screen">turnover_bse_screen</string>
+
+    <string name="prefs.exchange.stampduty.delivery_percent_default">0.01</string>
+    <string name="prefs.exchange.stampduty.delivery_min_default">1</string>
+    <string name="prefs.exchange.stampduty.delivery_max_default">100</string>
+    <string name="prefs.exchange.stampduty.intraday_percent_default">0.01</string>
+    <string name="prefs.exchange.stampduty.intraday_min_default">1</string>
+    <string name="prefs.exchange.stampduty.intraday_max_default">100</string>
+    <string name="prefs.exchange.stampduty.futures_percent_default">0.01</string>
+    <string name="prefs.exchange.stampduty.futures_min_default">1</string>
+    <string name="prefs.exchange.stampduty.futures_max_default">100</string>
+    <string name="prefs.exchange.stampduty.options_percent_default">0.01</string>
+    <string name="prefs.exchange.stampduty.options_min_default">1</string>
+    <string name="prefs.exchange.stampduty.options_max_default">100</string>
+    <string name="prefs.exchange.stampduty.currencies_percent_default">0.01</string>
+    <string name="prefs.exchange.stampduty.currencies_min_default">1</string>
+    <string name="prefs.exchange.stampduty.currencies_max_default">100</string>
+    <string name="prefs.exchange.stampduty.commodities_percent_default">0.01</string>
+    <string name="prefs.exchange.stampduty.commodities_min_default">1</string>
+    <string name="prefs.exchange.stampduty.commodities_max_default">100</string>
+
+    <!-- ...................... Exchange Stampduty Preferences : End .................................-->
+
+    <!-- ...................... Stock Calculator : Start .................................-->
+
     <string name="app.stocks.bse">BSE</string>
     <string name="app.stocks.nse">NSE</string>
     <string name="app.stocks.buy_price_label">Buy Price</string>
@@ -229,5 +218,6 @@
     <string name="app.stocks.calculate">Calculate</string>
     <string name="app.stocks.amount_invested">Amount Invested</string>
 
+    <!-- ...................... Stock Calculator : Start .................................-->
 
 </resources>

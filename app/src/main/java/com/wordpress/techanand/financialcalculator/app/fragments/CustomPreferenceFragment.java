@@ -1,20 +1,12 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.AppMain;
-import com.wordpress.techanand.financialcalculator.app.activities.PreferencesActivity;
-import com.wordpress.techanand.financialcalculator.app.activities.SettingsActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CustomPreferenceFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener{
     SharedPreferences sharedPreferences;
@@ -31,6 +23,9 @@ public class CustomPreferenceFragment extends PreferenceFragment implements Shar
         if(getActivity() != null){
             setPrefsForBrokerage(key);
             setPrefsForExchange(key);
+            setPrefsForStampDuty(key);
+            setPrefsForNSETurnover(key);
+            setPrefsForBSETurnover(key);
         }
     }
 
@@ -84,10 +79,6 @@ public class CustomPreferenceFragment extends PreferenceFragment implements Shar
             defaultId = R.string.prefs_exchange_service_tax_default;
         }else if(getKeyVal(R.string.prefs_sebi_charges_key).equals(key)){
             defaultId = R.string.prefs_sebi_charges_default;
-        }else if(getKeyVal(R.string.prefs_exchange_stamp_duty_min_key).equals(key)){
-            defaultId = R.string.prefs_exchange_stamp_duty_min_default;
-        }else if(getKeyVal(R.string.prefs_exchange_stamp_duty_percent_key).equals(key)){
-            defaultId = R.string.prefs_exchange_stamp_duty_percent_default;
         }else if(getKeyVal(R.string.prefs_exchange_stt_delivery_key).equals(key)){
             defaultId = R.string.prefs_exchange_stt_delivery_default;
         }else if(getKeyVal(R.string.prefs_exchange_stt_intraday_key).equals(key)){
@@ -96,7 +87,7 @@ public class CustomPreferenceFragment extends PreferenceFragment implements Shar
             defaultId = R.string.prefs_exchange_stt_futures_default;
         }else if(getKeyVal(R.string.prefs_exchange_stt_options_key).equals(key)){
             defaultId = R.string.prefs_exchange_stt_options_default;
-        }else if(getKeyVal(R.string.prefs_exchange_nsecharges_delivery_key).equals(key)){
+        }/*else if(getKeyVal(R.string.prefs_exchange_nsecharges_delivery_key).equals(key)){
             defaultId = R.string.prefs_exchange_nsecharges_delivery_default;
         }else if(getKeyVal(R.string.prefs_exchange_nsecharges_intraday_key).equals(key)){
             defaultId = R.string.prefs_exchange_nsecharges_intraday_default;
@@ -105,6 +96,85 @@ public class CustomPreferenceFragment extends PreferenceFragment implements Shar
         }else if(getKeyVal(R.string.prefs_exchange_nsecharges_options_key).equals(key)){
             defaultId = R.string.prefs_exchange_nsecharges_options_default;
         }else if(getKeyVal(R.string.prefs_exchange_bsecharges_delivery_key).equals(key)){
+            defaultId = R.string.prefs_exchange_bsecharges_delivery_default;
+        }else if(getKeyVal(R.string.prefs_exchange_bsecharges_intraday_key).equals(key)){
+            defaultId = R.string.prefs_exchange_bsecharges_intraday_default;
+        }else if(getKeyVal(R.string.prefs_exchange_bsecharges_futures_key).equals(key)){
+            defaultId = R.string.prefs_exchange_bsecharges_futures_default;
+        }else if(getKeyVal(R.string.prefs_exchange_bsecharges_options_key).equals(key)){
+            defaultId = R.string.prefs_exchange_bsecharges_options_default;
+        }*/
+        if(defaultId != 0){
+            setPrefSummaryValue(key, defaultId);
+        }
+        return defaultId;
+    }
+
+    protected int setPrefsForStampDuty(String key){
+        int defaultId = 0;
+        if(getKeyVal(R.string.prefs_exchange_stampduty_delivery_min_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_delivery_min_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_delivery_percent_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_delivery_percent_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_delivery_max_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_delivery_max_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_intraday_min_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_intraday_min_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_intraday_percent_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_intraday_percent_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_intraday_max_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_intraday_max_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_futures_min_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_futures_min_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_futures_percent_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_futures_percent_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_futures_max_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_futures_max_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_options_min_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_options_min_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_options_percent_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_options_percent_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_options_max_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_options_max_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_currencies_min_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_currencies_min_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_currencies_percent_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_currencies_percent_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_currencies_max_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_currencies_max_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_commodities_min_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_commodities_min_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_commodities_percent_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_commodities_percent_default;
+        }else if(getKeyVal(R.string.prefs_exchange_stampduty_commodities_max_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stampduty_commodities_max_default;
+        }
+        if(defaultId != 0){
+            setPrefSummaryValue(key, defaultId);
+        }
+        return defaultId;
+    }
+
+    protected int setPrefsForNSETurnover(String key){
+        int defaultId = 0;
+        if(getKeyVal(R.string.prefs_exchange_nsecharges_delivery_key).equals(key)){
+            defaultId = R.string.prefs_exchange_nsecharges_delivery_default;
+        }else if(getKeyVal(R.string.prefs_exchange_nsecharges_intraday_key).equals(key)){
+            defaultId = R.string.prefs_exchange_nsecharges_intraday_default;
+        }else if(getKeyVal(R.string.prefs_exchange_nsecharges_futures_key).equals(key)){
+            defaultId = R.string.prefs_exchange_nsecharges_futures_default;
+        }else if(getKeyVal(R.string.prefs_exchange_nsecharges_options_key).equals(key)){
+            defaultId = R.string.prefs_exchange_nsecharges_options_default;
+        }
+        if(defaultId != 0){
+            setPrefSummaryValue(key, defaultId);
+        }
+        return defaultId;
+    }
+
+    protected int setPrefsForBSETurnover(String key){
+        int defaultId = 0;
+        if(getKeyVal(R.string.prefs_exchange_bsecharges_delivery_key).equals(key)){
             defaultId = R.string.prefs_exchange_bsecharges_delivery_default;
         }else if(getKeyVal(R.string.prefs_exchange_bsecharges_intraday_key).equals(key)){
             defaultId = R.string.prefs_exchange_bsecharges_intraday_default;
@@ -130,4 +200,6 @@ public class CustomPreferenceFragment extends PreferenceFragment implements Shar
                     getActivity().getResources().getString(id)));
         }
     }
+
+
 }

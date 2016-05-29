@@ -14,6 +14,7 @@ public class BrokeragePrefs extends CustomPreferenceFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.brokerage_preferences);
+        getActivity().setTitle("Brokerage Settings");
         initializeData();
     }
 
@@ -47,6 +48,11 @@ public class BrokeragePrefs extends CustomPreferenceFragment {
                 R.string.prefs_brokerage_commodities_minimum_default);
         setPrefSummaryValue(getKeyVal(R.string.prefs_brokerage_commodities_percent_key),
                 R.string.prefs_brokerage_commodities_percent_default);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle("Brokerage Settings");
     }
 }

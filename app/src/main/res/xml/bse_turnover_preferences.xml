@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference android:title="@string/prefs.exchange.bsecharges.delivery_title"
+        android:key="@string/prefs.exchange.bsecharges.delivery_key"
+        android:defaultValue="@string/prefs.exchange.bsecharges.delivery_default"
+        android:inputType="numberDecimal"/>
+    <EditTextPreference android:title="@string/prefs.exchange.bsecharges.intraday_title"
+        android:key="@string/prefs.exchange.bsecharges.intraday_key"
+        android:defaultValue="@string/prefs.exchange.bsecharges.intraday_default"
+        android:inputType="numberDecimal"/>
+    <EditTextPreference android:title="@string/prefs.exchange.bsecharges.futures_title"
+        android:key="@string/prefs.exchange.bsecharges.futures_key"
+        android:defaultValue="@string/prefs.exchange.bsecharges.futures_default"
+        android:inputType="numberDecimal"/>
+    <EditTextPreference android:title="@string/prefs.exchange.bsecharges.options_title"
+        android:key="@string/prefs.exchange.bsecharges.options_key"
+        android:defaultValue="@string/prefs.exchange.bsecharges.options_default"
+        android:inputType="numberDecimal"/>
+</PreferenceScreen>

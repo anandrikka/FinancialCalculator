@@ -11,16 +11,8 @@
         android:defaultValue="@string/prefs.sebi_charges_default"
         android:inputType="numberDecimal"/>
 
-    <PreferenceCategory android:title="@string/prefs.exchange_stamp_duty_title">
-        <EditTextPreference android:title="@string/prefs.exchange_stamp_duty_min_title"
-            android:key="@string/prefs.exchange_stamp_duty_min_key"
-            android:defaultValue="@string/prefs.exchange_stamp_duty_min_default"
-            android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="@string/prefs.exchange_stamp_duty_percent_title"
-            android:key="@string/prefs.exchange_stamp_duty_percent_key"
-            android:defaultValue="@string/prefs.exchange_stamp_duty_percent_default"
-            android:inputType="numberDecimal"/>
-    </PreferenceCategory>
+    <Preference android:title="@string/prefs.exchange.stampduty_title"
+        android:key="@string/prefs.exchange.stampduty_screen" />
 
     <PreferenceCategory android:title="@string/prefs.exchange_sst_title">
         <EditTextPreference android:title="@string/prefs.exchange.stt.delivery_title"
@@ -41,42 +33,11 @@
             android:inputType="numberDecimal"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/prefs.exchange.nsecharges_title">
-        <EditTextPreference android:title="@string/prefs.exchange.nsecharges.delivery_title"
-            android:key="@string/prefs.exchange.nsecharges.delivery_key"
-            android:defaultValue="@string/prefs.exchange.nsecharges.delivery_default"
-            android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="@string/prefs.exchange.nsecharges.intraday_title"
-            android:key="@string/prefs.exchange.nsecharges.intraday_key"
-            android:defaultValue="@string/prefs.exchange.nsecharges.intraday_default"
-            android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="@string/prefs.exchange.nsecharges.futures_title"
-            android:key="@string/prefs.exchange.nsecharges.futures_key"
-            android:defaultValue="@string/prefs.exchange.nsecharges.futures_default"
-            android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="@string/prefs.exchange.nsecharges.options_title"
-            android:key="@string/prefs.exchange.nsecharges.options_key"
-            android:defaultValue="@string/prefs.exchange.nsecharges.options_default"
-            android:inputType="numberDecimal"/>
-    </PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/prefs.exchange.bsecharges_title">
-        <EditTextPreference android:title="@string/prefs.exchange.bsecharges.delivery_title"
-            android:key="@string/prefs.exchange.bsecharges.delivery_key"
-            android:defaultValue="@string/prefs.exchange.bsecharges.delivery_default"
-            android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="@string/prefs.exchange.bsecharges.intraday_title"
-            android:key="@string/prefs.exchange.bsecharges.intraday_key"
-            android:defaultValue="@string/prefs.exchange.bsecharges.intraday_default"
-            android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="@string/prefs.exchange.bsecharges.futures_title"
-            android:key="@string/prefs.exchange.bsecharges.futures_key"
-            android:defaultValue="@string/prefs.exchange.bsecharges.futures_default"
-            android:inputType="numberDecimal"/>
-        <EditTextPreference android:title="@string/prefs.exchange.bsecharges.options_title"
-            android:key="@string/prefs.exchange.bsecharges.options_key"
-            android:defaultValue="@string/prefs.exchange.bsecharges.options_default"
-            android:inputType="numberDecimal"/>
+    <PreferenceCategory android:title="@string/prefs.exchange.turnover_charges_title">
+        <Preference android:title="NSE Charges"
+            android:key="@string/prefs.exchange.turnover_nse_screen"/>
+        <Preference android:title="BSE Charges"
+            android:key="@string/prefs.exchange.turnover_bse_screen"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

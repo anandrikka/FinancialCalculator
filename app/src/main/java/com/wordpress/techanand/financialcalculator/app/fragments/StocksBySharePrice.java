@@ -131,9 +131,8 @@ public class StocksBySharePrice extends Fragment {
                             totalBrokerage, serviceTax,
                             sttCharges, exchangeTransactionCharges, stampDutyCharges;
                     if(category.equals(StockPriceActivity.CATEGORIES[0])){
-                        isFlatRateUsed = sharedPreferences.getBoolean(
-                                getResources().getString(R.string.prefs_brokerage_delivery_use_flat_charges_key),
-                                getResources().getBoolean(R.bool.prefs_brokerage_delivery_use_flat_charges_default));
+                        isFlatRateUsed = AppMain.getBoolPref(getContext(), R.string.prefs_brokerage_delivery_use_flat_charges_key,
+                                R.bool.prefs_brokerage_delivery_use_flat_charges_default);
                         brokerageFlatCharges = Double.parseDouble(sharedPreferences.getString(
                                 getResources().getString(R.string.prefs_brokerage_delivery_flat_charges_key),
                                 getResources().getString(R.string.prefs_brokerage_delivery_flat_charges_default)));

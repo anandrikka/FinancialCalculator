@@ -3,6 +3,8 @@ package com.wordpress.techanand.financialcalculator.app;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
@@ -59,6 +61,27 @@ public class AppMain {
 
     public static String getResource(Context context, int id){
         return context.getResources().getString(id);
+    }
+
+    public static boolean getBoolPref(Context context, int keyId, int defaultId){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getBoolean(
+                context.getResources().getString(keyId),
+                context.getResources().getBoolean(defaultId));
+    }
+
+    public static double getDoublePref(Context context, int keyId, int defaultId){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return Double.parseDouble(sharedPreferences.getString(
+                context.getResources().getString(keyId),
+                context.getResources().getString(defaultId)));
+    }
+
+    public static String getStringPref(Context context, int keyId, int defaultId){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getString(
+                context.getResources().getString(keyId),
+                context.getResources().getString(defaultId));
     }
 
 }

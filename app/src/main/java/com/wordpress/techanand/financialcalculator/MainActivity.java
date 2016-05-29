@@ -22,13 +22,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wordpress.techanand.financialcalculator.app.activities.AppPreferencesActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.BudgetActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.FixedDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.LoanActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.MutualFundActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.RecurringDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.RetirementActivity;
-import com.wordpress.techanand.financialcalculator.app.activities.SettingsActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.StockPriceActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.TaxActivity;
 import com.wordpress.techanand.financialcalculator.db.AppOpenHelper;
@@ -150,9 +150,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.edit) {
-
         } else if (id == R.id.settings) {
-            startActivity(new Intent(this, SettingsActivity.class));
+            startActivity(new Intent(this, AppPreferencesActivity.class));
         } else if (id == R.id.about) {
 
         } else if (id == R.id.nav_share) {
