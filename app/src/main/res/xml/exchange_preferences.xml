@@ -31,6 +31,10 @@
             android:key="@string/prefs.exchange.stt.options_key"
             android:defaultValue="@string/prefs.exchange.stt.options_default"
             android:inputType="numberDecimal"/>
+        <EditTextPreference android:title="@string/prefs.exchange.stt.commodities_title"
+            android:key="@string/prefs.exchange.stt.commodities_key"
+            android:defaultValue="@string/prefs.exchange.stt.commodities_default"
+            android:inputType="numberDecimal"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/prefs.exchange.turnover_charges_title">

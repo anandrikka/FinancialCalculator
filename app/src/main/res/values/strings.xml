@@ -42,13 +42,16 @@
     <string name="prefs.brokerage_use_flat_charges_title">Use Flat Charges</string>
     <string name="prefs.brokerage.flat_charges_title">Flat Charges</string>
     <string name="prefs.brokerage_minimum_title">Minimum</string>
+    <string name="prefs.brokerage_maximum_title">Maximum</string>
     <string name="prefs.brokerage_percent_title">Percentage (%)</string>
     <string name="prefs.brokerage.delivery_title">DELIVERY</string>
     <string name="prefs.brokerage.intraday_title">INTRA DAY</string>
     <string name="prefs.brokerage.futures_title">FUTURES</string>
     <string name="prefs.brokerage.options_title">OPTIONS</string>
-    <string name="prefs.brokerage.currency_title">CURRENCY</string>
+    <string name="prefs.brokerage.currency_title">Currency</string>
     <string name="prefs.brokerage.commodities_title">COMMODITIES</string>
+    <string name="prefs.brokerage.currency.futures_title">FUTURES</string>
+    <string name="prefs.brokerage.currency.options_title">OPTIONS</string>
 
     <string name="prefs.brokerage.delivery_use_flat_charges_key" translatable="false">delivery_use_flat_rate</string>
     <string name="prefs.brokerage.delivery_flat_charges_key" translatable="false">delivery_flat_rate</string>
@@ -62,28 +65,47 @@
     <string name="prefs.brokerage.options_use_flat_charges_key" translatable="false">options_use_flat_rate</string>
     <string name="prefs.brokerage.options_flat_charges_key" translatable="false">options_flat_rate</string>
     <string name="prefs.brokerage.options_percent_key" translatable="false">options_percentage</string>
-    <string name="prefs.brokerage_currency_minimum_key" translatable="false">currency_minimum</string>
-    <string name="prefs.brokerage.currency_percent_key" translatable="false">currency_percentage</string>
+    <string name="prefs.brokerage.currency_key" translatable="false">currency_screen</string>
+    <string name="prefs.brokerage.currency.futures_maximum_key" translatable="false">currency_futures_maximum</string>
+    <string name="prefs.brokerage.currency.futures_percent_key" translatable="false">currency_futures_percentage</string>
+    <string name="prefs.brokerage.currency.options_maximum_key" translatable="false">currency_options_maximum</string>
+    <string name="prefs.brokerage.currency.options_percent_key" translatable="false">currency_options_percentage</string>
     <string name="prefs.brokerage.commodities_percent_key" translatable="false">commodities_percentage</string>
-    <string name="prefs.brokerage.commodities_minimum_key" translatable="false">commodities_minimum</string>
+    <string name="prefs.brokerage.commodities_maximum_key" translatable="false">commodities_maximum</string>
+    <!--<string name="prefs.brokerage.delivery_maximum_key" translatable="false">delivery_maximum</string>-->
+    <string name="prefs.brokerage.intraday_maximum_key" translatable="false">intraday_maximum</string>
+    <string name="prefs.brokerage.futures_maximum_key" translatable="false">futures_maximum</string>
+    <string name="prefs.brokerage.options_maximum_key" translatable="false">options_maximum</string>
 
     <string name="prefs.brokerage.delivery_flat_charges_default" translatable="false">20</string>
     <string name="prefs.brokerage.delivery_percent_default" translatable="false">0.3</string>
+    <!--<string name="prefs.brokerage.delivery_maximum_default" translatable="false">20</string>-->
+
     <string name="prefs.brokerage.intraday_flat_charges_default" translatable="false">20</string>
     <string name="prefs.brokerage.intraday_percent_default" translatable="false">0.03</string>
+    <string name="prefs.brokerage.intraday_maximum_default" translatable="false">20</string>
+
     <string name="prefs.brokerage.futures_flat_charges_default" translatable="false">20</string>
     <string name="prefs.brokerage.futures_percent_default" translatable="false">0.03</string>
-    <string name="prefs.brokerage.options_flat_charges_default" translatable="false">20</string>
+    <string name="prefs.brokerage.futures_maximum_default" translatable="false">20</string>
+
+    <string name="prefs.brokerage.options_flat_charges_default" translatable="false">50</string>
     <string name="prefs.brokerage.options_percent_default" translatable="false">0.03</string>
-    <string name="prefs.brokerage.currency_minimum_default" translatable="false">20</string>
-    <string name="prefs.brokerage.currency_percent_default" translatable="false">0.01</string>
-    <string name="prefs.brokerage.commodities_minimum_default" translatable="false">20</string>
+    <string name="prefs.brokerage.options_maximum_default" translatable="false">50</string>
+
+    <string name="prefs.brokerage.currency.futures_maximum_default" translatable="false">20</string>
+    <string name="prefs.brokerage.currency.futures_percent_default" translatable="false">0.03</string>
+
+    <string name="prefs.brokerage.currency.options_maximum_default" translatable="false">50</string>
+    <string name="prefs.brokerage.currency.options_percent_default" translatable="false">0.01</string>
+
+    <string name="prefs.brokerage.commodities_maximum_default" translatable="false">20</string>
     <string name="prefs.brokerage.commodities_percent_default" translatable="false">0.03</string>
+
     <string name="prefs.brokerage.delivery_use_flat_charges_default" translatable="false">false</string>
     <string name="prefs.brokerage.intraday_use_flat_charges_default" translatable="false">false</string>
     <string name="prefs.brokerage.futures_use_flat_charges_default" translatable="false">false</string>
     <string name="prefs.brokerage.options_use_flat_charges_default" translatable="false">false</string>
-
     <bool name="prefs.brokerage.delivery_use_flat_charges_default" translatable="false">false</bool>
     <bool name="prefs.brokerage.intraday_use_flat_charges_default" translatable="false">false</bool>
     <bool name="prefs.brokerage.futures_use_flat_charges_default" translatable="false">false</bool>
@@ -99,6 +121,7 @@
     <string name="prefs.exchange.stt.intraday_title">Intraday</string>
     <string name="prefs.exchange.stt.options_title">Options</string>
     <string name="prefs.exchange.stt.futures_title">Futures</string>
+    <string name="prefs.exchange.stt.commodities_title">Commodities</string>
 
     <string name="prefs.exchange_service_tax_key" translatable="false">exchange_service_tax</string>
     <string name="prefs.sebi_charges_key" translatable="false">exchange_sebi_charges</string>
@@ -106,14 +129,15 @@
     <string name="prefs.exchange.stt.intraday_key" translatable="false">exchange_stt_intraday</string>
     <string name="prefs.exchange.stt.futures_key" translatable="false">exchange_stt_futures</string>
     <string name="prefs.exchange.stt.options_key" translatable="false">exchange_stt_options</string>
+    <string name="prefs.exchange.stt.commodities_key">exchange_stt_commodities</string>
 
-    <string name="prefs.exchange_service_tax_default">14.5</string>
+    <string name="prefs.exchange_service_tax_default">15</string>
     <string name="prefs.sebi_charges_default">20</string>
     <string name="prefs.exchange.stt.delivery_default">0.1</string>
     <string name="prefs.exchange.stt.intraday_default">0.025</string>
     <string name="prefs.exchange.stt.futures_default">0.01</string>
     <string name="prefs.exchange.stt.options_default">0.017</string>
-
+    <string name="prefs.exchange.stt.commodities_default">0.01</string>
     <!-- ...................... Exchange Preferences : End .................................-->
 
     <!-- ...................... Exchange Turnover Preferences : Start .................................-->
@@ -218,6 +242,9 @@
     <string name="app.stocks.calculate">Calculate</string>
     <string name="app.stocks.amount_invested">Amount Invested</string>
 
-    <!-- ...................... Stock Calculator : Start .................................-->
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- ...................... Stock Calculator : End .................................-->
 
 </resources>

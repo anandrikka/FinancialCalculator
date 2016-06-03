@@ -48,23 +48,28 @@ public class CustomPreferenceFragment extends PreferenceFragment implements Shar
                 defaultId = R.string.prefs_brokerage_options_flat_charges_default;
             }else if(getKeyVal(R.string.prefs_brokerage_options_percent_key).equals(key)){
                 defaultId = R.string.prefs_brokerage_options_percent_default;
-            }else if(getKeyVal(R.string.prefs_brokerage_currency_minimum_key).equals(key)){
-                defaultId = R.string.prefs_brokerage_currency_minimum_default;
-            }else if(getKeyVal(R.string.prefs_brokerage_currency_percent_key).equals(key)){
-                defaultId = R.string.prefs_brokerage_currency_percent_default;
-            }else if(getKeyVal(R.string.prefs_brokerage_commodities_minimum_key).equals(key)){
-                defaultId = R.string.prefs_brokerage_commodities_minimum_default;
+            }else if(getKeyVal(R.string.prefs_brokerage_currency_futures_maximum_key).equals(key)){
+                defaultId = R.string.prefs_brokerage_currency_futures_maximum_default;
+            }else if(getKeyVal(R.string.prefs_brokerage_currency_futures_percent_key).equals(key)){
+                defaultId = R.string.prefs_brokerage_currency_futures_percent_default;
+            }else if(getKeyVal(R.string.prefs_brokerage_currency_options_maximum_key).equals(key)){
+                defaultId = R.string.prefs_brokerage_currency_options_maximum_default;
+            }else if(getKeyVal(R.string.prefs_brokerage_currency_options_percent_key).equals(key)){
+                defaultId = R.string.prefs_brokerage_currency_options_percent_default;
+            }else if(getKeyVal(R.string.prefs_brokerage_commodities_maximum_key).equals(key)){
+                defaultId = R.string.prefs_brokerage_commodities_maximum_default;
             }else if(getKeyVal(R.string.prefs_brokerage_commodities_percent_key).equals(key)){
                 defaultId = R.string.prefs_brokerage_commodities_percent_default;
-            }/*else if(getKeyVal(R.string.prefs_brokerage_delivery_use_flat_charges_key).equals(key)){
-                defaultId = R.string.prefs_brokerage_delivery_use_flat_charges_default;
-            }else if(getKeyVal(R.string.prefs_brokerage_intraday_use_flat_charges_key).equals(key)){
-                defaultId = R.string.prefs_brokerage_intraday_use_flat_charges_default;
-            }else if(getKeyVal(R.string.prefs_brokerage_futures_use_flat_charges_key).equals(key)){
-                defaultId = R.string.prefs_brokerage_futures_use_flat_charges_default;
-            }else if(getKeyVal(R.string.prefs_brokerage_options_use_flat_charges_key).equals(key)){
-                defaultId = R.string.prefs_brokerage_options_use_flat_charges_default;
-            }*/
+            }/*else if(getKeyVal(R.string.prefs_brokerage_delivery_maximum_key).equals(key)){
+                defaultId = R.string.prefs_brokerage_delivery_maximum_default;
+            }*/else if(getKeyVal(R.string.prefs_brokerage_intraday_maximum_key).equals(key)){
+                defaultId = R.string.prefs_brokerage_intraday_maximum_default;
+            }else if(getKeyVal(R.string.prefs_brokerage_futures_maximum_key).equals(key)){
+                defaultId = R.string.prefs_brokerage_futures_maximum_default;
+            }else if(getKeyVal(R.string.prefs_brokerage_options_maximum_key).equals(key)){
+                defaultId = R.string.prefs_brokerage_options_maximum_default;
+            }
+
             if(defaultId != 0){
                 setPrefSummaryValue(key, defaultId);
             }
@@ -87,23 +92,10 @@ public class CustomPreferenceFragment extends PreferenceFragment implements Shar
             defaultId = R.string.prefs_exchange_stt_futures_default;
         }else if(getKeyVal(R.string.prefs_exchange_stt_options_key).equals(key)){
             defaultId = R.string.prefs_exchange_stt_options_default;
-        }/*else if(getKeyVal(R.string.prefs_exchange_nsecharges_delivery_key).equals(key)){
-            defaultId = R.string.prefs_exchange_nsecharges_delivery_default;
-        }else if(getKeyVal(R.string.prefs_exchange_nsecharges_intraday_key).equals(key)){
-            defaultId = R.string.prefs_exchange_nsecharges_intraday_default;
-        }else if(getKeyVal(R.string.prefs_exchange_nsecharges_futures_key).equals(key)){
-            defaultId = R.string.prefs_exchange_nsecharges_futures_default;
-        }else if(getKeyVal(R.string.prefs_exchange_nsecharges_options_key).equals(key)){
-            defaultId = R.string.prefs_exchange_nsecharges_options_default;
-        }else if(getKeyVal(R.string.prefs_exchange_bsecharges_delivery_key).equals(key)){
-            defaultId = R.string.prefs_exchange_bsecharges_delivery_default;
-        }else if(getKeyVal(R.string.prefs_exchange_bsecharges_intraday_key).equals(key)){
-            defaultId = R.string.prefs_exchange_bsecharges_intraday_default;
-        }else if(getKeyVal(R.string.prefs_exchange_bsecharges_futures_key).equals(key)){
-            defaultId = R.string.prefs_exchange_bsecharges_futures_default;
-        }else if(getKeyVal(R.string.prefs_exchange_bsecharges_options_key).equals(key)){
-            defaultId = R.string.prefs_exchange_bsecharges_options_default;
-        }*/
+        }else if(getKeyVal(R.string.prefs_exchange_stt_commodities_key).equals(key)){
+            defaultId = R.string.prefs_exchange_stt_commodities_default;
+        }
+
         if(defaultId != 0){
             setPrefSummaryValue(key, defaultId);
         }
@@ -193,11 +185,12 @@ public class CustomPreferenceFragment extends PreferenceFragment implements Shar
         return getActivity().getResources().getString(id);
     }
 
-    protected void setPrefSummaryValue(String key,  int id){
+    protected void setPrefSummaryValue(String key,  int defaultId){
         Preference preference = findPreference(key);
         if(preference != null){
-            preference.setSummary(sharedPreferences.getString(key,
-                    getActivity().getResources().getString(id)));
+            String prefVal = sharedPreferences.getString(key,
+                    getActivity().getResources().getString(defaultId));
+            preference.setSummary(prefVal);
         }
     }
 

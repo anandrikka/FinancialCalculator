@@ -13,6 +13,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Anand Rikka on 5/11/2016.
  */
@@ -39,12 +41,12 @@ public class AppMain {
 
     public static AlertDialog.Builder dialogBuilder(Context context, String title, String message, String buttonText){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Error");
+        builder.setTitle(title);
         /*TextView textMessage = new TextView(context);
         textMessage.setText("Fill all fields !");
         textMessage.setGravity(Gravity.CENTER_HORIZONTAL);
         builder.setView(textMessage);*/
-        builder.setMessage("Fill all fields !");
+        builder.setMessage(message);
         builder.setCancelable(true);
         builder.setNeutralButton(android.R.string.ok,
                 new DialogInterface.OnClickListener() {
@@ -70,11 +72,22 @@ public class AppMain {
                 context.getResources().getBoolean(defaultId));
     }
 
-    public static double getDoublePref(Context context, int keyId, int defaultId){
+    /*public static double getDoublePref(Context context, int keyId, int defaultId){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return Double.parseDouble(sharedPreferences.getString(
                 context.getResources().getString(keyId),
                 context.getResources().getString(defaultId)));
+    }*/
+
+    public static double getDoublePrefFromString(Context context, int keyId, int defaultId){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String prefVal = sharedPreferences.getString(
+                context.getResources().getString(keyId),
+                context.getResources().getString(defaultId));
+        if(prefVal.equals("")){
+            return -1;
+        }
+        return Double.parseDouble(prefVal);
     }
 
     public static String getStringPref(Context context, int keyId, int defaultId){

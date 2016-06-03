@@ -2,6 +2,7 @@ package com.wordpress.techanand.financialcalculator.app.activities;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,10 +22,12 @@ import android.widget.Toast;
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.fragments.FDInterestPayoutTab;
 import com.wordpress.techanand.financialcalculator.app.fragments.FDStandardTab;
+import com.wordpress.techanand.financialcalculator.app.fragments.MainPrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.StocksByAmount;
 import com.wordpress.techanand.financialcalculator.app.fragments.StocksBySharePrice;
 import com.wordpress.techanand.financialcalculator.app.models.StockCategory;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +38,12 @@ public class StockPriceActivity extends AppCompatActivity {
             "Equity - Intraday",
             "Equity - Futures",
             "Equity - Options",
-            "Currency",
+            "Currency - Futures",
+            "Currency - Options",
             "Commodities"
     };
+
+    public final static DecimalFormat DIGIT_FORMAT = new DecimalFormat("#.###");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +52,6 @@ public class StockPriceActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsLayout);
         tabLayout.addTab(tabLayout.newTab().setText("By Share Price"));

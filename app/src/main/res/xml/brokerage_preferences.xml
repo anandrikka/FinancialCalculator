@@ -24,6 +24,10 @@
         <EditTextPreference android:title="@string/prefs.brokerage.flat_charges_title"
             android:defaultValue="@string/prefs.brokerage.intraday_flat_charges_default"
             android:key="@string/prefs.brokerage.intraday_flat_charges_key"/>
+        <EditTextPreference android:title="@string/prefs.brokerage_maximum_title"
+            android:key="@string/prefs.brokerage.intraday_maximum_key"
+            android:inputType="numberDecimal"
+            android:defaultValue="@string/prefs.brokerage.intraday_maximum_default"/>
         <EditTextPreference android:title="@string/prefs.brokerage_percent_title"
             android:defaultValue="@string/prefs.brokerage.intraday_percent_default"
             android:key="@string/prefs.brokerage.intraday_percent_key"/>
@@ -36,6 +40,10 @@
         <EditTextPreference android:title="@string/prefs.brokerage.flat_charges_title"
             android:defaultValue="@string/prefs.brokerage.futures_flat_charges_default"
             android:key="@string/prefs.brokerage.futures_flat_rate_key"/>
+        <EditTextPreference android:title="@string/prefs.brokerage_maximum_title"
+            android:key="@string/prefs.brokerage.futures_maximum_key"
+            android:inputType="numberDecimal"
+            android:defaultValue="@string/prefs.brokerage.futures_maximum_default"/>
         <EditTextPreference android:title="@string/prefs.brokerage_percent_title"
             android:defaultValue="@string/prefs.brokerage.futures_percent_default"
             android:key="@string/prefs.brokerage.futures_percent_key"/>
@@ -48,24 +56,22 @@
         <EditTextPreference android:title="@string/prefs.brokerage.flat_charges_title"
             android:defaultValue="@string/prefs.brokerage.options_flat_charges_default"
             android:key="@string/prefs.brokerage.options_flat_charges_key"/>
+        <EditTextPreference android:title="@string/prefs.brokerage_maximum_title"
+            android:key="@string/prefs.brokerage.options_maximum_key"
+            android:inputType="numberDecimal"
+            android:defaultValue="@string/prefs.brokerage.options_maximum_default"/>
         <EditTextPreference android:title="@string/prefs.brokerage_percent_title"
             android:defaultValue="@string/prefs.brokerage.options_percent_default"
             android:key="@string/prefs.brokerage.options_percent_key"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/prefs.brokerage.currency_title">
-        <EditTextPreference android:title="@string/prefs.brokerage_minimum_title"
-            android:defaultValue="@string/prefs.brokerage.currency_minimum_default"
-            android:key="@string/prefs.brokerage_currency_minimum_key"/>
-        <EditTextPreference android:title="@string/prefs.brokerage_percent_title"
-            android:defaultValue="@string/prefs.brokerage.currency_percent_default"
-            android:key="@string/prefs.brokerage.currency_percent_key"/>
-    </PreferenceCategory>
+    <Preference android:title="@string/prefs.brokerage.currency_title"
+        android:key="@string/prefs.brokerage.currency_key"/>
 
     <PreferenceCategory android:title="@string/prefs.brokerage.commodities_title">
-        <EditTextPreference android:title="@string/prefs.brokerage_minimum_title"
-            android:defaultValue="@string/prefs.brokerage.commodities_minimum_default"
-            android:key="@string/prefs.brokerage.commodities_minimum_key"/>
+        <EditTextPreference android:title="@string/prefs.brokerage_maximum_title"
+            android:defaultValue="@string/prefs.brokerage.commodities_maximum_default"
+            android:key="@string/prefs.brokerage.commodities_maximum_key"/>
         <EditTextPreference android:title="@string/prefs.brokerage_percent_title"
             android:defaultValue="@string/prefs.brokerage.commodities_percent_default"
             android:key="@string/prefs.brokerage.commodities_percent_key"/>

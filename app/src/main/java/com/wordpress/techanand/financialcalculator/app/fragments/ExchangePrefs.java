@@ -60,6 +60,8 @@ public class ExchangePrefs extends CustomPreferenceFragment implements Preferenc
                 R.string.prefs_exchange_stt_futures_default);
         setPrefSummaryValue(getKeyVal(R.string.prefs_exchange_stt_options_key),
                 R.string.prefs_exchange_stt_options_default);
+        setPrefSummaryValue(getKeyVal(R.string.prefs_exchange_stt_commodities_key),
+                R.string.prefs_exchange_stt_commodities_default);
 
         setSummaryForStampDuty();
         setSummaryForNSEPrefs();

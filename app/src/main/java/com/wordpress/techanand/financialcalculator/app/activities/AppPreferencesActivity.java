@@ -11,6 +11,7 @@ import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.fragments.BSETurnoverPrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.BrokeragePrefs;
+import com.wordpress.techanand.financialcalculator.app.fragments.CurrencyPrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.ExchangePrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.MainPrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.NSETurnoverPrefs;
@@ -61,6 +62,12 @@ public class AppPreferencesActivity extends AppCompatActivity {
                 fm.beginTransaction()
                         .replace(R.id.prefs, new ExchangePrefs(), ExchangePrefs.class.getName())
                         .addToBackStack(ExchangePrefs.class.getName())
+                        .commit();
+            }else if((fm.findFragmentByTag(CurrencyPrefs.class.getName()) != null &&
+                    fm.findFragmentByTag(CurrencyPrefs.class.getName()).isVisible())){
+                fm.beginTransaction()
+                        .replace(R.id.prefs, new BrokeragePrefs(), BrokeragePrefs.class.getName())
+                        .addToBackStack(BrokeragePrefs.class.getName())
                         .commit();
             }else{
                 super.onBackPressed();

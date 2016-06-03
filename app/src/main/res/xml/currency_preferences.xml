@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/prefs.brokerage.currency.futures_title">
+        <EditTextPreference android:title="@string/prefs.brokerage_maximum_title"
+            android:defaultValue="@string/prefs.brokerage.currency.futures_maximum_default"
+            android:key="@string/prefs.brokerage.currency.futures_maximum_key"/>
+        <EditTextPreference android:title="@string/prefs.brokerage_percent_title"
+            android:defaultValue="@string/prefs.brokerage.currency.futures_percent_default"
+            android:key="@string/prefs.brokerage.currency.futures_percent_key"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/prefs.brokerage.currency.futures_title">
+        <EditTextPreference android:title="@string/prefs.brokerage_maximum_title"
+            android:defaultValue="@string/prefs.brokerage.currency.options_maximum_default"
+            android:key="@string/prefs.brokerage.currency.options_maximum_key"/>
+        <EditTextPreference android:title="@string/prefs.brokerage_percent_title"
+            android:defaultValue="@string/prefs.brokerage.currency.options_percent_default"
+            android:key="@string/prefs.brokerage.currency.options_percent_key"/>
+    </PreferenceCategory>
+</PreferenceScreen>
