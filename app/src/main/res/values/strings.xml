@@ -247,4 +247,21 @@
 
     <!-- ...................... Stock Calculator : End .................................-->
 
+    <!-- ...................... Mutual Funds: Start.....................................-->
+
+    <string name="app.mutualfunds.goal_result_string">
+        The cost for your goal will be Rs.%1$d after %2$d years.
+        You need to invest Rs.%3$d monthly to reach your goal.
+    </string>
+
+    <!-- ...................... Mutual Funds: End.....................................-->
+
+    <!--...................... Loan: Start.....................................-->
+
+    <string name="app.loan_result_text">
+        EMI is Rs.%1$d for Loan Amount Rs.%2$d @ %3$s for %4$d months. Total Amount Paid is %5$d
+    </string>
+
+    <!--...................... Loan: End.....................................-->
+
 </resources>

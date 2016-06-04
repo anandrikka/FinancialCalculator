@@ -47,6 +47,7 @@ public class SIPReturnsTab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.sip_returns_tab, container, false);
+        setRetainInstance(true);
         initialLoad(view);
         calculate(true);
         return view;
