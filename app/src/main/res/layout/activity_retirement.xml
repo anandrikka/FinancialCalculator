@@ -39,91 +39,126 @@
                 <TableRow android:paddingBottom="8dp">
                     <TextView android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Age"
-                        android:layout_weight="2"/>
+                        android:text="Current Age"
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:paddingRight="50dp"/>
                     <EditText android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:background="@drawable/border"/>
+                        android:background="@drawable/border"
+                        android:inputType="number"
+                        android:id="@+id/current_age"/>
                 </TableRow>
 
                 <TableRow android:paddingBottom="8dp">
                     <TextView android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Retirement Age"
-                        android:layout_weight="2"/>
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:paddingRight="50dp"/>
                     <EditText android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:background="@drawable/border"/>
+                        android:background="@drawable/border"
+                        android:inputType="number"
+                        android:id="@+id/retirement_age"/>
                 </TableRow>
 
                 <TableRow android:paddingBottom="8dp">
                     <TextView android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Life Expectancy"
-                        android:layout_weight="2"/>
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:paddingRight="50dp"/>
                     <EditText android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:background="@drawable/border"/>
+                        android:background="@drawable/border"
+                        android:inputType="number"
+                        android:id="@+id/life_expentency"/>
                 </TableRow>
 
                 <TableRow android:paddingBottom="8dp">
                     <TextView android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Monthly Expenses"
-                        android:layout_weight="2"/>
+                        android:text="Present monthly expenses"
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:paddingRight="50dp"/>
                     <EditText android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:background="@drawable/border"/>
+                        android:background="@drawable/border"
+                        android:inputType="number"
+                        android:id="@+id/monthly_expenses"/>
                 </TableRow>
 
                 <TableRow android:paddingBottom="8dp">
                     <TextView android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Inflation(%)"
-                        android:layout_weight="2"/>
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:paddingRight="50dp"/>
                     <EditText android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:background="@drawable/border"/>
-                </TableRow>
-
-                <TableRow android:paddingBottom="8dp">
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Rate of return(%) on Investment"
-                        android:layout_weight="2"/>
-                    <EditText android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/border"/>
+                        android:background="@drawable/border"
+                        android:inputType="numberDecimal"
+                        android:id="@+id/inflation_rate"/>
                 </TableRow>
 
                 <TableRow android:paddingBottom="8dp">
                     <TextView android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Existing Investment"
-                        android:layout_weight="2"/>
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:paddingRight="50dp"/>
                     <EditText android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:background="@drawable/border"/>
+                        android:background="@drawable/border"
+                        android:inputType="number"
+                        android:id="@+id/existing_investment"/>
+                </TableRow>
+
+                <TableRow android:paddingBottom="8dp">
+                    <TextView android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Expected returns (%)"
+                        android:layout_weight="2"
+                        android:gravity="right"
+                        android:paddingRight="50dp"/>
+                    <EditText android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border"
+                        android:inputType="numberDecimal"
+                        android:id="@+id/expected_return"/>
                 </TableRow>
 
                 <TableRow>
+                    <Space android:layout_width="0dp"
+                        android:layout_weight="1"/>
                     <Button
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Reset"/>
+                        android:layout_weight="2"
+                        android:text="Reset"
+                        android:id="@+id/reset"/>
 
                     <Button android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Calculate"/>
+                        android:layout_weight="2"
+                        android:text="Calculate"
+                        android:id="@+id/calculate"/>
+
+                    <Space android:layout_width="0dp"
+                        android:layout_weight="1"/>
                 </TableRow>
 
             </TableLayout>

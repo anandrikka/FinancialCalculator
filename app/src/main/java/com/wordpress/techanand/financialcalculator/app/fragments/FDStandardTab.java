@@ -156,11 +156,9 @@ public class FDStandardTab extends Fragment {
             }else {
                 n = 1;
             }
-
             A = P * (Math.pow((1+r/n), (n*t)));
             ((TextView)getView().findViewById(R.id.maturity_amount)).setText(Math.round(A)+"");
             ((TextView)getView().findViewById(R.id.interest)).setText(Math.round(A-P)+"");
-
             createPieChart();
 
             resultsTable.setVisibility(View.VISIBLE);

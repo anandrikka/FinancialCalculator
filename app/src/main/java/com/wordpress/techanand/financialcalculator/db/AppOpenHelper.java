@@ -53,7 +53,7 @@ public class AppOpenHelper extends SQLiteOpenHelper{
         initialLoadData.add(new Calculator(0, "Tax Calculator", Calculator.UNIQUE_TAX_ID, AppMain.TRUE, 5));
         initialLoadData.add(new Calculator(0, "Loan Calculator", Calculator.UNIQUE_LOAN_ID, AppMain.TRUE, 6));
         initialLoadData.add(new Calculator(0, "Retirement Calculator", Calculator.UNIQUE_RETIREMENT_ID, AppMain.TRUE, 7));
-        initialLoadData.add(new Calculator(0, "Budget Calculator", Calculator.UNIQUE_BUDGET_ID, AppMain.TRUE, 8));
+        //initialLoadData.add(new Calculator(0, "Budget Calculator", Calculator.UNIQUE_BUDGET_ID, AppMain.TRUE, 8));
         for (Calculator calculator:initialLoadData) {
             ContentValues values = new ContentValues();
             values.put(CalculatorTable.COLUMN_NAME, calculator.getName());

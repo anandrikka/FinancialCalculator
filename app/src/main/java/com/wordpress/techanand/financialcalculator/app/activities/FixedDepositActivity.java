@@ -17,7 +17,7 @@ public class FixedDepositActivity extends AppCompatActivity {
 
     public static final String[] PERIOD = {"Years", "Months", "Days"};
     public static final String[] COMPOUNDING_FREQ = {"Monthly", "Quarterly", "Half Yearly", "Simple Interest"};
-    public static final String[] PAYOUT_FREQ = {"Monthly", "Yearly"};
+    public static final String[] PAYOUT_FREQ = {"Monthly", "Quarterly"};
 
     /*Formula for fixed deposit:
     *
