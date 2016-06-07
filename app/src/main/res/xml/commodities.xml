@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference android:title="@string/prefs.brokerage_maximum_title"
+        android:defaultValue="@string/prefs.brokerage.commodities_maximum_default"
+        android:key="@string/prefs.brokerage.commodities_maximum_key"/>
+    <EditTextPreference android:title="@string/prefs.brokerage_percent_title"
+        android:defaultValue="@string/prefs.brokerage.commodities_percent_default"
+        android:key="@string/prefs.brokerage.commodities_percent_key"/>
+</PreferenceScreen>

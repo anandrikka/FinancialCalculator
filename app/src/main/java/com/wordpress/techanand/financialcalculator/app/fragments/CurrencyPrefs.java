@@ -35,4 +35,10 @@ public class CurrencyPrefs extends CustomPreferenceFragment {
         setPrefSummaryValue(getKeyVal(R.string.prefs_brokerage_currency_options_percent_key),
                 R.string.prefs_brokerage_currency_options_percent_default);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle("Currency Preferences");
+    }
 }

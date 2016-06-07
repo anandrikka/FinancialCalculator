@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference android:title="@string/prefs.brokerage_use_flat_charges_title"
+        android:key="@string/prefs.brokerage.options_use_flat_charges_key"
+        android:inputType="numberDecimal" />
+    <EditTextPreference android:title="@string/prefs.brokerage.flat_charges_title"
+        android:defaultValue="@string/prefs.brokerage.options_flat_charges_default"
+        android:key="@string/prefs.brokerage.options_flat_charges_key"/>
+    <EditTextPreference android:title="@string/prefs.brokerage_maximum_title"
+        android:key="@string/prefs.brokerage.options_maximum_key"
+        android:inputType="numberDecimal"
+        android:defaultValue="@string/prefs.brokerage.options_maximum_default"/>
+    <EditTextPreference android:title="@string/prefs.brokerage_percent_title"
+        android:defaultValue="@string/prefs.brokerage.options_percent_default"
+        android:key="@string/prefs.brokerage.options_percent_key"/>
+</PreferenceScreen>

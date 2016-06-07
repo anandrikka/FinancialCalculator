@@ -11,10 +11,15 @@ import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.fragments.BSETurnoverPrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.BrokeragePrefs;
+import com.wordpress.techanand.financialcalculator.app.fragments.CommoditiesPrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.CurrencyPrefs;
+import com.wordpress.techanand.financialcalculator.app.fragments.DeliveryPrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.ExchangePrefs;
+import com.wordpress.techanand.financialcalculator.app.fragments.FuturesPrefs;
+import com.wordpress.techanand.financialcalculator.app.fragments.IntradayPrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.MainPrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.NSETurnoverPrefs;
+import com.wordpress.techanand.financialcalculator.app.fragments.OptionsPrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.StampDutyPrefs;
 
 public class AppPreferencesActivity extends AppCompatActivity {
@@ -63,8 +68,18 @@ public class AppPreferencesActivity extends AppCompatActivity {
                         .replace(R.id.prefs, new ExchangePrefs(), ExchangePrefs.class.getName())
                         .addToBackStack(ExchangePrefs.class.getName())
                         .commit();
-            }else if((fm.findFragmentByTag(CurrencyPrefs.class.getName()) != null &&
-                    fm.findFragmentByTag(CurrencyPrefs.class.getName()).isVisible())){
+            }else if((fm.findFragmentByTag(DeliveryPrefs.class.getName()) != null &&
+                    fm.findFragmentByTag(DeliveryPrefs.class.getName()).isVisible()) ||
+                    (fm.findFragmentByTag(IntradayPrefs.class.getName()) != null &&
+                    fm.findFragmentByTag(IntradayPrefs.class.getName()).isVisible()) ||
+                    (fm.findFragmentByTag(FuturesPrefs.class.getName()) != null &&
+                    fm.findFragmentByTag(FuturesPrefs.class.getName()).isVisible()) ||
+                    (fm.findFragmentByTag(OptionsPrefs.class.getName()) != null &&
+                    fm.findFragmentByTag(OptionsPrefs.class.getName()).isVisible()) ||
+                    (fm.findFragmentByTag(CurrencyPrefs.class.getName()) != null &&
+                    fm.findFragmentByTag(CurrencyPrefs.class.getName()).isVisible()) ||
+                    (fm.findFragmentByTag(CommoditiesPrefs.class.getName()) != null &&
+                    fm.findFragmentByTag(CommoditiesPrefs.class.getName()).isVisible())){
                 fm.beginTransaction()
                         .replace(R.id.prefs, new BrokeragePrefs(), BrokeragePrefs.class.getName())
                         .addToBackStack(BrokeragePrefs.class.getName())

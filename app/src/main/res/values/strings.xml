@@ -44,12 +44,12 @@
     <string name="prefs.brokerage_minimum_title">Minimum</string>
     <string name="prefs.brokerage_maximum_title">Maximum</string>
     <string name="prefs.brokerage_percent_title">Percentage (%)</string>
-    <string name="prefs.brokerage.delivery_title">DELIVERY</string>
-    <string name="prefs.brokerage.intraday_title">INTRA DAY</string>
-    <string name="prefs.brokerage.futures_title">FUTURES</string>
-    <string name="prefs.brokerage.options_title">OPTIONS</string>
+    <string name="prefs.brokerage.delivery_title">Delivery</string>
+    <string name="prefs.brokerage.intraday_title">Intraday</string>
+    <string name="prefs.brokerage.futures_title">Futures</string>
+    <string name="prefs.brokerage.options_title">Options</string>
     <string name="prefs.brokerage.currency_title">Currency</string>
-    <string name="prefs.brokerage.commodities_title">COMMODITIES</string>
+    <string name="prefs.brokerage.commodities_title">Commodities</string>
     <string name="prefs.brokerage.currency.futures_title">FUTURES</string>
     <string name="prefs.brokerage.currency.options_title">OPTIONS</string>
 
@@ -65,7 +65,12 @@
     <string name="prefs.brokerage.options_use_flat_charges_key" translatable="false">options_use_flat_rate</string>
     <string name="prefs.brokerage.options_flat_charges_key" translatable="false">options_flat_rate</string>
     <string name="prefs.brokerage.options_percent_key" translatable="false">options_percentage</string>
+    <string name="prefs.brokerage.delivery_key" translatable="false">delivery_screen</string>
+    <string name="prefs.brokerage.intraday_key" translatable="false">intraday_screen</string>
+    <string name="prefs.brokerage.futures_key" translatable="false">futures_screen</string>
+    <string name="prefs.brokerage.options_key" translatable="false">options_screen</string>
     <string name="prefs.brokerage.currency_key" translatable="false">currency_screen</string>
+    <string name="prefs.brokerage.commodities_key" translatable="false">commodities_screen</string>
     <string name="prefs.brokerage.currency.futures_maximum_key" translatable="false">currency_futures_maximum</string>
     <string name="prefs.brokerage.currency.futures_percent_key" translatable="false">currency_futures_percentage</string>
     <string name="prefs.brokerage.currency.options_maximum_key" translatable="false">currency_options_maximum</string>
@@ -241,9 +246,12 @@
     <string name="app.stocks_reset_label">Reset</string>
     <string name="app.stocks.calculate">Calculate</string>
     <string name="app.stocks.amount_invested">Amount Invested</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app.stocks.no_brokerage_charges">Zero brokerage charges</string>
+    <string name="app.stocks.using_flat_brokerage">Using Flat brokerage of Rs.%1$d on Total turnover</string>
+    <string name="app.stocks.delivery_using_percent_brokerage">%1$s percent of brokerage on Total turnover</string>
+    <string name="app.stocks.using_percent_brokerage">%1$s percent of Total turnover or Maximum %2$s/-</string>
+    <string name="app.stocks.currency_futures_using_percent_brokerage"><b>Currency Futures:</b> %1$s percent of Total turnover or Maximum %2$s/-</string>
+    <string name="app.stocks.currency_options_using_percent_brokerage"><b>Currency Options:</b> %1$s percent of Total turnover or Maximum %2$s/-</string>
 
     <!-- ...................... Stock Calculator : End .................................-->
 

@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case Calculator.UNIQUE_RD_ID:
                         launchItem = new Intent(MainActivity.this, RecurringDepositActivity.class);
                         break;
-                    case Calculator.UNIQUE_PPF_ID:
+                    /*case Calculator.UNIQUE_PPF_ID:
                         launchItem = new Intent(MainActivity.this, StockPriceActivity.class);
-                        break;
+                        break;*/
                     case Calculator.UNIQUE_STOCK_ID:
                         launchItem = new Intent(MainActivity.this, StockPriceActivity.class);
                         break;
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case Calculator.UNIQUE_LOAN_ID:
                         launchItem = new Intent(MainActivity.this, LoanActivity.class);
                         break;
-                    case Calculator.UNIQUE_TAX_ID:
+                    /*case Calculator.UNIQUE_TAX_ID:
                         launchItem = new Intent(MainActivity.this, TaxActivity.class);
                         break;
                     case Calculator.UNIQUE_ROI_ID:
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case Calculator.UNIQUE_BUDGET_ID:
                         launchItem = new Intent(MainActivity.this, BudgetActivity.class);
-                        break;
+                        break;*/
                     case Calculator.UNIQUE_RETIREMENT_ID:
                         launchItem = new Intent(MainActivity.this, RetirementActivity.class);
                         break;

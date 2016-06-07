@@ -1,14 +1,11 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,15 +17,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
-import com.wordpress.techanand.financialcalculator.app.activities.AppPreferencesActivity;
+import com.wordpress.techanand.financialcalculator.app.AppPreferences;
 import com.wordpress.techanand.financialcalculator.app.activities.StockPriceActivity;
-import com.wordpress.techanand.financialcalculator.app.models.StockCategory;
+
+import java.util.Map;
 
 import static com.wordpress.techanand.financialcalculator.app.activities.StockPriceActivity.*;
 
@@ -59,7 +55,15 @@ public class StocksBySharePrice extends Fragment {
 
     private String[] categories;
 
+    private Map<String, ?> preferences;
+
     public StocksBySharePrice() {}
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        preferences = AppPreferences.preferences(getContext());
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -262,126 +266,92 @@ public class StocksBySharePrice extends Fragment {
     }
 
     private void calcBrokeragePrefs(){
-        if(category.equals(categories[0])){ // Delivery
-            _isFlatRateUsed = AppMain.getBoolPref(getContext(), R.string.prefs_brokerage_delivery_use_flat_charges_key,
-                    R.bool.prefs_brokerage_delivery_use_flat_charges_default);
-            _flatBrokerage = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_delivery_flat_charges_key,
-                    R.string.prefs_brokerage_delivery_flat_charges_default);
-            _brokeragePercent = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_delivery_percent_key,
-                    R.string.prefs_brokerage_delivery_percent_default);
+        if(category.equals(categories[0])){// Delivery
+            _isFlatRateUsed = (Boolean)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_delivery_use_flat_charges_key));
+            _flatBrokerage = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_delivery_flat_charges_key));
+            _brokeragePercent = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_delivery_percent_key));
             _maxBrokerage = -1;
-            /*_brokerageMax = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_delivery_maximum_key,
-                    R.string.prefs_brokerage_delivery_maximum_default);*/
-            _sttCharges = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_exchange_stt_delivery_key,
-                    R.string.prefs_exchange_stt_delivery_default);
+            _sttCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_exchange_stt_delivery_key));
         }else if(category.equals(categories[1])){ //Intraday
-            _isFlatRateUsed = AppMain.getBoolPref(getContext(),
-                    R.string.prefs_brokerage_intraday_use_flat_charges_key,
-                    R.bool.prefs_brokerage_intraday_use_flat_charges_default);
-            _flatBrokerage = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_intraday_flat_charges_key,
-                    R.string.prefs_brokerage_intraday_flat_charges_default);
-            _maxBrokerage = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_intraday_maximum_key,
-                    R.string.prefs_brokerage_intraday_maximum_default);
-            _brokeragePercent = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_intraday_percent_key,
-                    R.string.prefs_brokerage_intraday_percent_default);
-            _sttCharges = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_exchange_stt_intraday_key,
-                    R.string.prefs_exchange_stt_intraday_default);
+            _isFlatRateUsed = (Boolean)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_intraday_use_flat_charges_key));
+            _flatBrokerage = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_intraday_flat_charges_key));
+            _maxBrokerage = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_intraday_maximum_key));
+            _brokeragePercent = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_intraday_percent_key));
+            _sttCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_exchange_stt_intraday_key));
         }else if(category.equals(categories[2])){ //Futures
-            _isFlatRateUsed = AppMain.getBoolPref(getContext(),
-                    R.string.prefs_brokerage_futures_use_flat_charges_key,
-                    R.bool.prefs_brokerage_futures_use_flat_charges_default);
-            _flatBrokerage = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_futures_flat_rate_key,
-                    R.string.prefs_brokerage_futures_flat_charges_default);
-            _maxBrokerage = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_futures_maximum_key,
-                    R.string.prefs_brokerage_futures_maximum_default);
-            _brokeragePercent = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_futures_percent_key,
-                    R.string.prefs_brokerage_futures_percent_default);
-            _sttCharges = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_exchange_stt_futures_key,
-                    R.string.prefs_exchange_stt_futures_default);
+            _isFlatRateUsed = (Boolean)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_futures_use_flat_charges_key));
+            _flatBrokerage = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_futures_flat_rate_key));
+            _maxBrokerage = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_futures_maximum_key));
+            _brokeragePercent = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_futures_percent_key));
+            _sttCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_exchange_stt_futures_key));
         }else if(category.equals(categories[3])){ //Options
-            _isFlatRateUsed = AppMain.getBoolPref(getContext(),
-                    R.string.prefs_brokerage_options_use_flat_charges_key,
-                    R.bool.prefs_brokerage_options_use_flat_charges_default);
-            _flatBrokerage = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_options_flat_charges_key,
-                    R.string.prefs_brokerage_options_flat_charges_default);
-            _maxBrokerage = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_options_maximum_key,
-                    R.string.prefs_brokerage_options_maximum_default);
-            _brokeragePercent = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_delivery_percent_key,
-                    R.string.prefs_brokerage_delivery_percent_default);
-            _sttCharges = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_exchange_stt_options_key,
-                    R.string.prefs_exchange_stt_options_default);
+            _isFlatRateUsed = (Boolean)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_options_use_flat_charges_key));
+            _flatBrokerage = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_options_flat_charges_key));
+            _maxBrokerage = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_options_maximum_key));
+            _brokeragePercent = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_options_percent_key));
+            _sttCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_exchange_stt_options_key));
         }else if(category.equals(categories[4])){ //Currency - Futures
-            _maxBrokerage = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_currency_futures_maximum_key,
-                    R.string.prefs_brokerage_currency_futures_maximum_default);
-            _brokeragePercent = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_currency_futures_percent_key,
-                    R.string.prefs_brokerage_currency_futures_percent_default);
+            _maxBrokerage = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_currency_futures_maximum_key));
+            _brokeragePercent = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_currency_futures_percent_key));
             _sttCharges = 0;
         }else if(category.equals(categories[5])){ //Currency - Options
-            _maxBrokerage = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_currency_options_maximum_key,
-                    R.string.prefs_brokerage_currency_options_maximum_default);
-            _brokeragePercent = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_currency_options_percent_key,
-                    R.string.prefs_brokerage_currency_options_percent_default);
+            _maxBrokerage = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_currency_options_maximum_key));
+            _brokeragePercent = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_currency_options_percent_key));
             _sttCharges = 0;
         }else{ //Commodities
-            _flatBrokerage = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_commodities_maximum_key,
-                    R.string.prefs_brokerage_commodities_maximum_default);
-            _brokeragePercent = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_brokerage_commodities_percent_key,
-                    R.string.prefs_brokerage_commodities_percent_default);
-            _sttCharges = AppMain.getDoublePrefFromString(getContext(),
-                    R.string.prefs_exchange_stt_commodities_key,
-                    R.string.prefs_exchange_stt_commodities_default);
+            _flatBrokerage = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_commodities_maximum_key));
+            _brokeragePercent = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_brokerage_commodities_percent_key));
+            _sttCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                    R.string.prefs_exchange_stt_commodities_key));
         }
     }
 
     private void calcExchangePrefs(){
-        _serviceTax = AppMain.getDoublePrefFromString(getContext(),
-                R.string.prefs_exchange_service_tax_key,
-                R.string.prefs_exchange_service_tax_default);
-        _sebiCharges = AppMain.getDoublePrefFromString(getContext(),
-                R.string.prefs_sebi_charges_key,
-                R.string.prefs_sebi_charges_default);
+        _serviceTax = (Double)preferences.get(AppMain.getResource(getContext(),
+                R.string.prefs_exchange_service_tax_key));
+        _sebiCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                R.string.prefs_sebi_charges_key));
     }
 
     private void calcTurnoverPrefs(){
         if(exchangeType.equals(NSEString)){
             if(category.equals(categories[0])){
-                _exchangeTxCharges = AppMain.getDoublePrefFromString(getContext(),
-                        R.string.prefs_exchange_nsecharges_delivery_key,
-                        R.string.prefs_exchange_nsecharges_delivery_default);
+                _exchangeTxCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                        R.string.prefs_exchange_nsecharges_delivery_key));
             }else if(category.equals(categories[1])){
-                _exchangeTxCharges = AppMain.getDoublePrefFromString(getContext(),
-                        R.string.prefs_exchange_nsecharges_intraday_key,
-                        R.string.prefs_exchange_nsecharges_intraday_default);
+                _exchangeTxCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                        R.string.prefs_exchange_nsecharges_intraday_key));
             }else if(category.equals(categories[2])){
-                _exchangeTxCharges = AppMain.getDoublePrefFromString(getContext(),
-                        R.string.prefs_exchange_nsecharges_futures_key,
-                        R.string.prefs_exchange_nsecharges_futures_default);
+                _exchangeTxCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                        R.string.prefs_exchange_nsecharges_futures_key));
             }else if(category.equals(categories[3])){
-                _exchangeTxCharges = AppMain.getDoublePrefFromString(getContext(),
-                        R.string.prefs_exchange_nsecharges_options_key,
-                        R.string.prefs_exchange_nsecharges_options_default);
+                _exchangeTxCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                        R.string.prefs_exchange_nsecharges_options_key));
             }else if(category.equals(categories[4])){
                 _exchangeTxCharges = 0;
             }else if(category.equals(categories[5])){
@@ -390,21 +360,17 @@ public class StocksBySharePrice extends Fragment {
 
         }else if(exchangeType.equals(BSEString)){
             if(category.equals(categories[0])){
-                _exchangeTxCharges = AppMain.getDoublePrefFromString(getContext(),
-                        R.string.prefs_exchange_bsecharges_delivery_key,
-                        R.string.prefs_exchange_bsecharges_delivery_default);
+                _exchangeTxCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                        R.string.prefs_exchange_bsecharges_delivery_key));
             }else if(category.equals(categories[1])){
-                _exchangeTxCharges = AppMain.getDoublePrefFromString(getContext(),
-                        R.string.prefs_exchange_bsecharges_intraday_key,
-                        R.string.prefs_exchange_bsecharges_intraday_default);
+                _exchangeTxCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                        R.string.prefs_exchange_bsecharges_intraday_key));
             }else if(category.equals(categories[2])){
-                _exchangeTxCharges = AppMain.getDoublePrefFromString(getContext(),
-                        R.string.prefs_exchange_bsecharges_futures_key,
-                        R.string.prefs_exchange_bsecharges_futures_default);
+                _exchangeTxCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                        R.string.prefs_exchange_bsecharges_futures_key));
             }else if(category.equals(categories[3])){
-                _exchangeTxCharges = AppMain.getDoublePrefFromString(getContext(),
-                        R.string.prefs_exchange_bsecharges_options_key,
-                        R.string.prefs_exchange_bsecharges_options_default);
+                _exchangeTxCharges = (Double)preferences.get(AppMain.getResource(getContext(),
+                        R.string.prefs_exchange_bsecharges_options_key));
             }else if(category.equals(categories[4])){
                 _exchangeTxCharges = 0;
             }else if(category.equals(categories[5])){

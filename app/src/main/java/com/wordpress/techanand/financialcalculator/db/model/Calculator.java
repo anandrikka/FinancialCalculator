@@ -13,16 +13,11 @@ public class Calculator {
 
     public final static String UNIQUE_FD_ID = "fixed_deposit";
     public final static String UNIQUE_RD_ID = "recurring_deposit";
-    public final static String UNIQUE_PPF_ID = "ppf";
     public final static String UNIQUE_STOCK_ID = "stock";
     public final static String UNIQUE_MUTUAL_FUND_ID = "mutual_fund";
     public final static String UNIQUE_TAX_ID = "tax";
     public final static String UNIQUE_LOAN_ID = "loan";
     public final static String UNIQUE_RETIREMENT_ID = "retirement";
-    public final static String UNIQUE_ROI_ID = "roi_change";
-    public final static String UNIQUE_CI_ID = "ci_change";
-    public final static String UNIQUE_BUDGET_ID = "budget";
-
 
 
     public Calculator(){

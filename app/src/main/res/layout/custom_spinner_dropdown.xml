@@ -5,5 +5,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:ellipsize="marquee"
-    android:drawableRight="@drawable/ic_dropdown"
+    android:drawableRight="@drawable/ic_expand_more"
     android:textAlignment="inherit"/>
