@@ -1,22 +1,24 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.TextView;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.fragments.SIPCalculateTab;
-import com.wordpress.techanand.financialcalculator.app.fragments.SIPForGoal;
-import com.wordpress.techanand.financialcalculator.app.fragments.SIPReturnsTab;
+import com.wordpress.techanand.financialcalculator.app.AppMain;
+import com.wordpress.techanand.financialcalculator.app.fragments.MutualFundSIP;
+import com.wordpress.techanand.financialcalculator.app.fragments.MutualFundSIPResult;
+import com.wordpress.techanand.financialcalculator.app.models.MutualFund;
 
-public class MutualFundActivity extends AppCompatActivity {
+public class MutualFundActivity extends AppCompatActivity implements MutualFundSIP.MutualFundSIPListener{
 
     public static final String[] PERIOD = {"Months", "Years"};
+
+    private MutualFundSIP mutualFundSIP;
+    private MutualFundSIPResult mutualFundSIPResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,63 +29,106 @@ public class MutualFundActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("SIP Returns"));
-        tabLayout.addTab(tabLayout.newTab().setText("Calculate SIP"));
-        tabLayout.addTab(tabLayout.newTab().setText("Goal Calculator"));
+        mutualFundSIP = (MutualFundSIP) getSupportFragmentManager().findFragmentByTag(MutualFundSIP.class.getName());
+        mutualFundSIPResult = (MutualFundSIPResult) getSupportFragmentManager().findFragmentByTag(MutualFundSIPResult.class.getName());
+        if(mutualFundSIP != null){
+            getSupportFragmentManager().beginTransaction().remove(mutualFundSIP).commit();
+        }
+        if(mutualFundSIPResult != null){
+            getSupportFragmentManager().beginTransaction().remove(mutualFundSIPResult).commit();
+        }
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.viewTabs);
-        MutualFundViewAdapter adapter = new MutualFundViewAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment_container, new MutualFundSIP(), MutualFundSIP.class.getName())
+                .commit();
 
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment_container, new MutualFundSIPResult(), MutualFundSIPResult.class.getName())
+                .commit();
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mutualFundSIP = (MutualFundSIP) getSupportFragmentManager().findFragmentByTag(MutualFundSIP.class.getName());
+        mutualFundSIPResult = (MutualFundSIPResult) getSupportFragmentManager().findFragmentByTag(MutualFundSIPResult.class.getName());
+        mutualFundSIPResult.getView().setVisibility(View.GONE);
+    }
 
-    class MutualFundViewAdapter extends FragmentStatePagerAdapter {
+    public void mutualFundTypeClicked(View view){
+        switch(view.getId()) {
+            case R.id.by_sip:
+                ((CheckBox)findViewById(R.id.by_target)).setChecked(false);
+                ((TextView)findViewById(R.id.investment_label)).setText("Monthly Investment");
+                break;
+            case R.id.by_target:
+                ((CheckBox)findViewById(R.id.by_sip)).setChecked(false);
+                ((TextView)findViewById(R.id.investment_label)).setText("Target Amount");
+                break;
+            default:
+                break;
+        }
+    }
 
-        int numTabs;
+    @Override
+    public void resetListener() {
+        mutualFundSIPResult.getView().setVisibility(View.GONE);
+    }
 
-        public MutualFundViewAdapter(FragmentManager fm, int numTabs) {
-            super(fm);
-            this.numTabs = numTabs;
+    @Override
+    public void calculateListener(MutualFund mutualFundData, boolean isFromInitialLoad) {
+        /*
+        * P = A = P * [{(1+i)^n – 1 }/i] * (1+i)
+        * PMT - Per Month
+        * r - rate of interest
+        * n - total installments
+        *
+        * */
+
+        double P, n, i;
+
+        P = mutualFundData.getAmount();
+        if(mutualFundData.getPeriodUnit().equals(PERIOD[1])){
+            n = mutualFundData.getTotalPeriod() * 12.0;
+        }else{
+            n = mutualFundData.getTotalPeriod();
+        }
+        i = mutualFundData.getAnnualReturns();
+        i = i/12.0;
+        i = i * 0.01;
+
+        if(mutualFundData.isMonthlySIP()){
+            double x, y;
+            x = 1+i;
+            x = Math.pow(x, n);
+            x = x-1;
+            x = x/i;
+            x = P*x;
+            y = 1+i;
+            x = x*y;
+            mutualFundData.setTotalInvestment(P*n);
+            mutualFundData.setTotalReturns(x);
+            mutualFundData.setWealthGained(x - (P*n));
         }
 
-        @Override
-        public Fragment getItem(int position) {
-            switch (position){
-                case 0:
-                    return new SIPReturnsTab();
-                case 1:
-                    return new SIPCalculateTab();
-                case 2:
-                    return new SIPForGoal();
-                default:
-                    return null;
-            }
+        if(mutualFundData.isTargetAmount()){
+            double x, y;
+            x = P*i;
+            y = 1+i;
+            y = Math.pow(y, n);
+            y = y - 1;
+            double y1 = 1+i;
+            y = y*y1;
+            double sip = x/y;
+            mutualFundData.setTotalInvestment(sip*n);
+            mutualFundData.setMonthlySIP(sip);
+            mutualFundData.setWealthGained(mutualFundData.getAmount() - (sip*n));
         }
+        mutualFundSIPResult.displayResult(mutualFundData);
+        mutualFundSIPResult.getView().setVisibility(View.VISIBLE);
 
-        @Override
-        public int getCount() {
-            return numTabs;
-        }
     }
 }

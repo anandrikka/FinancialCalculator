@@ -1,0 +1,87 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="8dp"
+    android:id="@+id/table">
+
+    <TableRow android:paddingBottom="16dp">
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="MONTHLY SIP"
+            android:id="@+id/by_sip"
+            android:checked="true"
+            android:onClick="mutualFundTypeClicked"/>
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/by_target"
+            android:layout_height="wrap_content"
+            android:text="TARGET AMOUNT"
+            android:onClick="mutualFundTypeClicked"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="16dp">
+        <TextView android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Monthly Investment"
+            android:id="@+id/investment_label"/>
+        <EditText android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/border"
+            android:layout_weight="1"
+            android:id="@+id/monthly_installment"
+            android:inputType="numberDecimal"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Time Period"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="16dp">
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:layout_marginRight="8dp"
+            android:id="@+id/investment_time"
+            android:inputType="numberSigned"/>
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/time_period_unit"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:spinnerMode="dialog" />
+    </TableRow>
+
+    <TableRow android:paddingBottom="16dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="Annual Returns (%)"/>
+
+        <EditText android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="@drawable/border"
+            android:layout_weight="1"
+            android:id="@+id/expected_return"
+            android:inputType="number"/>
+    </TableRow>
+    <include layout="@layout/buttons"/>
+</TableLayout>
+
+<!---->

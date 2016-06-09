@@ -45,12 +45,6 @@ public class StockPriceActivity extends AppCompatActivity implements StocksBySha
 
         fragmentTransaction.hide(stocksBySharePriceResult).commit();
 
-        /*getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.appArea, new StocksBySharePrice(), StockPriceActivity.class.getName())
-                .addToBackStack(StockPriceActivity.class.getName())
-                .commit();*/
-
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
