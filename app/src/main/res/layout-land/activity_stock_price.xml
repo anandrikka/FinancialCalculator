@@ -40,25 +40,26 @@
             android:layout_below="@+id/appBar"
             android:layout_alignParentStart="true">
             <LinearLayout
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/appArea">
 
                 <fragment
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:id="@+id/stock_form"
                     android:name="com.wordpress.techanand.financialcalculator.app.fragments.StocksBySharePrice"
                     tools:layout="@layout/stocks_by_share_price" />
 
                 <fragment
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:id="@+id/stock_result"
                     android:name="com.wordpress.techanand.financialcalculator.app.fragments.StocksBySharePriceResult"
                     tools:layout="@layout/stock_by_share_price_result" />
-
             </LinearLayout>
         </ScrollView>
         <!--<android.support.v4.view.ViewPager

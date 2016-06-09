@@ -1,7 +1,7 @@
 package com.wordpress.techanand.financialcalculator.app;
 
 /**
- * Created by ARikka on 6/5/2016.
+ * Created by Anand Rikka on 6/5/2016.
  */
 public class CalcDetails {
 

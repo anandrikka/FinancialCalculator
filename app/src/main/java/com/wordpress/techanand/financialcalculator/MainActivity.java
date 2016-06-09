@@ -86,20 +86,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case Calculator.UNIQUE_LOAN_ID:
                         launchItem = new Intent(MainActivity.this, LoanActivity.class);
                         break;
-                    /*case Calculator.UNIQUE_TAX_ID:
-                        launchItem = new Intent(MainActivity.this, TaxActivity.class);
-                        break;
-                    case Calculator.UNIQUE_ROI_ID:
-                        //launchItem = new Intent(MainActivity.this, MiscellaneousActivity.class);
-                        Toast.makeText(MainActivity.this, item.getName()+" Not Defined !", Toast.LENGTH_SHORT).show();
-                        break;
-                    case Calculator.UNIQUE_CI_ID:
-                        //launchItem = new Intent(MainActivity.this, SplitActivity.class);
-                        Toast.makeText(MainActivity.this, item.getName()+" Not Defined !", Toast.LENGTH_SHORT).show();
-                        break;
-                    case Calculator.UNIQUE_BUDGET_ID:
-                        launchItem = new Intent(MainActivity.this, BudgetActivity.class);
-                        break;*/
                     case Calculator.UNIQUE_RETIREMENT_ID:
                         launchItem = new Intent(MainActivity.this, RetirementActivity.class);
                         break;

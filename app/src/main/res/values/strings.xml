@@ -270,6 +270,9 @@
         EMI is Rs.%1$d for Loan Amount Rs.%2$d @ %3$s for %4$d months. Total Amount Paid is %5$d
     </string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <!--...................... Loan: End.....................................-->
 
 </resources>

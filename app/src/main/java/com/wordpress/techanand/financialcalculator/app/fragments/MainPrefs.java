@@ -20,12 +20,21 @@ import android.widget.Toast;
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.activities.AppPreferencesActivity;
 
+import java.text.DecimalFormat;
+
 public class MainPrefs extends CustomPreferenceFragment implements Preference.OnPreferenceClickListener{
 
     //todo: Screen Orientation not staying on fragment, going to first fragment.
 
+    public static final DecimalFormat numberFormatter = new DecimalFormat("#,##,###.00");
+
     public MainPrefs() {
         // Required empty public constructor
+    }
+
+    public static String getFormattedNumber(double number){
+        numberFormatter.setMinimumIntegerDigits(1);
+        return numberFormatter.format(number);
     }
 
     @Override
@@ -48,14 +57,14 @@ public class MainPrefs extends CustomPreferenceFragment implements Preference.On
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.prefs, new BrokeragePrefs(), BrokeragePrefs.class.getName())
-                    .addToBackStack(BrokeragePrefs.class.getName())
+                    //.addToBackStack(BrokeragePrefs.class.getName())
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();
         }else if(preference.getKey().equals(getString(R.string.prefs_exchange_key))){
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.prefs, new ExchangePrefs(), ExchangePrefs.class.getName())
-                    .addToBackStack(ExchangePrefs.class.getName())
+                    //.addToBackStack(ExchangePrefs.class.getName())
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();
         }

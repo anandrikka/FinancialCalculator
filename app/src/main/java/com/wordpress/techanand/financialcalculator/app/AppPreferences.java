@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by ARikka on 6/5/2016.
+ * Created by Anand Rikka on 6/5/2016.
  */
 public class AppPreferences {
 

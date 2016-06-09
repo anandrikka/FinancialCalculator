@@ -74,19 +74,19 @@ public class ExchangePrefs extends CustomPreferenceFragment implements Preferenc
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.prefs, new StampDutyPrefs(), StampDutyPrefs.class.getName())
-                    .addToBackStack(StampDutyPrefs.class.getName())
+                    //.addToBackStack(StampDutyPrefs.class.getName())
                     .commit();
         }else if(preference.getKey().equals("turnover_bse_screen")){
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.prefs, new BSETurnoverPrefs(), BSETurnoverPrefs.class.getName())
-                    .addToBackStack(BSETurnoverPrefs.class.getName())
+                    //.addToBackStack(BSETurnoverPrefs.class.getName())
                     .commit();
         }else if(preference.getKey().equals("turnover_nse_screen")){
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.prefs, new NSETurnoverPrefs(), NSETurnoverPrefs.class.getName())
-                    .addToBackStack(NSETurnoverPrefs.class.getName())
+                    //.addToBackStack(NSETurnoverPrefs.class.getName())
                     .commit();
         }
         return true;

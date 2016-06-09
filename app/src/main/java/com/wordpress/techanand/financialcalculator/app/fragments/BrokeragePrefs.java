@@ -125,37 +125,37 @@ public class BrokeragePrefs extends CustomPreferenceFragment implements Preferen
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.prefs, new DeliveryPrefs(), DeliveryPrefs.class.getName())
-                    .addToBackStack(DeliveryPrefs.class.getName())
+                    //.addToBackStack(DeliveryPrefs.class.getName())
                     .commit();
         }else if(intraday.getKey().equals(key)){
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.prefs, new IntradayPrefs(), IntradayPrefs.class.getName())
-                    .addToBackStack(IntradayPrefs.class.getName())
+                    //.addToBackStack(IntradayPrefs.class.getName())
                     .commit();
         }else if(futures.getKey().equals(key)){
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.prefs, new FuturesPrefs(), FuturesPrefs.class.getName())
-                    .addToBackStack(FuturesPrefs.class.getName())
+                    //.addToBackStack(FuturesPrefs.class.getName())
                     .commit();
         }else if(options.getKey().equals(key)){
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.prefs, new OptionsPrefs(), OptionsPrefs.class.getName())
-                    .addToBackStack(OptionsPrefs.class.getName())
+                    //.addToBackStack(OptionsPrefs.class.getName())
                     .commit();
         }else if(currency.getKey().equals(key)){
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.prefs, new CurrencyPrefs(), CurrencyPrefs.class.getName())
-                    .addToBackStack(CurrencyPrefs.class.getName())
+                    //.addToBackStack(CurrencyPrefs.class.getName())
                     .commit();
         }else if(commodities.getKey().equals(key)){
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.prefs, new CommoditiesPrefs(), CommoditiesPrefs.class.getName())
-                    .addToBackStack(CommoditiesPrefs.class.getName())
+                    //.addToBackStack(CommoditiesPrefs.class.getName())
                     .commit();
         }else {
             Toast.makeText(getActivity(), preference.getKey()+" Preference doesn't exist !", Toast.LENGTH_SHORT).show();

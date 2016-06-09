@@ -1,5 +1,6 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.wordpress.techanand.financialcalculator.MainActivity;
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.fragments.BSETurnoverPrefs;
@@ -36,14 +38,14 @@ public class AppPreferencesActivity extends AppCompatActivity {
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.prefs, new MainPrefs(), MainPrefs.class.getName())
-                .addToBackStack(MainPrefs.class.getName())
+                //.addToBackStack(MainPrefs.class.getName())
                 .commit();
     }
 
     @Override
     public void onBackPressed() {
         //generally it should be == 0, however my activity view is a blank view, so skipping it
-        int count = getFragmentManager().getBackStackEntryCount();
+        /*int count = getFragmentManager().getBackStackEntryCount();
         if (count < 2) {
             super.onBackPressed();
         } else {
@@ -56,7 +58,7 @@ public class AppPreferencesActivity extends AppCompatActivity {
                             fm.findFragmentByTag(ExchangePrefs.class.getName()).isVisible())){
                 fm.beginTransaction()
                         .replace(R.id.prefs, new MainPrefs(), MainPrefs.class.getName())
-                        .addToBackStack(MainPrefs.class.getName())
+                        //.addToBackStack(MainPrefs.class.getName())
                         .commit();
             }else if((fm.findFragmentByTag(StampDutyPrefs.class.getName()) != null &&
                     fm.findFragmentByTag(StampDutyPrefs.class.getName()).isVisible()) ||
@@ -66,7 +68,7 @@ public class AppPreferencesActivity extends AppCompatActivity {
                             fm.findFragmentByTag(NSETurnoverPrefs.class.getName()).isVisible())){
                 fm.beginTransaction()
                         .replace(R.id.prefs, new ExchangePrefs(), ExchangePrefs.class.getName())
-                        .addToBackStack(ExchangePrefs.class.getName())
+                        //.addToBackStack(ExchangePrefs.class.getName())
                         .commit();
             }else if((fm.findFragmentByTag(DeliveryPrefs.class.getName()) != null &&
                     fm.findFragmentByTag(DeliveryPrefs.class.getName()).isVisible()) ||
@@ -82,13 +84,55 @@ public class AppPreferencesActivity extends AppCompatActivity {
                     fm.findFragmentByTag(CommoditiesPrefs.class.getName()).isVisible())){
                 fm.beginTransaction()
                         .replace(R.id.prefs, new BrokeragePrefs(), BrokeragePrefs.class.getName())
-                        .addToBackStack(BrokeragePrefs.class.getName())
+                        //.addToBackStack(BrokeragePrefs.class.getName())
                         .commit();
             }else{
+                *//*Intent intent = new Intent(AppPreferencesActivity.this, MainActivity.class);
+                startActivity(intent);*//*
                 super.onBackPressed();
             }
             //getFragmentManager().popBackStack();
 
+        }*/
+        android.app.FragmentManager fm = getFragmentManager();
+        if((fm.findFragmentByTag(BrokeragePrefs.class.getName()) != null &&
+                fm.findFragmentByTag(BrokeragePrefs.class.getName()).isVisible()) ||
+                (fm.findFragmentByTag(ExchangePrefs.class.getName()) != null &&
+                        fm.findFragmentByTag(ExchangePrefs.class.getName()).isVisible())){
+            fm.beginTransaction()
+                    .replace(R.id.prefs, new MainPrefs(), MainPrefs.class.getName())
+                    //.addToBackStack(MainPrefs.class.getName())
+                    .commit();
+        }else if((fm.findFragmentByTag(StampDutyPrefs.class.getName()) != null &&
+                fm.findFragmentByTag(StampDutyPrefs.class.getName()).isVisible()) ||
+                (fm.findFragmentByTag(BSETurnoverPrefs.class.getName()) != null &&
+                        fm.findFragmentByTag(BSETurnoverPrefs.class.getName()).isVisible()) ||
+                (fm.findFragmentByTag(NSETurnoverPrefs.class.getName()) != null &&
+                        fm.findFragmentByTag(NSETurnoverPrefs.class.getName()).isVisible())){
+            fm.beginTransaction()
+                    .replace(R.id.prefs, new ExchangePrefs(), ExchangePrefs.class.getName())
+                    //.addToBackStack(ExchangePrefs.class.getName())
+                    .commit();
+        }else if((fm.findFragmentByTag(DeliveryPrefs.class.getName()) != null &&
+                fm.findFragmentByTag(DeliveryPrefs.class.getName()).isVisible()) ||
+                (fm.findFragmentByTag(IntradayPrefs.class.getName()) != null &&
+                        fm.findFragmentByTag(IntradayPrefs.class.getName()).isVisible()) ||
+                (fm.findFragmentByTag(FuturesPrefs.class.getName()) != null &&
+                        fm.findFragmentByTag(FuturesPrefs.class.getName()).isVisible()) ||
+                (fm.findFragmentByTag(OptionsPrefs.class.getName()) != null &&
+                        fm.findFragmentByTag(OptionsPrefs.class.getName()).isVisible()) ||
+                (fm.findFragmentByTag(CurrencyPrefs.class.getName()) != null &&
+                        fm.findFragmentByTag(CurrencyPrefs.class.getName()).isVisible()) ||
+                (fm.findFragmentByTag(CommoditiesPrefs.class.getName()) != null &&
+                        fm.findFragmentByTag(CommoditiesPrefs.class.getName()).isVisible())){
+            fm.beginTransaction()
+                    .replace(R.id.prefs, new BrokeragePrefs(), BrokeragePrefs.class.getName())
+                    //.addToBackStack(BrokeragePrefs.class.getName())
+                    .commit();
+        }else{
+                /*Intent intent = new Intent(AppPreferencesActivity.this, MainActivity.class);
+                startActivity(intent);*/
+            super.onBackPressed();
         }
 
     }

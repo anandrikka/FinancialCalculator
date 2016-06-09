@@ -7,7 +7,7 @@ import android.graphics.Typeface;
 import java.lang.reflect.Field;
 
 /**
- * Created by ARikka on 6/7/2016.
+ * Created by Anand Rikka on 6/7/2016.
  */
 public class CustomApplication  extends Application{
     @Override

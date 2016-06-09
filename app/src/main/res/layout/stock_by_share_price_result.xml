@@ -1,0 +1,91 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    android:id="@+id/resultsTable">
+    <TableRow android:paddingBottom="16dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Results"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textAllCaps="true"
+            android:background="@color/divider"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+    </TableRow>
+    <TableRow android:paddingBottom="8dp">
+        <TextView android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="Total Turnover"
+            android:gravity="right"
+            android:paddingRight="36dp"/>
+        <TextView android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="123"
+            android:id="@+id/totalTurnOver"/>
+    </TableRow>
+    <TableRow android:paddingBottom="8dp">
+        <TextView android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="Brokerage"
+            android:gravity="right"
+            android:paddingRight="36dp"/>
+        <TextView android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="123"
+            android:id="@+id/brokerage"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <TextView android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="Exchange charges &amp; Taxes"
+            android:gravity="right"
+            android:paddingRight="36dp"/>
+        <TextView android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="123"
+            android:gravity="center_vertical"
+            android:id="@+id/otherCharges"/>
+    </TableRow>
+    <TableRow android:paddingBottom="8dp" android:id="@+id/break_even_row">
+        <TextView android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="Break Even Points"
+            android:gravity="right"
+            android:paddingRight="36dp"
+            android:id="@+id/break_even_label"/>
+        <TextView android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="123"
+            android:id="@+id/breakEvenPrice"/>
+    </TableRow>
+    <TableRow android:paddingBottom="8dp" android:id="@+id/net_profit_loss">
+        <TextView android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="Net Profit/Loss"
+            android:gravity="right"
+            android:id="@+id/prfit_loss_label"
+            android:paddingRight="36dp"/>
+        <TextView android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="123"
+            android:id="@+id/profitOrLoss"/>
+    </TableRow>
+</TableLayout>
