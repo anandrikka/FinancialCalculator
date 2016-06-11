@@ -1,19 +1,15 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.AppMain;
-import com.wordpress.techanand.financialcalculator.app.fragments.MainPrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.StocksBySharePrice;
 import com.wordpress.techanand.financialcalculator.app.fragments.StocksBySharePriceResult;
-import com.wordpress.techanand.financialcalculator.app.models.StockPreferences;
-import com.wordpress.techanand.financialcalculator.app.models.Stock;
+import com.wordpress.techanand.financialcalculator.app.models.StockObject;
+import com.wordpress.techanand.financialcalculator.app.models.StockPreferencesObject;
 
 public class StockPriceActivity extends AppCompatActivity implements StocksBySharePrice.StockListener{
 
@@ -58,89 +54,89 @@ public class StockPriceActivity extends AppCompatActivity implements StocksBySha
 
 
     @Override
-    public void calculate(Stock stockData, StockPreferences stockPreferences, boolean isFromInitialLoad) {
-        if(isFromInitialLoad && (stockData.getSellPrice() <=0.0 || stockData.getBuyPrice() <= 0.0) && stockData.getQuantity() <=0.0){
+    public void calculate(StockObject stockObjectData, StockPreferencesObject stockPreferencesObject, boolean isFromInitialLoad) {
+        if(isFromInitialLoad && (stockObjectData.getSellPrice() <=0.0 || stockObjectData.getBuyPrice() <= 0.0) && stockObjectData.getQuantity() <=0.0){
             return;
         }
         double tBuy, tSell, tTurnover, tQuantity, tBrokerage, tStt, tServiceTax, tExchangeTxCharges, tSEBICharges, tStampDutyCharges, profitOrLoss, breakEven;
-        tQuantity = stockData.getQuantity();
-        tBuy = stockData.getBuyPrice() * tQuantity;
-        tSell = stockData.getSellPrice() * tQuantity;
+        tQuantity = stockObjectData.getQuantity();
+        tBuy = stockObjectData.getBuyPrice() * tQuantity;
+        tSell = stockObjectData.getSellPrice() * tQuantity;
         tTurnover = tBuy + tSell;
 
         //todo: which text views to  display based on buy price and sell price
 
         //Brokerage
-        if(stockPreferences.isFlatRateUsed()){
-            if(stockPreferences.getFlatBrokerage() > 0){
-                tBrokerage = stockPreferences.getFlatBrokerage();
+        if(stockPreferencesObject.isFlatRateUsed()){
+            if(stockPreferencesObject.getFlatBrokerage() > 0){
+                tBrokerage = stockPreferencesObject.getFlatBrokerage();
             }else{
                 tBrokerage = 0;
             }
         }else{
-            tBrokerage = stockPreferences.getBrokeragePercent() * 0.01 * tTurnover;
+            tBrokerage = stockPreferencesObject.getBrokeragePercent() * 0.01 * tTurnover;
         }
-        stockData.setBrokerage(tBrokerage);
+        stockObjectData.setBrokerage(tBrokerage);
 
         //Stt charges
-        if(stockData.getCategory().equals(CATEGORIES[0])){
-            tStt = tTurnover * stockPreferences.getSttCharges() * 0.01;
-        }else if(stockData.getCategory().equals(CATEGORIES[4]) || stockData.getCategory().equals(CATEGORIES[5])){
+        if(stockObjectData.getCategory().equals(CATEGORIES[0])){
+            tStt = tTurnover * stockPreferencesObject.getSttCharges() * 0.01;
+        }else if(stockObjectData.getCategory().equals(CATEGORIES[4]) || stockObjectData.getCategory().equals(CATEGORIES[5])){
             tStt = 0;
         }else{
-            tStt = tSell * stockPreferences.getSttCharges() * 0.01;
+            tStt = tSell * stockPreferencesObject.getSttCharges() * 0.01;
         }
-        stockData.setSttCharges(tStt);
+        stockObjectData.setSttCharges(tStt);
 
         //Exchange Charges
-        tExchangeTxCharges = tTurnover * stockPreferences.getExchangeTxCharges() * 0.01;
-        stockData.setExchangeTxCharges(tExchangeTxCharges);
+        tExchangeTxCharges = tTurnover * stockPreferencesObject.getExchangeTxCharges() * 0.01;
+        stockObjectData.setExchangeTxCharges(tExchangeTxCharges);
 
         //SEBI Charges
-        tSEBICharges = tTurnover * stockPreferences.getSebiCharges() * 0.0000001;
-        stockData.setSebiCharges(tSEBICharges);
+        tSEBICharges = tTurnover * stockPreferencesObject.getSebiCharges() * 0.0000001;
+        stockObjectData.setSebiCharges(tSEBICharges);
 
         //Stampduty Charges
-        tStampDutyCharges = tTurnover * stockPreferences.getStampDutyPercentage() * 0.01;
-        if (tStampDutyCharges < stockPreferences.getStampDutyMinimum()) {
-            tStampDutyCharges = stockPreferences.getStampDutyMinimum();
+        tStampDutyCharges = tTurnover * stockPreferencesObject.getStampDutyPercentage() * 0.01;
+        if (tStampDutyCharges < stockPreferencesObject.getStampDutyMinimum()) {
+            tStampDutyCharges = stockPreferencesObject.getStampDutyMinimum();
         }
-        if (tStampDutyCharges > stockPreferences.getStampDutyMaximum()) {
-            tStampDutyCharges = stockPreferences.getStampDutyMaximum();
+        if (tStampDutyCharges > stockPreferencesObject.getStampDutyMaximum()) {
+            tStampDutyCharges = stockPreferencesObject.getStampDutyMaximum();
         }
-        stockData.setStampDutyCharges(tStampDutyCharges);
+        stockObjectData.setStampDutyCharges(tStampDutyCharges);
 
         //Service Tax
-        tServiceTax = (tBrokerage + tExchangeTxCharges) * stockPreferences.getServiceTax() * 0.01;
-        stockData.setServiceCharges(tServiceTax);
+        tServiceTax = (tBrokerage + tExchangeTxCharges) * stockPreferencesObject.getServiceTax() * 0.01;
+        stockObjectData.setServiceCharges(tServiceTax);
 
         breakEven = (tTurnover + tBrokerage + tStt + tExchangeTxCharges + tSEBICharges + tStampDutyCharges + tServiceTax) / tQuantity;
 
         if(tBuy > 0 && tSell > 0){
-            breakEven = breakEven - (stockData.getBuyPrice()+stockData.getSellPrice());
+            breakEven = breakEven - (stockObjectData.getBuyPrice()+ stockObjectData.getSellPrice());
         }else{
             double price = 0.0;
             if(tBuy > 0){
-                price = stockData.getBuyPrice();
+                price = stockObjectData.getBuyPrice();
             }
             if(tSell > 0){
-                price = stockData.getSellPrice();
+                price = stockObjectData.getSellPrice();
             }
             breakEven = breakEven - price;
         }
-        stockData.setBreakEven(breakEven);
+        stockObjectData.setBreakEven(breakEven);
 
         profitOrLoss = tSell - tBuy - tBrokerage
                 - tStt - tExchangeTxCharges - tSEBICharges - tStampDutyCharges - tServiceTax;
-        stockData.setProfitOrLoss(profitOrLoss);
+        stockObjectData.setProfitOrLoss(profitOrLoss);
         getSupportFragmentManager()
                 .beginTransaction().setCustomAnimations(R.anim.slide_left, R.anim.slide_right).commit();
-        if((stockData.getSellPrice()>0 || stockData.getBuyPrice()>0) && stockData.getQuantity()>0){
+        if((stockObjectData.getSellPrice()>0 || stockObjectData.getBuyPrice()>0) && stockObjectData.getQuantity()>0){
             getSupportFragmentManager()
                     .beginTransaction()
                     .show(stocksBySharePriceResult)
                     .commit();
-            stocksBySharePriceResult.displayResult(stockData, stockPreferences);
+            stocksBySharePriceResult.displayResult(stockObjectData, stockPreferencesObject);
         }
 
     }

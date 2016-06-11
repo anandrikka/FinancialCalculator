@@ -177,7 +177,7 @@ public class RDByMaturityTab extends Fragment {
         labels.add("Interest");
 
         PieData data = new PieData(labels, dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS);
+        dataset.setColors(ColorTemplate.JOYFUL_COLORS);
 
         pieChart.setData(data);
         pieChart.setVisibility(View.VISIBLE);

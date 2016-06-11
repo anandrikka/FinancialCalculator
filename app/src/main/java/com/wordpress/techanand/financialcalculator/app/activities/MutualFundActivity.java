@@ -8,10 +8,9 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.fragments.MutualFundSIP;
 import com.wordpress.techanand.financialcalculator.app.fragments.MutualFundSIPResult;
-import com.wordpress.techanand.financialcalculator.app.models.MutualFund;
+import com.wordpress.techanand.financialcalculator.app.models.MutualFundObject;
 
 public class MutualFundActivity extends AppCompatActivity implements MutualFundSIP.MutualFundSIPListener{
 
@@ -61,10 +60,12 @@ public class MutualFundActivity extends AppCompatActivity implements MutualFundS
     public void mutualFundTypeClicked(View view){
         switch(view.getId()) {
             case R.id.by_sip:
+                ((CheckBox)findViewById(R.id.by_sip)).setChecked(true);
                 ((CheckBox)findViewById(R.id.by_target)).setChecked(false);
                 ((TextView)findViewById(R.id.investment_label)).setText("Monthly Investment");
                 break;
             case R.id.by_target:
+                ((CheckBox)findViewById(R.id.by_target)).setChecked(true);
                 ((CheckBox)findViewById(R.id.by_sip)).setChecked(false);
                 ((TextView)findViewById(R.id.investment_label)).setText("Target Amount");
                 break;
@@ -79,7 +80,7 @@ public class MutualFundActivity extends AppCompatActivity implements MutualFundS
     }
 
     @Override
-    public void calculateListener(MutualFund mutualFundData, boolean isFromInitialLoad) {
+    public void calculateListener(MutualFundObject mutualFundObjectData, boolean isFromInitialLoad) {
         /*
         * P = A = P * [{(1+i)^n – 1 }/i] * (1+i)
         * PMT - Per Month
@@ -90,17 +91,17 @@ public class MutualFundActivity extends AppCompatActivity implements MutualFundS
 
         double P, n, i;
 
-        P = mutualFundData.getAmount();
-        if(mutualFundData.getPeriodUnit().equals(PERIOD[1])){
-            n = mutualFundData.getTotalPeriod() * 12.0;
+        P = mutualFundObjectData.getAmount();
+        if(mutualFundObjectData.getPeriodUnit().equals(PERIOD[1])){
+            n = mutualFundObjectData.getTotalPeriod() * 12.0;
         }else{
-            n = mutualFundData.getTotalPeriod();
+            n = mutualFundObjectData.getTotalPeriod();
         }
-        i = mutualFundData.getAnnualReturns();
+        i = mutualFundObjectData.getAnnualReturns();
         i = i/12.0;
         i = i * 0.01;
 
-        if(mutualFundData.isMonthlySIP()){
+        if(mutualFundObjectData.isMonthlySIP()){
             double x, y;
             x = 1+i;
             x = Math.pow(x, n);
@@ -109,12 +110,12 @@ public class MutualFundActivity extends AppCompatActivity implements MutualFundS
             x = P*x;
             y = 1+i;
             x = x*y;
-            mutualFundData.setTotalInvestment(P*n);
-            mutualFundData.setTotalReturns(x);
-            mutualFundData.setWealthGained(x - (P*n));
+            mutualFundObjectData.setTotalInvestment(P*n);
+            mutualFundObjectData.setTotalReturns(x);
+            mutualFundObjectData.setWealthGained(x - (P*n));
         }
 
-        if(mutualFundData.isTargetAmount()){
+        if(mutualFundObjectData.isTargetAmount()){
             double x, y;
             x = P*i;
             y = 1+i;
@@ -123,11 +124,11 @@ public class MutualFundActivity extends AppCompatActivity implements MutualFundS
             double y1 = 1+i;
             y = y*y1;
             double sip = x/y;
-            mutualFundData.setTotalInvestment(sip*n);
-            mutualFundData.setMonthlySIP(sip);
-            mutualFundData.setWealthGained(mutualFundData.getAmount() - (sip*n));
+            mutualFundObjectData.setTotalInvestment(sip*n);
+            mutualFundObjectData.setMonthlySIP(sip);
+            mutualFundObjectData.setWealthGained(mutualFundObjectData.getAmount() - (sip*n));
         }
-        mutualFundSIPResult.displayResult(mutualFundData);
+        mutualFundSIPResult.displayResult(mutualFundObjectData);
         mutualFundSIPResult.getView().setVisibility(View.VISIBLE);
 
     }

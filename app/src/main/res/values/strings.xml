@@ -236,7 +236,7 @@
 
     <!-- ...................... Exchange Stampduty Preferences : End .................................-->
 
-    <!-- ...................... Stock Calculator : Start .................................-->
+    <!-- ...................... StockObject Calculator : Start .................................-->
 
     <string name="app.stocks.bse">BSE</string>
     <string name="app.stocks.nse">NSE</string>
@@ -253,7 +253,7 @@
     <string name="app.stocks.currency_futures_using_percent_brokerage"><b>Currency Futures:</b> %1$s percent of Total turnover or Maximum %2$s/-</string>
     <string name="app.stocks.currency_options_using_percent_brokerage"><b>Currency Options:</b> %1$s percent of Total turnover or Maximum %2$s/-</string>
 
-    <!-- ...................... Stock Calculator : End .................................-->
+    <!-- ...................... StockObject Calculator : End .................................-->
 
     <!-- ...................... Mutual Funds: Start.....................................-->
 

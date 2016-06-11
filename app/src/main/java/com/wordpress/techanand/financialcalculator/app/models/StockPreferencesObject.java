@@ -3,7 +3,7 @@ package com.wordpress.techanand.financialcalculator.app.models;
 /**
  * Created by Anand Rikka on 6/8/2016.
  */
-public class StockPreferences {
+public class StockPreferencesObject {
     private boolean isFlatRateUsed;
     private double flatBrokerage, brokeragePercent, maxBrokerage, serviceTax, sebiCharges,
             sttCharges, exchangeTxCharges, stampDutyMinimum, stampDutyMaximum, stampDutyPercentage;

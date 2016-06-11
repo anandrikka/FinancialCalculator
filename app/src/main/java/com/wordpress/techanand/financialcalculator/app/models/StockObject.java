@@ -3,7 +3,7 @@ package com.wordpress.techanand.financialcalculator.app.models;
 /**
  * Created by Anand Rikka on 6/8/2016.
  */
-public class Stock {
+public class StockObject {
     private double buyPrice, sellPrice, quantity;
     String category, exchange;
 
@@ -25,10 +25,10 @@ public class Stock {
         this.exchange = exchange;
     }
 
-    public Stock() {
+    public StockObject() {
     }
 
-    public Stock(double buyPrice, double sellPrice, double quantity) {
+    public StockObject(double buyPrice, double sellPrice, double quantity) {
         this.buyPrice = buyPrice;
         this.sellPrice = sellPrice;
         this.quantity = quantity;

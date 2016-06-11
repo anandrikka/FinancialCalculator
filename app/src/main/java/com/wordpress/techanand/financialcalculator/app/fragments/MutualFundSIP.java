@@ -14,13 +14,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TableLayout;
-import android.widget.TextView;
 
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.activities.MutualFundActivity;
-import com.wordpress.techanand.financialcalculator.app.models.MutualFund;
+import com.wordpress.techanand.financialcalculator.app.models.MutualFundObject;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +27,7 @@ public class MutualFundSIP extends Fragment {
 
     public interface MutualFundSIPListener {
         public void resetListener();
-        public void calculateListener(MutualFund mutualFundData, boolean isFromInitialLoad);
+        public void calculateListener(MutualFundObject mutualFundObjectData, boolean isFromInitialLoad);
     }
 
     private MutualFundSIPListener mutualFundSIPListener;
@@ -37,7 +35,7 @@ public class MutualFundSIP extends Fragment {
     private Spinner timePeriodSelect;
     private Button resetButton, calculateButton;
 
-    private MutualFund mutualFundData;
+    private MutualFundObject mutualFundObjectData;
 
     public MutualFundSIP() {
         // Required empty public constructor
@@ -46,7 +44,7 @@ public class MutualFundSIP extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mutualFundData = new MutualFund();
+        mutualFundObjectData = new MutualFundObject();
     }
 
     @Override
@@ -113,13 +111,13 @@ public class MutualFundSIP extends Fragment {
         if(!monthlyInvestmentText.getText().toString().equals("") &&
                 !timePeriodText.getText().toString().equals("") &&
                 !annualReturnText.getText().toString().equals("")){
-            mutualFundData.setAmount(Double.parseDouble(monthlyInvestmentText.getText().toString()));
-            mutualFundData.setTotalPeriod(Double.parseDouble(timePeriodText.getText().toString()));
-            mutualFundData.setAnnualReturns(Double.parseDouble(annualReturnText.getText().toString()));
-            mutualFundData.setIsMonthlySIP(((CheckBox) getView().findViewById(R.id.by_sip)).isChecked());
-            mutualFundData.setIsTargetAmount(((CheckBox) getView().findViewById(R.id.by_target)).isChecked());
-            mutualFundData.setPeriodUnit((String)timePeriodSelect.getSelectedItem());
-            mutualFundSIPListener.calculateListener(mutualFundData, isFromInitialLoad);
+            mutualFundObjectData.setAmount(Double.parseDouble(monthlyInvestmentText.getText().toString()));
+            mutualFundObjectData.setTotalPeriod(Double.parseDouble(timePeriodText.getText().toString()));
+            mutualFundObjectData.setAnnualReturns(Double.parseDouble(annualReturnText.getText().toString()));
+            mutualFundObjectData.setIsMonthlySIP(((CheckBox) getView().findViewById(R.id.by_sip)).isChecked());
+            mutualFundObjectData.setIsTargetAmount(((CheckBox) getView().findViewById(R.id.by_target)).isChecked());
+            mutualFundObjectData.setPeriodUnit((String)timePeriodSelect.getSelectedItem());
+            mutualFundSIPListener.calculateListener(mutualFundObjectData, isFromInitialLoad);
         }else if(!isFromInitialLoad){
             AppMain.dialogBuilder(getContext(),
                     "Fill Fields",

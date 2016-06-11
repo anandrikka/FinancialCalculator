@@ -3,7 +3,7 @@ package com.wordpress.techanand.financialcalculator.app.models;
 /**
  * Created by Anand Rikka on 6/9/2016.
  */
-public class MutualFund {
+public class MutualFundObject {
 
     private double amount, totalPeriod, annualReturns, totalReturns, totalInvestment, wealthGained, monthlySIP;
     boolean isMonthlySIP, isTargetAmount;

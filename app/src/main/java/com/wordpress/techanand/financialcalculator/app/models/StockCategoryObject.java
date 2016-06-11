@@ -3,7 +3,7 @@ package com.wordpress.techanand.financialcalculator.app.models;
 /**
  * Created by Anand Rikka on 5/13/2016.
  */
-public class StockCategory {
+public class StockCategoryObject {
 
     private int type;
     private String name;
@@ -15,7 +15,7 @@ public class StockCategory {
     public final static int CURRENCY = 5;
     public final static int COMMODITIES = 6;
 
-    public StockCategory(int type, String name) {
+    public StockCategoryObject(int type, String name) {
         this.type = type;
         this.name = name;
     }

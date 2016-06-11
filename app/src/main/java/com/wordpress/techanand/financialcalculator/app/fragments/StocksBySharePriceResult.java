@@ -11,9 +11,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.AppMain;
-import com.wordpress.techanand.financialcalculator.app.models.Stock;
-import com.wordpress.techanand.financialcalculator.app.models.StockPreferences;
+import com.wordpress.techanand.financialcalculator.app.models.StockObject;
+import com.wordpress.techanand.financialcalculator.app.models.StockPreferencesObject;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,38 +31,38 @@ public class StocksBySharePriceResult extends Fragment {
         return view;
     }
 
-    public void displayResult(Stock stockData, StockPreferences stockPreferences){
-        String turnover = MainPrefs.getFormattedNumber((stockData.getBuyPrice()+stockData.getSellPrice()) * stockData.getQuantity());
+    public void displayResult(StockObject stockObjectData, StockPreferencesObject stockPreferencesObject){
+        String turnover = MainPrefs.getFormattedNumber((stockObjectData.getBuyPrice()+ stockObjectData.getSellPrice()) * stockObjectData.getQuantity());
         String brokerage = "0";
         String exchgTxPlusTaxes;
         String breakEven;
         String profitLoss;
-        double totalCharges = stockData.getBrokerage() + stockData.getSttCharges() +
-                stockData.getExchangeTxCharges() + stockData.getSebiCharges() +
-                stockData.getServiceCharges() + stockData.getStampDutyCharges();
+        double totalCharges = stockObjectData.getBrokerage() + stockObjectData.getSttCharges() +
+                stockObjectData.getExchangeTxCharges() + stockObjectData.getSebiCharges() +
+                stockObjectData.getServiceCharges() + stockObjectData.getStampDutyCharges();
         ((TextView)getView().findViewById(R.id.totalTurnOver)).setText(turnover);
-        if(stockData.getBrokerage() > 0){
-            brokerage = MainPrefs.getFormattedNumber(stockData.getBrokerage());
+        if(stockObjectData.getBrokerage() > 0){
+            brokerage = MainPrefs.getFormattedNumber(stockObjectData.getBrokerage());
         }
         ((TextView)getView().findViewById(R.id.brokerage)).setText(brokerage);
         exchgTxPlusTaxes = MainPrefs.getFormattedNumber(
-                (stockData.getSttCharges()+stockData.getExchangeTxCharges()+stockData.getServiceCharges()+stockData.getSebiCharges()+stockData.getStampDutyCharges()));
+                (stockObjectData.getSttCharges()+ stockObjectData.getExchangeTxCharges()+ stockObjectData.getServiceCharges()+ stockObjectData.getSebiCharges()+ stockObjectData.getStampDutyCharges()));
         ((TextView)getView().findViewById(R.id.otherCharges)).setText(exchgTxPlusTaxes);
         TextView breakEvenLabel = (TextView) getView().findViewById(R.id.break_even_label);
         TextView profitLossLabel = (TextView) getView().findViewById(R.id.prfit_loss_label);
         TableRow profitLossRow = (TableRow) getView().findViewById(R.id.net_profit_loss);
-        double profitLossVal = stockData.getProfitOrLoss();
-        if(stockData.getBuyPrice()>0 && stockData.getSellPrice()>0){
+        double profitLossVal = stockObjectData.getProfitOrLoss();
+        if(stockObjectData.getBuyPrice()>0 && stockObjectData.getSellPrice()>0){
             profitLossLabel.setText("Net Profit/Loss");
-            profitLossVal = stockData.getProfitOrLoss();
-        }else if(stockData.getBuyPrice()>0){
+            profitLossVal = stockObjectData.getProfitOrLoss();
+        }else if(stockObjectData.getBuyPrice()>0){
             profitLossLabel.setText("Net Worth Bought");
-            profitLossVal = (stockData.getBuyPrice() * stockData.getQuantity()) - totalCharges;
-        }else if(stockData.getSellPrice()>0){
+            profitLossVal = (stockObjectData.getBuyPrice() * stockObjectData.getQuantity()) - totalCharges;
+        }else if(stockObjectData.getSellPrice()>0){
             profitLossLabel.setText("Net Worth Sold");
-            profitLossVal = (stockData.getSellPrice() * stockData.getQuantity()) - totalCharges;
+            profitLossVal = (stockObjectData.getSellPrice() * stockObjectData.getQuantity()) - totalCharges;
         }
-        breakEven = MainPrefs.getFormattedNumber(stockData.getBreakEven());
+        breakEven = MainPrefs.getFormattedNumber(stockObjectData.getBreakEven());
         ((TextView)getView().findViewById(R.id.breakEvenPrice)).setText(breakEven);
         profitLoss = MainPrefs.getFormattedNumber(profitLossVal);
         ((TextView)getView().findViewById(R.id.profitOrLoss)).setText(profitLoss);

@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.AppPreferences;
-import com.wordpress.techanand.financialcalculator.app.models.MutualFund;
+import com.wordpress.techanand.financialcalculator.app.models.MutualFundObject;
 
 
 public class MutualFundSIPResult extends Fragment {
@@ -28,19 +27,19 @@ public class MutualFundSIPResult extends Fragment {
         return view;
     }
 
-    public void displayResult(MutualFund mutualFundData){
-        if(mutualFundData.isTargetAmount()){
+    public void displayResult(MutualFundObject mutualFundObjectData){
+        if(mutualFundObjectData.isTargetAmount()){
             ((TextView)getView().findViewById(R.id.returns_or_sip)).setText("Monthly SIP");
-            ((TextView)getView().findViewById(R.id.total_returns)).setText(MainPrefs.getFormattedNumber(mutualFundData.getMonthlySIP()));
+            ((TextView)getView().findViewById(R.id.total_returns)).setText(MainPrefs.getFormattedNumber(mutualFundObjectData.getMonthlySIP()));
         }
 
-        if(mutualFundData.isMonthlySIP()){
+        if(mutualFundObjectData.isMonthlySIP()){
             ((TextView)getView().findViewById(R.id.returns_or_sip)).setText("Total Returns");
-            ((TextView)getView().findViewById(R.id.total_returns)).setText(MainPrefs.getFormattedNumber(mutualFundData.getTotalReturns()));
+            ((TextView)getView().findViewById(R.id.total_returns)).setText(MainPrefs.getFormattedNumber(mutualFundObjectData.getTotalReturns()));
         }
 
-        ((TextView)getView().findViewById(R.id.investment)).setText(MainPrefs.getFormattedNumber(mutualFundData.getTotalInvestment()));
-        ((TextView)getView().findViewById(R.id.gain)).setText(MainPrefs.getFormattedNumber(mutualFundData.getWealthGained()));
+        ((TextView)getView().findViewById(R.id.investment)).setText(MainPrefs.getFormattedNumber(mutualFundObjectData.getTotalInvestment()));
+        ((TextView)getView().findViewById(R.id.gain)).setText(MainPrefs.getFormattedNumber(mutualFundObjectData.getWealthGained()));
 
     }
 

@@ -18,6 +18,7 @@ public class Calculator {
     public final static String UNIQUE_TAX_ID = "tax";
     public final static String UNIQUE_LOAN_ID = "loan";
     public final static String UNIQUE_RETIREMENT_ID = "retirement";
+    public final static String UNIQUE_GOAL_ID = "goal";
 
 
     public Calculator(){
