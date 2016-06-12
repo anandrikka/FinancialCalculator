@@ -1,13 +1,16 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.github.clans.fab.FloatingActionMenu;
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositFragment;
 import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositResult;
@@ -42,14 +45,14 @@ public class FixedDepositActivity extends AppCompatActivity implements FixedDepo
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //fdFragment = (FixedDepositFragment) getSupportFragmentManager().findFragmentByTag(FixedDepositFragment.class.getName());
+        fdFragment = (FixedDepositFragment) getSupportFragmentManager().findFragmentByTag(FixedDepositFragment.class.getName());
         if(fdFragment == null){
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, new FixedDepositFragment(), FixedDepositFragment.class.getName())
                     .commit();
         }
 
-        //fdResult = (FixedDepositResult) getSupportFragmentManager().findFragmentByTag(FixedDepositResult.class.getName());
+        fdResult = (FixedDepositResult) getSupportFragmentManager().findFragmentByTag(FixedDepositResult.class.getName());
         if(fdResult == null){
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, new FixedDepositResult(), FixedDepositResult.class.getName())
@@ -108,9 +111,9 @@ public class FixedDepositActivity extends AppCompatActivity implements FixedDepo
         }
         if(fixedDepositObject.isInterestPayoutFD()){
             if(fixedDepositObject.getPayoutUnit().equals(FixedDepositActivity.PAYOUT_FREQ[0])){
-                t = t/12.0;
+                t = 1.0/12.0;
             }else{
-                t = t/4.0;
+                t = 3.0/12.0;
             }
         }
         if(nUnit == FixedDepositActivity.COMPOUNDING_FREQ[0]){
@@ -129,8 +132,9 @@ public class FixedDepositActivity extends AppCompatActivity implements FixedDepo
             fixedDepositObject.setInterest(A-P);
         }
         if(fixedDepositObject.isInterestPayoutFD()){
-            fixedDepositObject.setMonthlyAmount(A-P);
-            double totalMonths;
+            double totalMonths, payout;
+            payout = A-P;
+            fixedDepositObject.setPayoutAmount(payout);
             if(tUnit.equals(FixedDepositActivity.PERIOD[0])){
                 totalMonths = fixedDepositObject.getTime() * 12;
             }else if(tUnit.equals(FixedDepositActivity.PERIOD[1])){
@@ -138,13 +142,19 @@ public class FixedDepositActivity extends AppCompatActivity implements FixedDepo
             }else {
                 totalMonths = fixedDepositObject.getTime()/30.0;
             }
-
             if(fixedDepositObject.getPayoutUnit().equals(FixedDepositActivity.PAYOUT_FREQ[0])){
-                fixedDepositObject.setInterest(fixedDepositObject.getMonthlyAmount() * totalMonths);
+                fixedDepositObject.setInterest(payout * totalMonths);
+                if(totalMonths < 1){
+                    fixedDepositObject.setPayoutAmount(fixedDepositObject.getInterest());
+                }
             }else{
                 double quarters = totalMonths/3.0;
-                fixedDepositObject.setInterest(fixedDepositObject.getMonthlyAmount() * quarters);
+                if(quarters < 1){
+                    fixedDepositObject.setPayoutAmount(fixedDepositObject.getInterest());
+                }
+                fixedDepositObject.setInterest(payout * quarters);
             }
+
         }
         fdResult.displayResult(fixedDepositObject);
         fdResult.getView().setVisibility(View.VISIBLE);

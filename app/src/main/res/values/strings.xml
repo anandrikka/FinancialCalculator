@@ -258,8 +258,8 @@
     <!-- ...................... Mutual Funds: Start.....................................-->
 
     <string name="app.mutualfunds.goal_result_string">
-        The cost for your goal will be Rs.%1$d after %2$d years.
-        You need to invest Rs.%3$d monthly to reach your goal.
+        The cost for your goal will be &lt;b>Rs.%1$s&lt;/b> after &lt;b>%2$d years&lt;/b>.
+        You need to invest &lt;b>Rs.%3$s&lt;/b> monthly to reach your goal.
     </string>
 
     <!-- ...................... Mutual Funds: End.....................................-->
@@ -272,7 +272,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">Main2Activity</string>
 
     <!--...................... Loan: End.....................................-->
+
+    <!--...................... Goal: Start.....................................-->
+
+
+    <item name="app.goal.result_card_id" type="id"></item>
+    <item name="app.goal.result_card_text_id" type="id"></item>
+    <!--...................... Goal: End.....................................-->
 
 </resources>

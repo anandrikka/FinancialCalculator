@@ -1,8 +1,8 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +13,10 @@ import android.widget.TextView;
 
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
+import com.wordpress.techanand.financialcalculator.app.models.GoalObject;
 
 
-public class SIPForGoal extends Fragment {
+public class GoalFragment extends Fragment {
 
     /*Formula for inflated amount:
     *
@@ -31,11 +32,19 @@ public class SIPForGoal extends Fragment {
       *
     * */
 
+    public interface GoalFragmentListener {
+        public void calculate(GoalObject goalObject);
+        public void reset();
+    }
+
     private EditText todayValueText,alreadySavedText, inflationText, expectedReturnText, goalReachPeriod;
     private Button resetButton, calculateButton;
     private TextView resultMsgText;
 
-    public SIPForGoal() {
+    private GoalFragmentListener goalFragmentListener;
+    private GoalObject goalObject;
+
+    public GoalFragment() {
         // Required empty public constructor
     }
 
@@ -43,10 +52,22 @@ public class SIPForGoal extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.sip_for_goal, container, false);
+        View view = inflater.inflate(R.layout.goal_sip, container, false);
         setRetainInstance(true);
         initializeLoad(view);
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        goalObject = new GoalObject();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        goalFragmentListener = (GoalFragmentListener)context;
     }
 
     private void initializeLoad(View view){
@@ -64,6 +85,7 @@ public class SIPForGoal extends Fragment {
                 inflationText.setText("");
                 expectedReturnText.setText("");
                 goalReachPeriod.setText("");
+                goalFragmentListener.reset();
             }
         });
         calculateButton = (Button) view.findViewById(R.id.calculate);
@@ -74,7 +96,6 @@ public class SIPForGoal extends Fragment {
             }
         });
         calculate(true);
-        resultMsgText = (TextView) view.findViewById(R.id.result_text);
     }
 
     private void calculate(boolean isFromInitialLoad){
@@ -85,53 +106,18 @@ public class SIPForGoal extends Fragment {
         inflationString = inflationText.getText().toString();
         expectedReturnString = expectedReturnText.getText().toString();
         timePeriodString = goalReachPeriod.getText().toString();
-
         if(!todayString.equals("") && !inflationText.equals("") &&
                 !expectedReturnString.equals("") && !timePeriodString.equals("")){
-            todayValue = Double.parseDouble(todayString);
+            goalObject.setTodayValue(Double.parseDouble(todayString));
             if(savedString.length()>0){
-                savedValue = Double.parseDouble(savedString);
+                goalObject.setSavedAmount(Double.parseDouble(savedString));
             }else{
-                savedValue = 0.0;
+                goalObject.setSavedAmount(0.0);
             }
-            inflation = Double.parseDouble(inflationString);
-            expectedReturn = Double.parseDouble(expectedReturnString);
-            timePeriod = Double.parseDouble(timePeriodString);
-            //Inflated amount = A = P * (1+r)^t
-
-            double r = inflation/100.0;
-            double x = 1+r;
-            x = Math.pow(x, timePeriod);
-            x = todayValue * x;
-            double targetAmount = x;
-            double finalTarget = x; // Final Target Amount
-            if(savedValue > 0){
-                x = 0.0;
-                r = 0.0;
-                r = expectedReturn/100.0;
-                x = 1+r;
-                x = Math.pow(x, timePeriod);
-                x = savedValue * x;
-                targetAmount = targetAmount-x;
-            }
-
-            //P = (M * r)/(((1+r)^n)-1)(1+r)
-            x = 0.0;
-            r = 0.0;
-            r = expectedReturn/12.0; //monthly interest
-            r = r/100.0;
-            double n = timePeriod * 12;
-            x = targetAmount * r;
-            double y = 1+r;
-            y = Math.pow(y, n);
-            y = y-1;
-            double y1 = 1+r;
-            y = y*y1;
-            double monthlyInvestment = x/y;
-            String resultText =  String.format(getResources().getString(R.string.app_mutualfunds_goal_result_string,
-                    Math.round(finalTarget), Math.round(timePeriod),
-                    Math.round(monthlyInvestment)));
-            resultMsgText.setText(resultText);
+            goalObject.setInflationPercent(Double.parseDouble(inflationString));
+            goalObject.setReturnsPercent(Double.parseDouble(expectedReturnString));
+            goalObject.setDuration(Double.parseDouble(timePeriodString));
+            goalFragmentListener.calculate(goalObject);
         }else if(!isFromInitialLoad){
             AppMain.dialogBuilder(getContext(),
                     "Fill Fields",

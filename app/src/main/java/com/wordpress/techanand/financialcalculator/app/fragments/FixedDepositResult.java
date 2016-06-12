@@ -12,6 +12,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.PieChartConfig;
+import com.wordpress.techanand.financialcalculator.app.activities.FixedDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.models.FixedDepositObject;
 
 import java.util.ArrayList;
@@ -43,8 +44,13 @@ public class FixedDepositResult extends Fragment {
             ((TextView)getView().findViewById(R.id.result_amount)).setText(MainPrefs.getFormattedNumber(fixedDepositObject.getMaturityAmount()));
         }
         if(fixedDepositObject.isInterestPayoutFD()){
-            ((TextView)getView().findViewById(R.id.result_amount_label)).setText("Monthly Payout");
-            ((TextView)getView().findViewById(R.id.result_amount)).setText(MainPrefs.getFormattedNumber(fixedDepositObject.getMonthlyAmount()));
+            if(fixedDepositObject.getPayoutUnit().equals(FixedDepositActivity.PAYOUT_FREQ[0])){
+                ((TextView)getView().findViewById(R.id.result_amount_label)).setText("Monthly Payout");
+            }else{
+                ((TextView)getView().findViewById(R.id.result_amount_label)).setText("Quarterly Payout");
+            }
+
+            ((TextView)getView().findViewById(R.id.result_amount)).setText(MainPrefs.getFormattedNumber(fixedDepositObject.getPayoutAmount()));
         }
         ((TextView)getView().findViewById(R.id.interest_earned)).setText(MainPrefs.getFormattedNumber(fixedDepositObject.getInterest()));
         List entries = new ArrayList();

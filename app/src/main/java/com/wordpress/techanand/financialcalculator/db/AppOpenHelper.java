@@ -46,7 +46,7 @@ public class AppOpenHelper extends SQLiteOpenHelper{
     private List loadInitialDataForCalculators() {
         List<Calculator> initialLoadData = new ArrayList();
         List<ContentValues> content = new ArrayList();
-        initialLoadData.add(new Calculator(0, "StockObject Calculator", Calculator.UNIQUE_STOCK_ID, AppMain.TRUE, 1));
+        initialLoadData.add(new Calculator(0, "Stock Calculator", Calculator.UNIQUE_STOCK_ID, AppMain.TRUE, 1));
         initialLoadData.add(new Calculator(0, "Mutual Fund", Calculator.UNIQUE_MUTUAL_FUND_ID, AppMain.TRUE, 2));
         initialLoadData.add(new Calculator(0, "Fixed Deposit", Calculator.UNIQUE_FD_ID, AppMain.TRUE, 3));
         initialLoadData.add(new Calculator(0, "Recurring Deposit", Calculator.UNIQUE_RD_ID, AppMain.TRUE, 4));

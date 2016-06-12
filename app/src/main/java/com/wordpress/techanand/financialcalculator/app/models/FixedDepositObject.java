@@ -4,7 +4,7 @@ package com.wordpress.techanand.financialcalculator.app.models;
  * Created by Anand Rikka on 6/10/2016.
  */
 public class FixedDepositObject {
-    double fdAmount, time, roi, interest, maturityAmount, monthlyAmount;
+    double fdAmount, time, roi, interest, maturityAmount, payoutAmount;
     String timeUnit, compoundingUnit, payoutUnit;
     boolean isStandardFD, isInterestPayoutFD;
 
@@ -64,12 +64,12 @@ public class FixedDepositObject {
         this.maturityAmount = maturityAmount;
     }
 
-    public double getMonthlyAmount() {
-        return monthlyAmount;
+    public double getPayoutAmount() {
+        return payoutAmount;
     }
 
-    public void setMonthlyAmount(double monthlyAmount) {
-        this.monthlyAmount = monthlyAmount;
+    public void setPayoutAmount(double monthlyAmount) {
+        this.payoutAmount = monthlyAmount;
     }
 
     public String getTimeUnit() {

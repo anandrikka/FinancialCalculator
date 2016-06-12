@@ -3,12 +3,12 @@
     package="com.wordpress.techanand.financialcalculator">
 
     <application
+        android:name=".CustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".CustomApplication">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -21,10 +21,10 @@
         </activity>
         <activity
             android:name=".app.activities.StockPriceActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_stock_price"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="orientation|keyboardHidden">
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
@@ -93,12 +93,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
         </activity>
-        <activity android:name=".app.activities.AppPreferencesActivity"
+        <activity
+            android:name=".app.activities.AppPreferencesActivity"
             android:label="Settings"
             android:theme="@style/AppTheme.NoActionBar">
-            <!--<meta-data
+
+            <!--
+                <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.wordpress.techanand.financialcalculator.app.activities.SettingsActivity" />-->
+                android:value="com.wordpress.techanand.financialcalculator.app.activities.SettingsActivity" />
+            -->
+        </activity>
+        <activity android:name=".app.activities.GoalActivity"
+            android:label="Goal Calculator"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
         </activity>
     </application>
 

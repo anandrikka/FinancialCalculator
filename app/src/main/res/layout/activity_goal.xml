@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".app.activities.FixedDepositActivity">
+    tools:context=".app.activities.GoalActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,7 +34,8 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/appArea">
+                android:id="@+id/appArea"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -42,18 +43,20 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fragment_container"/>
 
+                <!--<TextView
+                    android:textSize="16sp"
+                    android:id="@+id/result_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:elevation="4dp"
+                    android:padding="8dp"
+                    android:text="12345"/>-->
+
             </LinearLayout>
 
         </ScrollView>
 
     </RelativeLayout>
-
-    <!--<android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_menu_help" />-->
 
 </android.support.design.widget.CoordinatorLayout>

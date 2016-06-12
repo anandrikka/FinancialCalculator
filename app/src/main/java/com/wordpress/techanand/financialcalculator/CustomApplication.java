@@ -2,6 +2,7 @@ package com.wordpress.techanand.financialcalculator;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 
 import java.lang.reflect.Field;
@@ -14,9 +15,9 @@ public class CustomApplication  extends Application{
     public void onCreate() {
         super.onCreate();
         FontsOverride.setDefaultFont(this, "DEFAULT", "fonts/Roboto-Regular.ttf");
-        /*FontsOverride.setDefaultFont(this, "MONOSPACE", "Roboto-Regular.ttf");
-        FontsOverride.setDefaultFont(this, "SERIF", "Roboto-Regular.ttf");
-        FontsOverride.setDefaultFont(this, "SANS_SERIF", "Roboto-Regular.ttf");*/
+        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/Roboto-Regular.ttf");
+        FontsOverride.setDefaultFont(this, "SERIF", "fonts/Roboto-Regular.ttf");
+        FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/Roboto-Regular.ttf");
     }
 }
 
