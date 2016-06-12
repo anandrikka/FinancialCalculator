@@ -1,16 +1,16 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
-import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+
+/**
+ * Created by Anand Rikka on 5/29/2016
+ */
+
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.wordpress.techanand.financialcalculator.MainActivity;
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.fragments.BSETurnoverPrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.BrokeragePrefs;
 import com.wordpress.techanand.financialcalculator.app.fragments.CommoditiesPrefs;

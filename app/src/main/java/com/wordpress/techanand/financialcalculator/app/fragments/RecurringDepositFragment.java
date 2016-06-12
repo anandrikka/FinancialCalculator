@@ -1,7 +1,9 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,81 +11,83 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TableLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.activities.RecurringDepositActivity;
+import com.wordpress.techanand.financialcalculator.app.models.RecurringDepositObject;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RDByInstallmentTab extends Fragment {
+public class RecurringDepositFragment extends Fragment {
 
-    /*
-    *   M = ( R * [(1+r)^n - 1 ] ) / (1-(1+r)^-1/3)
-    *
-    *   M = Maturity value
-    *   R = Monthly Installment
-    *   r = Rate of Interest (i) / 400
-    *   n = Number of Quarters
-    * */
 
-    private EditText installmentText, periodText, roiText;
+    public interface RecurringDepositListener {
+        public void calculate(RecurringDepositObject recurringDepositObject);
+        public void reset();
+    }
+
+
+    private EditText installmentOrMaturityText, periodText, roiText;
     private Spinner periodUnitSelect;
     private Button resetButton, calculateButton;
-    private PieChart pieChart;
-    private TableLayout results;
-    private TextView interestEarnedText, maturityAmountText, investmentAmountText;
-    public RDByInstallmentTab() {
+
+    private RecurringDepositObject recurringDepositObject;
+    private RecurringDepositListener recurringDepositListener;
+
+    public RecurringDepositFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        recurringDepositObject = new RecurringDepositObject();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.rd_installment_tab, container, false);
+        View view = inflater.inflate(R.layout.recurring_deposit_fragment, container, false);
         setRetainInstance(true);
-
         initializeData(view);
-
         return view;
+    }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try{
+            recurringDepositListener = (RecurringDepositActivity)getContext();
+        }catch (ClassCastException e){
+            throw new ClassCastException(getActivity().toString()+" must implement RecurringDepositListener");
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        periodUnitSelect.setSelection(1);
     }
 
     public void initializeData(View view){
-        pieChart = (PieChart) view.findViewById(R.id.chart);
-        pieChart.setVisibility(View.GONE);
-        installmentText = (EditText) view.findViewById(R.id.installment);
+        installmentOrMaturityText = (EditText) view.findViewById(R.id.installment_or_maturity);
         periodText = (EditText) view.findViewById(R.id.period);
         periodUnitSelect = (Spinner) view.findViewById(R.id.period_unit);
         ArrayAdapter<String> periodUnitAdapter = new ArrayAdapter<String>(view.getContext(), R.layout.custom_spinner_dropdown, RecurringDepositActivity.PERIOD);
         periodUnitAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         periodUnitSelect.setAdapter(periodUnitAdapter);
-        periodUnitSelect.setSelection(1);
         roiText = (EditText) view.findViewById(R.id.roi);
         resetButton = (Button) view.findViewById(R.id.reset);
         calculateButton = (Button) view.findViewById(R.id.calculate);
-        results = (TableLayout) view.findViewById(R.id.results);
-        interestEarnedText = (TextView) view.findViewById(R.id.interest);
-        maturityAmountText = (TextView) view.findViewById(R.id.maturity_amount);
-        investmentAmountText = (TextView) view.findViewById(R.id.investment_amount);
-        results.setVisibility(View.GONE);
 
-        calculate(true);
         periodUnitSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -99,10 +103,11 @@ public class RDByInstallmentTab extends Fragment {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                installmentText.setText("");
+                installmentOrMaturityText.setText("");
                 periodText.setText("");
                 periodUnitSelect.setSelection(1);
                 roiText.setText("");
+                recurringDepositListener.reset();
             }
         });
 
@@ -112,22 +117,19 @@ public class RDByInstallmentTab extends Fragment {
                 calculate(false);
             }
         });
+
+        calculate(true);
     }
 
     private void calculate(boolean isFromInitialLoad){
-        double R, r, period=0, M, interestEarned, n, P;
-        if(!installmentText.getText().toString().equals("") &&
-                !roiText.getText().toString().equals("") &&
-                !periodText.getText().toString().equals("")){
-            R = Double.parseDouble(installmentText.getText().toString());
-            r = Double.parseDouble(roiText.getText().toString());
-            period = Double.parseDouble(periodText.getText().toString());
-
+        String installmentOrMaturity, maturityAmount, roi, duration;
+        installmentOrMaturity = installmentOrMaturityText.getText().toString();
+        roi = roiText.getText().toString();
+        duration = periodText.getText().toString();
+        if(!installmentOrMaturity.equals("") && !roi.equals("") && !duration.equals("")){
             String selectedPeriod = (String)periodUnitSelect.getSelectedItem();
             if(selectedPeriod.equals(RecurringDepositActivity.PERIOD[0])){
-                if(period%3 == 0){
-                    n = period/3;
-                    n = period;
+                if((Double.parseDouble(duration))%3 == 0){
                 }else{
                     AppMain.dialogBuilder(getContext(),
                             "Error",
@@ -135,9 +137,26 @@ public class RDByInstallmentTab extends Fragment {
                             "OK").create().show();
                     return;
                 }
-            }else{
-                n = period * 4;
             }
+            boolean isByMonthly = ((CheckBox)getView().findViewById(R.id.by_monthly)).isChecked();
+            boolean isByTarget = ((CheckBox)getView().findViewById(R.id.by_target)).isChecked();
+            recurringDepositObject.setIsMonthly(isByMonthly);
+            recurringDepositObject.setIsByTargetAmount(isByTarget);
+            if(isByMonthly){
+                recurringDepositObject.setMonthlyInvestment(Double.parseDouble(installmentOrMaturity));
+            }
+            if(isByTarget){
+                recurringDepositObject.setMaturityAmount(Double.parseDouble(installmentOrMaturity));
+            }
+            recurringDepositObject.setDuration(Double.parseDouble(duration));
+            recurringDepositObject.setRoi(Double.parseDouble(roi));
+            recurringDepositObject.setDurationUnit(selectedPeriod);
+            recurringDepositListener.calculate(recurringDepositObject);
+            /*R = Double.parseDouble(installmentText.getText().toString());
+            r = Double.parseDouble(roiText.getText().toString());
+            period = Double.parseDouble(periodText.getText().toString());
+
+
             r = r/400;
 
             //M = ( R * [(1+r)^n - 1 ] ) / (1-(1+r)^-1/3)
@@ -152,13 +171,13 @@ public class RDByInstallmentTab extends Fragment {
             y = 1-y;
             M  = x/y;
             P = R*n*3;
-            interestEarned = M-P;
-            investmentAmountText.setText(Math.round(P)+"");
+            interestEarned = M-P;*/
+            /*investmentAmountText.setText(Math.round(P)+"");
             maturityAmountText.setText(Math.round(M)+"");
             interestEarnedText.setText(Math.round(interestEarned)+"");
             results.setVisibility(View.VISIBLE);
             createPieChart((float)P, (float)interestEarned);
-            pieChart.setVisibility(View.VISIBLE);
+            pieChart.setVisibility(View.VISIBLE);*/
         }else if(!isFromInitialLoad){
             AppMain.dialogBuilder(getContext(),
                     "Fill Fields",
@@ -167,7 +186,7 @@ public class RDByInstallmentTab extends Fragment {
         }
     }
 
-    private void createPieChart(float P, float I){
+    /*private void createPieChart(float P, float I){
         pieChart.clear();
 
         ArrayList<Entry> entries = new ArrayList<>();
@@ -186,6 +205,6 @@ public class RDByInstallmentTab extends Fragment {
         pieChart.setData(data);
         pieChart.setVisibility(View.VISIBLE);
         pieChart.setDescription("");
-    }
+    }*/
 
 }

@@ -23,24 +23,23 @@
                 android:background="?attr/colorPrimary"
                 android:popupTheme="@style/AppTheme.PopupOverlay"/>
 
-            <android.support.design.widget.TabLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tabsLayout"
-                app:tabGravity="fill"
-                app:tabMode="fixed">
-
-            </android.support.design.widget.TabLayout>
-
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v4.view.ViewPager
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/viewTabs"
-            android:layout_below="@+id/appBar">
+            android:layout_below="@+id/appBar"
+            android:layout_alignParentStart="true">
 
-        </android.support.v4.view.ViewPager>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_container"
+                android:orientation="vertical"
+                android:layout_alignParentStart="true">
+            </LinearLayout>
+
+        </ScrollView>
 
     </RelativeLayout>
 
