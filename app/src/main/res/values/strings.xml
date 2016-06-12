@@ -266,8 +266,9 @@
 
     <!--...................... Loan: Start.....................................-->
 
-    <string name="app.loan_result_text">
-        EMI is Rs.%1$d for Loan Amount Rs.%2$d @ %3$s for %4$d months. Total Amount Paid is %5$d
+    <string name="app.loan_result_text" formatted="false">
+        EMI is &lt;b>Rs.%1$d&lt;/b> for Loan Amount &lt;b>Rs.%2$d&lt;/b> @ &lt;b>%3$s&lt;/b> for &lt;b>%4$d months&lt;/b>. <br/>
+        Total Amount Paid is &lt;b>%5$d&lt;/b>.
     </string>
 
     <!-- TODO: Remove or change this placeholder text -->
