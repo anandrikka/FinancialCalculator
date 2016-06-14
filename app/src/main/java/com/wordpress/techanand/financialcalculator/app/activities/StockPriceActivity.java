@@ -54,7 +54,7 @@ public class StockPriceActivity extends AppCompatActivity implements StocksBySha
 
 
     @Override
-    public void calculate(StockObject stockObjectData, StockPreferencesObject stockPreferencesObject, boolean isFromInitialLoad) {
+    public void calculate(StockObject stockObjectData, StockPreferencesObject stockPreferencesObject, boolean isFromInitialLoad, boolean isCalcClicked) {
         if(isFromInitialLoad && (stockObjectData.getSellPrice() <=0.0 || stockObjectData.getBuyPrice() <= 0.0) && stockObjectData.getQuantity() <=0.0){
             return;
         }

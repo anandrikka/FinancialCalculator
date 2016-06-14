@@ -1,0 +1,184 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1"
+    android:padding="16dp">
+
+    <TableRow android:paddingBottom="8dp">
+        <TextView android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Current Age"
+            android:layout_weight="1"
+            android:paddingRight="50dp" />
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <SeekBar android:max="100"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/current_age_seekbar"
+            android:thumb="@drawable/seek_bar_thumb"
+            android:progressBackgroundTint="@color/colorAccent" />
+        <EditText android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:inputType="number"
+            android:id="@+id/current_age"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <TextView android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Retirement Age"
+            android:paddingRight="50dp"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <SeekBar android:max="100"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/retirement_age_seekbar"
+            android:thumb="@drawable/seek_bar_thumb"
+            android:progressBackgroundTint="@color/colorAccent" />
+        <EditText android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:inputType="number"
+            android:id="@+id/retirement_age"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <TextView android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Life Expectancy"
+            android:layout_weight="2"
+            android:paddingRight="50dp"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <SeekBar android:max="100"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/life_expentency_seekbar"
+            android:thumb="@drawable/seek_bar_thumb"
+            android:progressBackgroundTint="@color/colorAccent"/>
+        <EditText android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:inputType="number"
+            android:id="@+id/life_expentency"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <TextView android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Present monthly expenses"
+            android:layout_weight="2"
+            android:paddingRight="50dp"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <SeekBar android:max="100"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:maxHeight="15dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/monthly_expenses_seekbar"
+            android:thumb="@drawable/seek_bar_thumb"
+            android:progressBackgroundTint="@color/colorAccent"/>
+        <EditText android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:inputType="number"
+            android:id="@+id/monthly_expenses"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <TextView android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Inflation(%)"
+            android:layout_weight="2"
+            android:paddingRight="50dp"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <SeekBar android:max="100"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/inflation_seekbar"
+            android:thumb="@drawable/seek_bar_thumb"
+            android:progressBackgroundTint="@color/colorAccent"/>
+        <EditText android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:inputType="numberDecimal"
+            android:id="@+id/inflation_rate"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <TextView android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Existing Investment"
+            android:layout_weight="2"
+            android:paddingRight="50dp"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <SeekBar android:max="100"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/existing_investment_seekbar"
+            android:thumb="@drawable/seek_bar_thumb"
+            android:progressBackgroundTint="@color/colorAccent"/>
+        <EditText android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:inputType="number"
+            android:id="@+id/existing_investment"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <TextView android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Expected returns (%)"
+            android:layout_weight="2"
+            android:paddingRight="50dp"/>
+    </TableRow>
+
+    <TableRow android:paddingBottom="8dp">
+        <SeekBar android:max="100"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/expected_return_seekbar"
+            android:thumb="@drawable/seek_bar_thumb"
+            android:progressBackgroundTint="@color/colorAccent"/>
+        <EditText android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:inputType="numberDecimal"
+            android:id="@+id/expected_return"/>
+    </TableRow>
+
+    <include layout="@layout/buttons"/>
+
+</TableLayout>

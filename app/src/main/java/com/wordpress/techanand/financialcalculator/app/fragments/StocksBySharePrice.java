@@ -3,6 +3,7 @@ package com.wordpress.techanand.financialcalculator.app.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -43,69 +44,31 @@ public class StocksBySharePrice extends Fragment {
     private RadioGroup selectExchange;
     private EditText buyInput, sellInput, quantityInput;
     private Button reset, calculate;
-    private SharedPreferences sharedPreferences;
-    private TableLayout result;
 
-    private TextView totalTurnoverTextView, breakEvenTextView, profitOrLossTextView,
-            brokerageTextView, otherChargesView;
+    private SharedPreferences sharedPreferences;
 
     private StockPreferencesObject stockPreferencesObject;
     private StockObject stockObjectData;
-    //Preference Constants
-   /* private boolean _isFlatRateUsed;
-    private double _flatBrokerage, _brokeragePercent, _maxBrokerage,_serviceTax, _sebiCharges,
-            _sttCharges, _exchangeTxCharges, _stampDutyMinimum, _stampDutyMaximum, _stampDutyPercentage;*/
-
-    private double tBrokerage, tBuyPrice, tSellPrice, tQuantity, tTurnOver, tStt,
-            tExchangeTxCharges, tServiceTax, tSEBICharges, tStampDutyCharges,
-            profitOrLoss, breakEvenPrice, tCharges;
 
     private String[] categories;
-
     private Map<String, ?> preferences;
+
+    private boolean isCalcClicked;
 
     public StocksBySharePrice() {}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState == null){
-            preferences = AppPreferences.preferences(getContext());
-            stockPreferencesObject = new StockPreferencesObject();
-            stockObjectData = new StockObject();
-        }
+        setRetainInstance(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.stocks_by_share_price, container, false);
-        setRetainInstance(true);
         categories = StockPriceActivity.CATEGORIES;
-        initializeData(view);
-        categoryListener();
-        exchangeListener(view);
-        resetListener();
-        calculateListener(view);
-        return view;
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try{
-            stockListener = (StockListener)context;
-        }catch (Exception e){
-            throw new ClassCastException(getActivity().toString() + " must implement CalculateStockListener");
-        }
-    }
-
-    private void initializeData(View view){
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         selectCategory = (Spinner) view.findViewById(R.id.stock_category_list);
@@ -126,12 +89,14 @@ public class StocksBySharePrice extends Fragment {
         NSEString = getResources().getString(R.string.app_stocks_nse);
         BSEString = getResources().getString(R.string.app_stocks_bse);
 
-        calcPreferences();
-        calculateAmount(view, true);
+        if(savedInstanceState== null){
+            preferences = AppPreferences.preferences(getContext());
+            stockPreferencesObject = new StockPreferencesObject();
+            stockObjectData = new StockObject();
+        }else{
 
-    }
+        }
 
-    private void categoryListener(){
         selectCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -143,9 +108,7 @@ public class StocksBySharePrice extends Fragment {
                 selectCategory.setSelection(0);
             }
         });
-    }
 
-    private void exchangeListener(final View view){
         selectExchange.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -154,9 +117,7 @@ public class StocksBySharePrice extends Fragment {
                 calcPreferences();
             }
         });
-    }
 
-    private void resetListener(){
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,22 +127,48 @@ public class StocksBySharePrice extends Fragment {
                 sellInput.setText("");
                 quantityInput.setText("");
                 stockListener.reset();
+                isCalcClicked = false;
                 //result.setVisibility(View.GONE);
             }
         });
-    }
 
-    private void calculateListener(final View view){
         AppMain.hideKeyboard(getActivity(), calculate);
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculateAmount(view, false);
+                calculateAmount(false, true);
             }
         });
+
+        calcPreferences();
+        calculateAmount(true, false);
+
+        return view;
     }
 
-    private void calculateAmount(View view, boolean isFromInitialLoad){
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        buyInput.setText(buyInput.getText().toString());
+        sellInput.setText(sellInput.getText().toString());
+        quantityInput.setText(quantityInput.getText().toString());
+        stockObjectData.getBuyPrice();
+        calcPreferences();
+        calculateAmount(true, isCalcClicked);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try{
+            stockListener = (StockListener)context;
+        }catch (Exception e){
+            throw new ClassCastException(getActivity().toString() + " must implement CalculateStockListener");
+        }
+    }
+
+    private void calculateAmount(boolean isFromInitialLoad, boolean isCalcClicked){
+        this.isCalcClicked = isCalcClicked;
         String buy = buyInput.getText().toString();
         String sell = sellInput.getText().toString();
         String quantity = quantityInput.getText().toString();
@@ -209,7 +196,7 @@ public class StocksBySharePrice extends Fragment {
         stockObjectData.setCategory(category);
         stockObjectData.setExchange(exchangeType);
 
-        stockListener.calculate(stockObjectData, stockPreferencesObject, isFromInitialLoad);
+        stockListener.calculate(stockObjectData, stockPreferencesObject, isFromInitialLoad, isCalcClicked);
 
     }
 
@@ -363,7 +350,7 @@ public class StocksBySharePrice extends Fragment {
     }
 
     public interface StockListener {
-        public void calculate(StockObject stockObject, StockPreferencesObject stockPreferencesObject, boolean isFromInitialLoad);
+        public void calculate(StockObject stockObject, StockPreferencesObject stockPreferencesObject, boolean isFromInitialLoad, boolean isCalcClicked);
         public void reset();
     }
 }

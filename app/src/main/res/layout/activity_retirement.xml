@@ -1,170 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".app.activities.RetirementActivity"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".app.activities.FixedDepositActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay" android:id="@+id/appBar">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:id="@+id/toolbar"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:popupTheme="@style/AppTheme.PopupOverlay"/>
-
-    </android.support.design.widget.AppBarLayout>
-    
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        
-        <RelativeLayout
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:theme="@style/AppTheme.AppBarOverlay" android:id="@+id/appBar">
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:id="@+id/toolbar"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:popupTheme="@style/AppTheme.PopupOverlay"/>
+        </android.support.design.widget.AppBarLayout>
 
-            <TableLayout
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appBar"
+            android:layout_alignParentStart="true"
+            android:id="@+id/stock_scroll">
+
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="1">
+                android:id="@+id/appArea">
 
-                <TableRow android:paddingBottom="8dp">
-                    <TextView android:layout_width="0dp"
+                <fragment
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    tools:layout="@layout/retirement_fragment"
+                    android:name="com.wordpress.techanand.financialcalculator.app.fragments.RetirementFragment">
+                </fragment>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/result">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Current Age"
-                        android:layout_weight="2"
-                        android:gravity="right"
-                        android:paddingRight="50dp"/>
-                    <EditText android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/border"
-                        android:inputType="number"
-                        android:id="@+id/current_age"/>
-                </TableRow>
+                        android:layout_marginTop="8dp"
+                        android:elevation="8dp"
+                        android:id="@+id/result_card">
 
-                <TableRow android:paddingBottom="8dp">
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Retirement Age"
-                        android:layout_weight="2"
-                        android:gravity="right"
-                        android:paddingRight="50dp"/>
-                    <EditText android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/border"
-                        android:inputType="number"
-                        android:id="@+id/retirement_age"/>
-                </TableRow>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/result_text_view"
+                            android:padding="8dp" />
 
-                <TableRow android:paddingBottom="8dp">
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Life Expectancy"
-                        android:layout_weight="2"
-                        android:gravity="right"
-                        android:paddingRight="50dp"/>
-                    <EditText android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/border"
-                        android:inputType="number"
-                        android:id="@+id/life_expentency"/>
-                </TableRow>
+                    </android.support.v7.widget.CardView>
 
-                <TableRow android:paddingBottom="8dp">
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Present monthly expenses"
-                        android:layout_weight="2"
-                        android:gravity="right"
-                        android:paddingRight="50dp"/>
-                    <EditText android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/border"
-                        android:inputType="number"
-                        android:id="@+id/monthly_expenses"/>
-                </TableRow>
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp" />
 
-                <TableRow android:paddingBottom="8dp">
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Inflation(%)"
-                        android:layout_weight="2"
-                        android:gravity="right"
-                        android:paddingRight="50dp"/>
-                    <EditText android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/border"
-                        android:inputType="numberDecimal"
-                        android:id="@+id/inflation_rate"/>
-                </TableRow>
+                </LinearLayout>
 
-                <TableRow android:paddingBottom="8dp">
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Existing Investment"
-                        android:layout_weight="2"
-                        android:gravity="right"
-                        android:paddingRight="50dp"/>
-                    <EditText android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/border"
-                        android:inputType="number"
-                        android:id="@+id/existing_investment"/>
-                </TableRow>
+            </LinearLayout>
 
-                <TableRow android:paddingBottom="8dp">
-                    <TextView android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Expected returns (%)"
-                        android:layout_weight="2"
-                        android:gravity="right"
-                        android:paddingRight="50dp"/>
-                    <EditText android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/border"
-                        android:inputType="numberDecimal"
-                        android:id="@+id/expected_return"/>
-                </TableRow>
+        </ScrollView>
 
-                <TableRow>
-                    <Space android:layout_width="0dp"
-                        android:layout_weight="1"/>
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Reset"
-                        android:id="@+id/reset"/>
+    </RelativeLayout>
 
-                    <Button android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Calculate"
-                        android:id="@+id/calculate"/>
-
-                    <Space android:layout_width="0dp"
-                        android:layout_weight="1"/>
-                </TableRow>
-
-            </TableLayout>
-
-        </RelativeLayout>
-        
-    </ScrollView>
+    <!--<android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_menu_help" />-->
 
 </android.support.design.widget.CoordinatorLayout>
