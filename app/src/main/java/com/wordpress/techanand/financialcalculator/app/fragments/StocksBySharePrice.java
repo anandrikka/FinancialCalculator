@@ -169,6 +169,9 @@ public class StocksBySharePrice extends Fragment {
 
     private void calculateAmount(boolean isFromInitialLoad, boolean isCalcClicked){
         this.isCalcClicked = isCalcClicked;
+        if(!this.isCalcClicked){
+            return;
+        }
         String buy = buyInput.getText().toString();
         String sell = sellInput.getText().toString();
         String quantity = quantityInput.getText().toString();

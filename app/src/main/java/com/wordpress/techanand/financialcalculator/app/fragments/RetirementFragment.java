@@ -81,26 +81,7 @@ public class RetirementFragment extends Fragment {
             }
         });
 
-        /*SeekBar seekBar = (SeekBar) view.findViewById(R.id.seekbar);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                *//*int stepSize = 5;
-                progress = ((int)Math.round(progress/stepSize))*stepSize;
-                seekBar.setProgress(progress);*//*
-                lifeExpectancyText.setText(progress+"");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });*/
+        seekBarListeners(view);
 
         calculate(true);
 
@@ -111,6 +92,114 @@ public class RetirementFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         retirementFragmentListener = (RetirementFragmentListener)context;
+    }
+
+    private void seekBarListeners(View view){
+        SeekBar currentAgeSeekbar = (SeekBar) view.findViewById(R.id.current_age_seekbar);
+        currentAgeSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //int min = 18;
+                seekBar.setProgress(progress);
+                currentAgeText.setText(progress+"");
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        SeekBar retirementAge = (SeekBar) view.findViewById(R.id.retirement_age_seekbar);
+        retirementAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //int min = 18;
+                seekBar.setProgress(progress);
+                retirementAgeText.setText(progress+"");
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        SeekBar lifeExpectancy = (SeekBar) view.findViewById(R.id.life_expentency_seekbar);
+        lifeExpectancy.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //int min = 18;
+                seekBar.setProgress(progress);
+                lifeExpectancyText.setText(progress+"");
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        SeekBar presentExpenses = (SeekBar) view.findViewById(R.id.monthly_expenses_seekbar);
+        presentExpenses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                int stepSize = 1000;
+                progress = ((int)Math.round(progress/stepSize))*stepSize;
+                seekBar.setProgress(progress);
+                monthlyExpText.setText(progress+"");
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        SeekBar inflation = (SeekBar) view.findViewById(R.id.inflation_seekbar);
+        inflation.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //int min = 18;
+                seekBar.setProgress(progress);
+                inflationText.setText(progress+"");
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        SeekBar existingInvestment = (SeekBar) view.findViewById(R.id.existing_investment_seekbar);
+        existingInvestment.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //int min = 18;
+                seekBar.setProgress(progress);
+                existingInvestmentText.setText(progress+"");
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        SeekBar expectedReturns = (SeekBar) view.findViewById(R.id.expected_return_seekbar);
+        expectedReturns.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //int min = 18;
+                seekBar.setProgress(progress);
+                expectedReturnsText.setText(progress+"");
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
     }
 
     public void calculate(boolean isFromInitialLoad){

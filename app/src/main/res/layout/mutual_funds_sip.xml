@@ -34,7 +34,6 @@
             android:id="@+id/investment_label"/>
         <EditText android:layout_width="0dp"
             android:layout_height="40dp"
-            android:background="@drawable/border"
             android:layout_weight="1"
             android:id="@+id/monthly_installment"
             android:inputType="numberDecimal"/>
@@ -53,7 +52,6 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:background="@drawable/border"
             android:layout_marginRight="8dp"
             android:id="@+id/investment_time"
             android:inputType="numberSigned"/>
@@ -76,7 +74,6 @@
 
         <EditText android:layout_width="0dp"
             android:layout_height="40dp"
-            android:background="@drawable/border"
             android:layout_weight="1"
             android:id="@+id/expected_return"
             android:inputType="number"/>

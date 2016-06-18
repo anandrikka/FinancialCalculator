@@ -23,7 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wordpress.techanand.financialcalculator.app.activities.AppPreferencesActivity;
-import com.wordpress.techanand.financialcalculator.app.activities.BudgetActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.FixedDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.GoalActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.LoanActivity;
@@ -31,7 +30,6 @@ import com.wordpress.techanand.financialcalculator.app.activities.MutualFundActi
 import com.wordpress.techanand.financialcalculator.app.activities.RecurringDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.RetirementActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.StockPriceActivity;
-import com.wordpress.techanand.financialcalculator.app.activities.TaxActivity;
 import com.wordpress.techanand.financialcalculator.db.AppOpenHelper;
 import com.wordpress.techanand.financialcalculator.db.datasources.CalculatorDataSource;
 import com.wordpress.techanand.financialcalculator.db.model.Calculator;

@@ -50,7 +50,8 @@ public class AppOpenHelper extends SQLiteOpenHelper{
         initialLoadData.add(new Calculator(0, "Mutual Fund", Calculator.UNIQUE_MUTUAL_FUND_ID, AppMain.TRUE, 2));
         initialLoadData.add(new Calculator(0, "Fixed Deposit", Calculator.UNIQUE_FD_ID, AppMain.TRUE, 3));
         initialLoadData.add(new Calculator(0, "Recurring Deposit", Calculator.UNIQUE_RD_ID, AppMain.TRUE, 4));
-        initialLoadData.add(new Calculator(0, "Tax Calculator", Calculator.UNIQUE_TAX_ID, AppMain.TRUE, 5));
+        initialLoadData.add(new Calculator(0, "Inflation Calculator", Calculator.UNIQUE_INFLATION_ID, AppMain.TRUE, 5));
+        //initialLoadData.add(new Calculator(0, "Tax Calculator", Calculator.UNIQUE_TAX_ID, AppMain.TRUE, 5));
         initialLoadData.add(new Calculator(0, "Loan Calculator", Calculator.UNIQUE_LOAN_ID, AppMain.TRUE, 6));
         initialLoadData.add(new Calculator(0, "Retirement Calculator", Calculator.UNIQUE_RETIREMENT_ID, AppMain.TRUE, 7));
         initialLoadData.add(new Calculator(0, "Goal Calculator", Calculator.UNIQUE_GOAL_ID, AppMain.TRUE, 8));

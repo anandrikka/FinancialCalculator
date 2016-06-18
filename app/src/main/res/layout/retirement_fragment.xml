@@ -13,7 +13,7 @@
     </TableRow>
 
     <TableRow android:paddingBottom="8dp">
-        <SeekBar android:max="100"
+        <SeekBar android:max="60"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:paddingRight="10dp"
@@ -24,7 +24,6 @@
         <EditText android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:background="@drawable/border"
             android:inputType="number"
             android:id="@+id/current_age"/>
     </TableRow>
@@ -49,7 +48,6 @@
         <EditText android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:background="@drawable/border"
             android:inputType="number"
             android:id="@+id/retirement_age"/>
     </TableRow>
@@ -74,7 +72,6 @@
         <EditText android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:background="@drawable/border"
             android:inputType="number"
             android:id="@+id/life_expentency"/>
     </TableRow>
@@ -88,7 +85,7 @@
     </TableRow>
 
     <TableRow android:paddingBottom="8dp">
-        <SeekBar android:max="100"
+        <SeekBar android:max="1000000"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:maxHeight="15dp"
@@ -99,7 +96,6 @@
         <EditText android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:background="@drawable/border"
             android:inputType="number"
             android:id="@+id/monthly_expenses"/>
     </TableRow>
@@ -113,7 +109,7 @@
     </TableRow>
 
     <TableRow android:paddingBottom="8dp">
-        <SeekBar android:max="100"
+        <SeekBar android:max="20"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:paddingRight="10dp"
@@ -124,7 +120,6 @@
         <EditText android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:background="@drawable/border"
             android:inputType="numberDecimal"
             android:id="@+id/inflation_rate"/>
     </TableRow>
@@ -132,13 +127,13 @@
     <TableRow android:paddingBottom="8dp">
         <TextView android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Existing Investment"
+            android:text="Existing Investment(Optional)"
             android:layout_weight="2"
             android:paddingRight="50dp"/>
     </TableRow>
 
     <TableRow android:paddingBottom="8dp">
-        <SeekBar android:max="100"
+        <SeekBar android:max="10000000"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:paddingRight="10dp"
@@ -149,7 +144,6 @@
         <EditText android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:background="@drawable/border"
             android:inputType="number"
             android:id="@+id/existing_investment"/>
     </TableRow>
@@ -163,7 +157,7 @@
     </TableRow>
 
     <TableRow android:paddingBottom="8dp">
-        <SeekBar android:max="100"
+        <SeekBar android:max="30"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:paddingRight="10dp"
@@ -174,7 +168,6 @@
         <EditText android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:background="@drawable/border"
             android:inputType="numberDecimal"
             android:id="@+id/expected_return"/>
     </TableRow>

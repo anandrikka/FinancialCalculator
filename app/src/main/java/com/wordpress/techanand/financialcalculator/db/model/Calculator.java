@@ -15,7 +15,7 @@ public class Calculator {
     public final static String UNIQUE_RD_ID = "recurring_deposit";
     public final static String UNIQUE_STOCK_ID = "stock";
     public final static String UNIQUE_MUTUAL_FUND_ID = "mutual_fund";
-    public final static String UNIQUE_TAX_ID = "tax";
+    public final static String UNIQUE_INFLATION_ID = "inflation";
     public final static String UNIQUE_LOAN_ID = "loan";
     public final static String UNIQUE_RETIREMENT_ID = "retirement";
     public final static String UNIQUE_GOAL_ID = "goal";
