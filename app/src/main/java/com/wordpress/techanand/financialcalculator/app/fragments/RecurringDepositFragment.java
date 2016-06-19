@@ -2,6 +2,7 @@ package com.wordpress.techanand.financialcalculator.app.fragments;
 
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -37,9 +38,12 @@ public class RecurringDepositFragment extends Fragment {
     private EditText installmentOrMaturityText, periodText, roiText;
     private Spinner periodUnitSelect;
     private Button resetButton, calculateButton;
+    private CheckBox byMonthly, byTarget;
 
     private RecurringDepositObject recurringDepositObject;
     private RecurringDepositListener recurringDepositListener;
+
+    private boolean isCalcClicked;
 
     public RecurringDepositFragment() {
         // Required empty public constructor
@@ -59,6 +63,16 @@ public class RecurringDepositFragment extends Fragment {
         setRetainInstance(true);
         initializeData(view);
         return view;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        byMonthly.setChecked(byMonthly.isChecked());
+        byTarget.setChecked(byTarget.isChecked());
+        installmentOrMaturityText.setText(installmentOrMaturityText.getText().toString());
+        periodText.setText(periodText.getText().toString());
+        roiText.setText(roiText.getText().toString());
     }
 
     @Override
@@ -85,6 +99,8 @@ public class RecurringDepositFragment extends Fragment {
         periodUnitAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         periodUnitSelect.setAdapter(periodUnitAdapter);
         roiText = (EditText) view.findViewById(R.id.roi);
+        byMonthly = (CheckBox) view.findViewById(R.id.by_monthly);
+        byTarget = (CheckBox) view.findViewById(R.id.by_target);
         resetButton = (Button) view.findViewById(R.id.reset);
         calculateButton = (Button) view.findViewById(R.id.calculate);
 
@@ -108,20 +124,25 @@ public class RecurringDepositFragment extends Fragment {
                 periodUnitSelect.setSelection(1);
                 roiText.setText("");
                 recurringDepositListener.reset();
+                isCalcClicked = false;
             }
         });
 
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate(false);
+                calculate(false, true);
             }
         });
 
-        calculate(true);
+        calculate(true, false);
     }
 
-    private void calculate(boolean isFromInitialLoad){
+    private void calculate(boolean isFromInitialLoad, boolean isCalcClicked){
+        this.isCalcClicked = isCalcClicked;
+        if(!this.isCalcClicked){
+            return;
+        }
         String installmentOrMaturity, maturityAmount, roi, duration;
         installmentOrMaturity = installmentOrMaturityText.getText().toString();
         roi = roiText.getText().toString();

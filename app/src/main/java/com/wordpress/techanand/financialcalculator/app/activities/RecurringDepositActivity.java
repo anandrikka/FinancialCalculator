@@ -33,26 +33,10 @@ public class RecurringDepositActivity extends AppCompatActivity implements Recur
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /*getSupportFragmentManager()
-                .beginTransaction()
-                .remove(recurringDepositFragment)
-                .remove(recurringDepositResult).commit();*/
-        recurringDepositFragment = (RecurringDepositFragment) getSupportFragmentManager().findFragmentByTag(RecurringDepositFragment.class.getName());
-        recurringDepositResult = (RecurringDepositResult) getSupportFragmentManager().findFragmentByTag(RecurringDepositResult.class.getName());
+        recurringDepositFragment = (RecurringDepositFragment) getSupportFragmentManager().findFragmentById(R.id.recurring_deposit_form);
+        recurringDepositResult = (RecurringDepositResult) getSupportFragmentManager().findFragmentById(R.id.recurring_deposit_result);
 
-        if(recurringDepositFragment == null){
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fragment_container, new RecurringDepositFragment(), RecurringDepositFragment.class.getName())
-                    .commit();
-        }
-
-        if(recurringDepositResult == null){
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fragment_container, new RecurringDepositResult(), RecurringDepositResult.class.getName())
-                    .commit();
-        }
+        getSupportFragmentManager().beginTransaction().hide(recurringDepositResult).commit();
     }
 
 
@@ -60,9 +44,6 @@ public class RecurringDepositActivity extends AppCompatActivity implements Recur
     @Override
     protected void onResume() {
         super.onResume();
-        recurringDepositFragment = (RecurringDepositFragment) getSupportFragmentManager().findFragmentByTag(RecurringDepositFragment.class.getName());
-        recurringDepositResult = (RecurringDepositResult) getSupportFragmentManager().findFragmentByTag(RecurringDepositResult.class.getName());
-        recurringDepositResult.getView().setVisibility(View.GONE);
     }
 
     public void recurringDepositTypeClicked(View view){
@@ -143,11 +124,11 @@ public class RecurringDepositActivity extends AppCompatActivity implements Recur
         }
 
         recurringDepositResult.displayResults(recurringDepositData);
-        recurringDepositResult.getView().setVisibility(View.VISIBLE);
+        getSupportFragmentManager().beginTransaction().show(recurringDepositResult).commit();
     }
 
     @Override
     public void reset() {
-        recurringDepositResult.getView().setVisibility(View.GONE);
+        getSupportFragmentManager().beginTransaction().hide(recurringDepositResult).commit();
     }
 }

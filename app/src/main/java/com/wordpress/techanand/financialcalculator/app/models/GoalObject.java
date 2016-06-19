@@ -5,7 +5,31 @@ package com.wordpress.techanand.financialcalculator.app.models;
  */
 public class GoalObject {
 
-    private double todayValue, savedAmount, duration, inflationPercent, returnsPercent;
+    private double todayValue, savedAmount, duration, inflationPercent, returnsPercent, totalInvestment, wealthCreated, totalReturns;
+
+    public double getTotalInvestment() {
+        return totalInvestment;
+    }
+
+    public void setTotalInvestment(double totalInvestment) {
+        this.totalInvestment = totalInvestment;
+    }
+
+    public double getWealthCreated() {
+        return wealthCreated;
+    }
+
+    public void setWealthCreated(double wealthCreated) {
+        this.wealthCreated = wealthCreated;
+    }
+
+    public double getTotalReturns() {
+        return totalReturns;
+    }
+
+    public void setTotalReturns(double totalReturns) {
+        this.totalReturns = totalReturns;
+    }
 
     public double getTodayValue() {
         return todayValue;

@@ -2,6 +2,7 @@ package com.wordpress.techanand.financialcalculator.app.fragments;
 
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,10 +37,13 @@ public class FixedDepositFragment extends Fragment {
     private EditText fdAmount, period, roi;
     private Spinner periodUnitSpinner, compoundingFreq, payoutSpinner;
     private AlertDialog.Builder builder;
-    Button calculate, reset;
+    private Button calculate, reset;
+    CheckBox standard, interestPayout;
 
     private FixedDepositObject fixedDepositObject;
     private FixedDepositListener fixedDepositListener;
+
+    private boolean isCalcClicked;
 
     public FixedDepositFragment() {
         // Required empty public constructor
@@ -70,6 +74,16 @@ public class FixedDepositFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        standard.setChecked(standard.isChecked());
+        interestPayout.setChecked(interestPayout.isChecked());
+        fdAmount.setText(fdAmount.getText().toString());
+        period.setText(period.getText().toString());
+        roi.setText(roi.getText().toString());
+    }
+
     public void initializeData(View view){
         /*pieChart = (PieChart) view.findViewById(R.id.chart);
         pieChart.setVisibility(View.GONE);
@@ -80,6 +94,9 @@ public class FixedDepositFragment extends Fragment {
         fdAmount = (EditText) view.findViewById(R.id.fd_amount);
         period = (EditText) view.findViewById(R.id.period_value);
         roi = (EditText) view.findViewById(R.id.roi);
+
+        standard = (CheckBox) view.findViewById(R.id.by_standard);
+        interestPayout = (CheckBox) view.findViewById(R.id.by_interest_payout);
 
         periodUnitSpinner = (Spinner) view.findViewById(R.id.period_unit);
         ArrayAdapter<String> periodUnitAdapter = new ArrayAdapter<String>(view.getContext(), R.layout.custom_spinner_dropdown, FixedDepositActivity.PERIOD);
@@ -138,7 +155,7 @@ public class FixedDepositFragment extends Fragment {
                 roi.setText(null);
                 periodUnitSpinner.setSelection(0);
                 compoundingFreq.setSelection(1);
-
+                isCalcClicked = false;
                 fixedDepositListener.reset();
             }
         });
@@ -146,17 +163,19 @@ public class FixedDepositFragment extends Fragment {
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //table.setFocusable(false);
-                calculateFD(false);
-
+                calculateFD(false, true);
             }
         });
 
-        calculateFD(true);
+        calculateFD(true, false);
 
     }
 
-    public void calculateFD(boolean isFromInitialLoad){
+    public void calculateFD(boolean isFromInitialLoad, boolean isCalcClicked){
+        this.isCalcClicked = isCalcClicked;
+        if(!this.isCalcClicked){
+            return;
+        }
         AppMain.hideKeyboard(getActivity(), calculate);
         String fdText = fdAmount.getText().toString();
         String roiText = roi.getText().toString();
@@ -182,26 +201,5 @@ public class FixedDepositFragment extends Fragment {
                     "OK").create().show();
         }
     }
-
-    /*private void createPieChart(){
-        pieChart.clear();
-
-        ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry((float)P, 0));
-        entries.add(new Entry((float)(A-P), 1));
-
-        PieDataSet dataset = new PieDataSet(entries, "");
-        ArrayList<String> labels = new ArrayList<String>();
-
-        labels.add("Investment");
-        labels.add("Interest");
-
-        PieData data = new PieData(labels, dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS);
-
-        pieChart.setData(data);
-        pieChart.setVisibility(View.VISIBLE);
-        pieChart.setDescription("");
-    }*/
 
 }

@@ -1,6 +1,7 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -37,10 +38,20 @@ public class LoanFragment extends Fragment{
     private Spinner tenureUnitSelection;
     private Button resetButton, calculateButton;
 
+    private boolean isCalcClicked;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loanObject = new LoanObject();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration config) {
+        super.onConfigurationChanged(config);
+        loanAmountText.setText(loanAmountText.getText().toString());
+        tenureText.setText(tenureText.getText().toString());
+        interestText.setText(tenureText.getText().toString());
     }
 
     @Nullable
@@ -76,6 +87,7 @@ public class LoanFragment extends Fragment{
                 loanAmountText.setText("");
                 interestText.setText("");
                 tenureText.setText("");
+                isCalcClicked = false;
                 loanFragmentListener.reset();
             }
         });
@@ -83,11 +95,11 @@ public class LoanFragment extends Fragment{
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate(false);
+                calculate(false, true);
             }
         });
 
-        calculate(true);
+        calculate(true, false);
 
         return view;
     }
@@ -98,7 +110,11 @@ public class LoanFragment extends Fragment{
         loanFragmentListener = (LoanFragmentListener)getContext();
     }
 
-    private void calculate(boolean isFromInitialLoad){
+    private void calculate(boolean isFromInitialLoad, boolean isCalcClicked){
+        this.isCalcClicked = isCalcClicked;
+        if(!this.isCalcClicked){
+            return;
+        }
         String loanAmountString, tenureString, interestString;
         loanAmountString = loanAmountText.getText().toString();
         tenureString = tenureText.getText().toString();

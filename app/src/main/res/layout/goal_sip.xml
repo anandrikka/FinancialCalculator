@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:stretchColumns="1"
-    android:id="@+id/table"
-    android:padding="16dp">
+    android:id="@+id/table">
 
     <TableRow android:paddingBottom="8dp">
         <TextView

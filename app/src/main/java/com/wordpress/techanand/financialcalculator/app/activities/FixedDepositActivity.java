@@ -45,19 +45,10 @@ public class FixedDepositActivity extends AppCompatActivity implements FixedDepo
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        fdFragment = (FixedDepositFragment) getSupportFragmentManager().findFragmentByTag(FixedDepositFragment.class.getName());
-        if(fdFragment == null){
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, new FixedDepositFragment(), FixedDepositFragment.class.getName())
-                    .commit();
-        }
+        fdFragment = (FixedDepositFragment) getSupportFragmentManager().findFragmentById(R.id.fixed_deposit_form);
+        fdResult = (FixedDepositResult) getSupportFragmentManager().findFragmentById(R.id.fixed_deposit_result);
 
-        fdResult = (FixedDepositResult) getSupportFragmentManager().findFragmentByTag(FixedDepositResult.class.getName());
-        if(fdResult == null){
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, new FixedDepositResult(), FixedDepositResult.class.getName())
-                    .commit();
-        }
+        getSupportFragmentManager().beginTransaction().hide(fdResult).commit();
 
     }
 
@@ -65,10 +56,6 @@ public class FixedDepositActivity extends AppCompatActivity implements FixedDepo
     @Override
     protected void onResume() {
         super.onResume();
-        ((TableRow)findViewById(R.id.interest_payout_row)).setVisibility(View.GONE);
-        fdFragment = (FixedDepositFragment) getSupportFragmentManager().findFragmentByTag(FixedDepositFragment.class.getName());
-        fdResult = (FixedDepositResult) getSupportFragmentManager().findFragmentByTag(FixedDepositResult.class.getName());
-        fdResult.getView().setVisibility(View.GONE);
     }
 
     public void fixedDepositTypeClicked(View view){
@@ -90,7 +77,7 @@ public class FixedDepositActivity extends AppCompatActivity implements FixedDepo
 
     @Override
     public void reset() {
-        fdResult.getView().setVisibility(View.GONE);
+       getSupportFragmentManager().beginTransaction().hide(fdResult).commit();
     }
 
     @Override
@@ -157,6 +144,6 @@ public class FixedDepositActivity extends AppCompatActivity implements FixedDepo
 
         }
         fdResult.displayResult(fixedDepositObject);
-        fdResult.getView().setVisibility(View.VISIBLE);
+        getSupportFragmentManager().beginTransaction().show(fdResult).commit();
     }
 }

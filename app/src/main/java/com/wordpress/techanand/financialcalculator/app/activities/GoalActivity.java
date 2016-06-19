@@ -13,44 +13,41 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
+import com.wordpress.techanand.financialcalculator.app.PieChartConfig;
 import com.wordpress.techanand.financialcalculator.app.fragments.GoalFragment;
 import com.wordpress.techanand.financialcalculator.app.fragments.MainPrefs;
 import com.wordpress.techanand.financialcalculator.app.models.GoalObject;
+import com.wordpress.techanand.financialcalculator.app.models.LoanObject;
+
+import java.util.ArrayList;
 
 public class GoalActivity extends AppCompatActivity implements GoalFragment.GoalFragmentListener{
 
     private GoalFragment goalFragment;
-    private CardView resultCard;
+    private LinearLayout resultLayout;
     private TextView resultTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fixed_deposit);
+        setContentView(R.layout.activity_goal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        goalFragment = (GoalFragment) getSupportFragmentManager().findFragmentByTag(GoalFragment.class.getName());
-
-        if(goalFragment == null){
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fragment_container, new GoalFragment(), GoalFragment.class.getName())
-                    .commit();
-        }
-        if(resultCard != null){
-            resultCard.setVisibility(View.GONE);
-        }
+        goalFragment = (GoalFragment) getSupportFragmentManager().findFragmentById(R.id.goal_form);
+        resultLayout = (LinearLayout) findViewById(R.id.result);
+        resultLayout.setVisibility(View.GONE);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        goalFragment = (GoalFragment) getSupportFragmentManager().findFragmentByTag(GoalFragment.class.getName());
     }
 
     @Override
@@ -91,45 +88,43 @@ public class GoalActivity extends AppCompatActivity implements GoalFragment.Goal
         double y1 = 1+r;
         y = y*y1;
         double monthlyInvestment = x/y;
+
+        double totalInvestment = Math.round(monthlyInvestment)*goalObject.getDuration()*12;
+
+        goalObject.setTotalInvestment(totalInvestment);
+        goalObject.setTotalReturns(finalTarget);
+        goalObject.setWealthCreated(finalTarget-totalInvestment);
+
         String resultText =  String.format(getResources().getString(R.string.app_mutualfunds_goal_result_string,
-                MainPrefs.getFormattedNumber(Math.round(finalTarget)), Math.round(timePeriod),
+                MainPrefs.getFormattedNumber(Math.round(goalObject.getTotalReturns())), Math.round(timePeriod),
                 MainPrefs.getFormattedNumber(Math.round(monthlyInvestment))));
 
         CharSequence sq = Html.fromHtml(resultText);
 
-        resultCard = (CardView) findViewById(R.id.app_goal_result_card_id);
-        resultTextView = (TextView) findViewById(R.id.app_goal_result_card_text_id);
-        if(resultCard == null){
-            resultCard = new CardView(this);
-            ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            resultCard.setLayoutParams(layoutParams);
-            if(resultTextView == null){
-                resultTextView = new TextView(this);
-            }
-            resultCard.setId(R.id.app_goal_result_card_id);
-            resultCard.setPadding(16, 16, 16, 16);
-            resultTextView.setPadding(8, 8, 8, 8);
-            //resultTextView.setPadding(8, 8, 8, 8);
-            resultTextView.setBackgroundColor(Color.WHITE);
-            resultTextView.setText(sq);
-            resultTextView.setId(R.id.app_goal_result_card_text_id);
-            resultTextView.setTextSize(16.0f);
-            resultTextView.setLineSpacing(1.5f, 1f);
-            ViewGroup appArea = (ViewGroup) findViewById(R.id.appArea);
-            //appArea.setPadding(16, 16, 16, 16);
-            resultCard.addView(resultTextView);
-            appArea.addView(resultCard);
-        }else{
-            resultTextView.setText(sq);
-        }
-        resultCard.setVisibility(View.VISIBLE);
+        resultTextView = (TextView) findViewById(R.id.result_text_view);
+        resultTextView.setText(sq);
+        resultLayout.setVisibility(View.VISIBLE);
+        createPieChart(goalObject);
     }
 
     @Override
     public void reset() {
-       if(resultCard != null){
-           resultCard.setVisibility(View.GONE);
-       }
+       resultLayout.setVisibility(View.GONE);
+    }
+
+    private void createPieChart(GoalObject goalData){
+        PieChart pieChart = (PieChart) findViewById(R.id.chart);
+        pieChart.clear();
+
+        ArrayList<Entry> entries = new ArrayList<>();
+        entries.add(new Entry((float)goalData.getTotalInvestment(), 0));
+        entries.add(new Entry((float)(goalData.getWealthCreated()), 1));
+
+        ArrayList<String> labels = new ArrayList<String>();
+        labels.add("Investment");
+        labels.add("Wealth Created");
+
+        pieChart = PieChartConfig.createPieChart(this, pieChart, entries, labels, "");
 
     }
 }

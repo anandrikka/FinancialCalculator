@@ -1,6 +1,7 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -43,6 +44,7 @@ public class GoalFragment extends Fragment {
 
     private GoalFragmentListener goalFragmentListener;
     private GoalObject goalObject;
+    private boolean isCalcClicked;
 
     public GoalFragment() {
         // Required empty public constructor
@@ -70,6 +72,17 @@ public class GoalFragment extends Fragment {
         goalFragmentListener = (GoalFragmentListener)context;
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration config) {
+        super.onConfigurationChanged(config);
+        todayValueText.setText(todayValueText.getText().toString());
+        alreadySavedText.setText(alreadySavedText.getText().toString());
+        inflationText.setText(inflationText.getText().toString());
+        expectedReturnText.setText(expectedReturnText.getText().toString());
+        goalReachPeriod.setText(goalReachPeriod.getText().toString());
+
+    }
+
     private void initializeLoad(View view){
         todayValueText = (EditText) view.findViewById(R.id.today_value);
         alreadySavedText = (EditText) view.findViewById(R.id.saved_amount);
@@ -92,13 +105,17 @@ public class GoalFragment extends Fragment {
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate(false);
+                calculate(false, true);
             }
         });
-        calculate(true);
+        calculate(true, false);
     }
 
-    private void calculate(boolean isFromInitialLoad){
+    private void calculate(boolean isFromInitialLoad, boolean isCalcClicked){
+        this.isCalcClicked = isCalcClicked;
+        if(!this.isCalcClicked){
+            return;
+        }
         String todayString, savedString, inflationString, expectedReturnString, timePeriodString;
         double todayValue, savedValue, inflation, expectedReturn, timePeriod;
         todayString = todayValueText.getText().toString();

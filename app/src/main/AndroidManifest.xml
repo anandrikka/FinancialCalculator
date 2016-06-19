@@ -45,7 +45,7 @@
 
         <activity
             android:name=".app.activities.FixedDepositActivity"
-            android:configChanges="orientation|screenSize"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Fixed Deposit Calculator"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -53,18 +53,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
         </activity>
+
         <activity
-            android:name=".app.activities.LoanActivity"
-            android:label="Loan Calculator"
+            android:name=".app.activities.RecurringDepositActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Recurring Deposit Calculator"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
         </activity>
+
         <activity
-            android:name=".app.activities.RecurringDepositActivity"
-            android:label="Recurring Deposit Calculator"
+            android:name=".app.activities.LoanActivity"
+            android:label="Loan Calculator"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -81,6 +85,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
         </activity>
+
+        <activity android:name=".app.activities.GoalActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Goal Calculator"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+
         <activity
             android:name=".app.activities.TaxActivity"
             android:label="Tax Calculator"
@@ -101,14 +116,7 @@
                 android:value="com.wordpress.techanand.financialcalculator.app.activities.SettingsActivity" />
             -->
         </activity>
-        <activity android:name=".app.activities.GoalActivity"
-            android:label="Goal Calculator"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
-        </activity>
+
     </application>
 
 </manifest>
