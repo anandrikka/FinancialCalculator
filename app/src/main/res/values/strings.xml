@@ -271,17 +271,20 @@
         Total Amount Paid is &lt;b>%5$d&lt;/b>.
     </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_main2">Main2Activity</string>
-
     <!--...................... Loan: End.....................................-->
 
     <!--...................... Goal: Start.....................................-->
 
-
     <item name="app.goal.result_card_id" type="id"></item>
     <item name="app.goal.result_card_text_id" type="id"></item>
     <!--...................... Goal: End.....................................-->
+
+    <!--...................... Inflation: Start.....................................-->
+
+    <string name="app.inflation_result_text" formatted="false">
+        Value will be &lt;b>%1$s&lt;/b> after &lt;b>%2$s&lt;/b> years.
+    </string>
+
+    <!--...................... Inflation: End.....................................-->
 
 </resources>

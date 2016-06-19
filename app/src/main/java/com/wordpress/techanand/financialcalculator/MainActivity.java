@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.wordpress.techanand.financialcalculator.app.activities.AppPreferencesActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.FixedDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.GoalActivity;
+import com.wordpress.techanand.financialcalculator.app.activities.InflationActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.LoanActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.MutualFundActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.RecurringDepositActivity;
@@ -73,9 +74,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case Calculator.UNIQUE_RD_ID:
                         launchItem = new Intent(MainActivity.this, RecurringDepositActivity.class);
                         break;
-                    /*case Calculator.UNIQUE_PPF_ID:
-                        launchItem = new Intent(MainActivity.this, StockPriceActivity.class);
-                        break;*/
                     case Calculator.UNIQUE_STOCK_ID:
                         launchItem = new Intent(MainActivity.this, StockPriceActivity.class);
                         break;
@@ -90,6 +88,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case Calculator.UNIQUE_GOAL_ID:
                         launchItem = new Intent(MainActivity.this, GoalActivity.class);
+                        break;
+                    case Calculator.UNIQUE_INFLATION_ID:
+                        launchItem = new Intent(MainActivity.this, InflationActivity.class);
                         break;
                     default:
                         Toast.makeText(MainActivity.this, item.getName()+" Not Defined !", Toast.LENGTH_SHORT).show();

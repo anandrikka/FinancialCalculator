@@ -97,19 +97,20 @@
         </activity>
 
         <activity
-            android:name=".app.activities.TaxActivity"
-            android:label="Tax Calculator"
+            android:name=".app.activities.InflationActivity"
+            android:label="Inflation Calculator"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
         </activity>
+
         <activity
             android:name=".app.activities.AppPreferencesActivity"
             android:label="Settings"
             android:theme="@style/AppTheme.NoActionBar">
-
             <!--
                 <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
