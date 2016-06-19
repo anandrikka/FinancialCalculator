@@ -2,6 +2,7 @@ package com.wordpress.techanand.financialcalculator.app.fragments;
 
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -34,8 +35,11 @@ public class MutualFundSIP extends Fragment {
     private EditText monthlyInvestmentText, timePeriodText, annualReturnText;
     private Spinner timePeriodSelect;
     private Button resetButton, calculateButton;
+    private CheckBox bySip, byTarget;
 
     private MutualFundObject mutualFundObjectData;
+
+    private boolean isCalcClicked;
 
     public MutualFundSIP() {
         // Required empty public constructor
@@ -54,6 +58,16 @@ public class MutualFundSIP extends Fragment {
         setRetainInstance(true);
         initialLoad(view);
         return view;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration config) {
+        super.onConfigurationChanged(config);
+        bySip.setChecked(bySip.isChecked());
+        byTarget.setChecked(byTarget.isChecked());
+        monthlyInvestmentText.setText(monthlyInvestmentText.getText().toString());
+        timePeriodText.setText(timePeriodText.getText().toString());
+        annualReturnText.setText(annualReturnText.getText().toString());
     }
 
     @Override
@@ -77,6 +91,8 @@ public class MutualFundSIP extends Fragment {
         periodUnitAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         timePeriodSelect.setAdapter(periodUnitAdapter);
         timePeriodSelect.setSelection(1);
+        bySip = (CheckBox) view.findViewById(R.id.by_sip);
+        byTarget = (CheckBox) view.findViewById(R.id.by_target);
         timePeriodSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -95,19 +111,25 @@ public class MutualFundSIP extends Fragment {
                 annualReturnText.setText("");
                 timePeriodSelect.setSelection(1);
                 mutualFundSIPListener.resetListener();
+                isCalcClicked = false;
+
             }
         });
 
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate(false);
+                calculate(false, true);
             }
         });
-        calculate(true);
+        calculate(true, false);
     }
 
-    public void calculate(boolean isFromInitialLoad){
+    public void calculate(boolean isFromInitialLoad, boolean isCalcClicked){
+        this.isCalcClicked = isCalcClicked;
+        if(!this.isCalcClicked){
+            return;
+        }
         if(!monthlyInvestmentText.getText().toString().equals("") &&
                 !timePeriodText.getText().toString().equals("") &&
                 !annualReturnText.getText().toString().equals("")){

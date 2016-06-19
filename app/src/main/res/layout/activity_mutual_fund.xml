@@ -37,25 +37,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/appArea">
-
-                <LinearLayout
-                    android:orientation="vertical"
+                <fragment
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fragment_container"/>
-                <!--<fragment
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/stock_form"
-                    android:name="com.wordpress.techanand.financialcalculator.app.fragments.StocksBySharePrice"
-                    tools:layout="@layout/stocks_by_share_price" />
+                    android:id="@+id/mutualfund_form"
+                    android:name="com.wordpress.techanand.financialcalculator.app.fragments.MutualFundSIP"
+                    tools:layout="@layout/mutual_funds_sip" />
 
                 <fragment
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/stock_result"
-                    android:name="com.wordpress.techanand.financialcalculator.app.fragments.StocksBySharePriceResult"
-                    tools:layout="@layout/stock_by_share_price_result" />-->
+                    android:id="@+id/mutualfund_result"
+                    android:name="com.wordpress.techanand.financialcalculator.app.fragments.MutualFundSIPResult"
+                    tools:layout="@layout/mutual_funds_sip_results" />
             </LinearLayout>
         </ScrollView>
 

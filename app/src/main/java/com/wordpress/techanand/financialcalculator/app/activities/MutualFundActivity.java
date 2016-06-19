@@ -1,10 +1,13 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wordpress.techanand.financialcalculator.R;
@@ -28,33 +31,16 @@ public class MutualFundActivity extends AppCompatActivity implements MutualFundS
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mutualFundSIP = (MutualFundSIP) getSupportFragmentManager().findFragmentByTag(MutualFundSIP.class.getName());
-        mutualFundSIPResult = (MutualFundSIPResult) getSupportFragmentManager().findFragmentByTag(MutualFundSIPResult.class.getName());
-        if(mutualFundSIP != null){
-            getSupportFragmentManager().beginTransaction().remove(mutualFundSIP).commit();
-        }
-        if(mutualFundSIPResult != null){
-            getSupportFragmentManager().beginTransaction().remove(mutualFundSIPResult).commit();
-        }
+        mutualFundSIP = (MutualFundSIP) getSupportFragmentManager().findFragmentById(R.id.mutualfund_form);
+        mutualFundSIPResult = (MutualFundSIPResult) getSupportFragmentManager().findFragmentById(R.id.mutualfund_result);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.fragment_container, new MutualFundSIP(), MutualFundSIP.class.getName())
-                .commit();
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.fragment_container, new MutualFundSIPResult(), MutualFundSIPResult.class.getName())
-                .commit();
+        getSupportFragmentManager().beginTransaction().hide(mutualFundSIPResult).commit();
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mutualFundSIP = (MutualFundSIP) getSupportFragmentManager().findFragmentByTag(MutualFundSIP.class.getName());
-        mutualFundSIPResult = (MutualFundSIPResult) getSupportFragmentManager().findFragmentByTag(MutualFundSIPResult.class.getName());
-        mutualFundSIPResult.getView().setVisibility(View.GONE);
     }
 
     public void mutualFundTypeClicked(View view){
@@ -76,7 +62,7 @@ public class MutualFundActivity extends AppCompatActivity implements MutualFundS
 
     @Override
     public void resetListener() {
-        mutualFundSIPResult.getView().setVisibility(View.GONE);
+        getSupportFragmentManager().beginTransaction().hide(mutualFundSIPResult).commit();
     }
 
     @Override
@@ -129,7 +115,8 @@ public class MutualFundActivity extends AppCompatActivity implements MutualFundS
             mutualFundObjectData.setWealthGained(mutualFundObjectData.getAmount() - (sip*n));
         }
         mutualFundSIPResult.displayResult(mutualFundObjectData);
-        mutualFundSIPResult.getView().setVisibility(View.VISIBLE);
+
+        getSupportFragmentManager().beginTransaction().show(mutualFundSIPResult).commit();
 
     }
 }
