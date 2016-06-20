@@ -1,27 +1,24 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
-import android.graphics.Color;
-import android.support.v4.widget.TextViewCompat;
+/**
+ * Created by Anand Rikka on 6/12/2016
+ */
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.text.Layout;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.PieChartConfig;
 import com.wordpress.techanand.financialcalculator.app.fragments.GoalFragment;
 import com.wordpress.techanand.financialcalculator.app.fragments.MainPrefs;
 import com.wordpress.techanand.financialcalculator.app.models.GoalObject;
-import com.wordpress.techanand.financialcalculator.app.models.LoanObject;
 
 import java.util.ArrayList;
 

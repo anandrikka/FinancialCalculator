@@ -1,5 +1,8 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
+/**
+ * Created by Anand Rikka on 6/6/2016.
+ */
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,14 +21,10 @@ import com.wordpress.techanand.financialcalculator.app.models.FixedDepositObject
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FixedDepositResult extends Fragment {
 
 
     public FixedDepositResult() {
-        // Required empty public constructor
     }
 
 

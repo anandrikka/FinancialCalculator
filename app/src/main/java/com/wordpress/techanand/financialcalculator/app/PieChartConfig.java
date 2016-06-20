@@ -2,8 +2,6 @@ package com.wordpress.techanand.financialcalculator.app;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.view.View;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -14,9 +12,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.wordpress.techanand.financialcalculator.MainActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

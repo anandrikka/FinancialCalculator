@@ -1,5 +1,11 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
+import com.wordpress.techanand.financialcalculator.app.models.GoalObject;
+
+/**
+ * Created by Anand Rikka on 6/6/2016
+ */
+
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -18,20 +24,6 @@ import com.wordpress.techanand.financialcalculator.app.models.GoalObject;
 
 
 public class GoalFragment extends Fragment {
-
-    /*Formula for inflated amount:
-    *
-    * A = P * (1+r)^t
-    *
-    * P - Principle Amount
-    * r - Rate of Interest
-    * t - Number of Years
-    *
-    * Formula for monthly investment
-      *
-      *  P = (M * r)/((1+r)^n-1)
-      *
-    * */
 
     public interface GoalFragmentListener {
         public void calculate(GoalObject goalObject);
@@ -110,8 +102,21 @@ public class GoalFragment extends Fragment {
         });
         calculate(true, false);
     }
-
+    /*Formula for inflated amount:
+    *
+    * A = P * (1+r)^t
+    *
+    * P - Principle Amount
+    * r - Rate of Interest
+    * t - Number of Years
+    *
+    * Formula for monthly investment
+      *
+      *  P = (M * r)/((1+r)^n-1)
+      *
+    * */
     private void calculate(boolean isFromInitialLoad, boolean isCalcClicked){
+
         this.isCalcClicked = isCalcClicked;
         if(!this.isCalcClicked){
             return;

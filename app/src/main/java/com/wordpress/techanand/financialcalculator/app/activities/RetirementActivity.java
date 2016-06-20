@@ -1,12 +1,14 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
+/**
+ * Created by Anand Rikka on 5/13/2016.
+ */
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;

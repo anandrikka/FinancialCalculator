@@ -1,16 +1,16 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
-import android.support.design.widget.FloatingActionButton;
+/**
+ * Created by Anand Rikka on 5/15/2016
+ */
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TableRow;
-import android.widget.TextView;
 
-import com.github.clans.fab.FloatingActionMenu;
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositFragment;
 import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositResult;
@@ -21,17 +21,6 @@ public class FixedDepositActivity extends AppCompatActivity implements FixedDepo
     public static final String[] PERIOD = {"Years", "Months", "Days"};
     public static final String[] COMPOUNDING_FREQ = {"Monthly", "Quarterly", "Half Yearly", "Yearly"};
     public static final String[] PAYOUT_FREQ = {"Monthly", "Quarterly"};
-
-    /*Formula for fixed deposit:
-    *
-    * A = P * (1+r/n)^nt
-    *
-    * P - Principle Amount
-    * r - Rate of Interest
-    * t - Number of Years
-    * n - No' of compounding periods, example: for quarterly (4), for half yearly (2) etc..
-    *
-    * */
 
     private FixedDepositFragment fdFragment;
     private FixedDepositResult fdResult;
@@ -82,6 +71,16 @@ public class FixedDepositActivity extends AppCompatActivity implements FixedDepo
 
     @Override
     public void calculate(FixedDepositObject fixedDepositObject) {
+        /*Formula for fixed deposit:
+        *
+        * A = P * (1+r/n)^nt
+        *
+        * P - Principle Amount
+        * r - Rate of Interest
+        * t - Number of Years
+        * n - No' of compounding periods, example: for quarterly (4), for half yearly (2) etc..
+        *
+        * */
         double P, r, t, n, A;
         String tUnit, nUnit;
         P = fixedDepositObject.getFdAmount();

@@ -1,27 +1,14 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
+/**
+ * Created by Anand Rikka on 6/6/2016.
+ */
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.support.v4.app.Fragment;
-import android.telecom.Call;
-import android.view.ActionMode;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.AppMain;
-import com.wordpress.techanand.financialcalculator.app.activities.AppPreferencesActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ExchangePrefs extends CustomPreferenceFragment implements Preference.OnPreferenceClickListener{
 
     public ExchangePrefs() {

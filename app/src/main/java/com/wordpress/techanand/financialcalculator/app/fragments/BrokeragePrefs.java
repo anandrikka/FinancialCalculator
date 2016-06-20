@@ -1,12 +1,16 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.preference.Preference;
+
+/**
+ * Created by Anand Rikka on 5/26/2016.
+ */
+
+import android.preference.Preference;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.AppPreferences;
 
 import java.util.Map;

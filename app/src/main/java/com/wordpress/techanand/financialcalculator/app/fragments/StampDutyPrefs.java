@@ -1,18 +1,13 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
+/**
+ * Created by Anand Rikka on 06/12/2016
+ */
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.wordpress.techanand.financialcalculator.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class StampDutyPrefs extends CustomPreferenceFragment {
 
 

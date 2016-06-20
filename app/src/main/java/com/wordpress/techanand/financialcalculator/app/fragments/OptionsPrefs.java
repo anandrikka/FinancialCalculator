@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.wordpress.techanand.financialcalculator.R;
 
 /**
- * Created by nandu on 6/6/2016.
+ * Created by Anand Rikka on 6/6/2016.
  */
 public class OptionsPrefs extends CustomPreferenceFragment {
 

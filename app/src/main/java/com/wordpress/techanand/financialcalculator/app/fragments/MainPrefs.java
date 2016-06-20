@@ -1,30 +1,19 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
+/**
+ * Created by Anand Rikka on 6/6/2016
+ */
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceScreen;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.activities.AppPreferencesActivity;
 
 import java.text.DecimalFormat;
 
 public class MainPrefs extends CustomPreferenceFragment implements Preference.OnPreferenceClickListener{
-
-    //todo: Screen Orientation not staying on fragment, going to first fragment.
 
     public static final DecimalFormat numberFormatter = new DecimalFormat("#,##,###.00");
 

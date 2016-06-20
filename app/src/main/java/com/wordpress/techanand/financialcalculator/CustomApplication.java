@@ -2,7 +2,6 @@ package com.wordpress.techanand.financialcalculator;
 
 import android.app.Application;
 import android.content.Context;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 
 import java.lang.reflect.Field;

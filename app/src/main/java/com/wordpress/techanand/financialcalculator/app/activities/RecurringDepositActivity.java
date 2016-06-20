@@ -1,21 +1,22 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
-import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+
+/**
+ * Created by Anand Rikka on 5/21/2016.
+ */
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.fragments.RecurringDepositFragment;
 import com.wordpress.techanand.financialcalculator.app.fragments.RecurringDepositResult;
 import com.wordpress.techanand.financialcalculator.app.models.RecurringDepositObject;
-
-import org.w3c.dom.Text;
 
 public class RecurringDepositActivity extends AppCompatActivity implements RecurringDepositFragment.RecurringDepositListener{
 

@@ -1,12 +1,13 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
+/**
+ * Created by nandu on 6/6/2016.
+ */
+
 import android.os.Bundle;
 
 import com.wordpress.techanand.financialcalculator.R;
 
-/**
- * Created by nandu on 6/6/2016.
- */
 public class FuturesPrefs extends CustomPreferenceFragment{
 
     public FuturesPrefs() {

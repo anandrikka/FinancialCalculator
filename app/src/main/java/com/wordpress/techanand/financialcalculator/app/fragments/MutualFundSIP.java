@@ -1,5 +1,8 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
+/**
+ * Created by Anand Rikka on 6/6/2016
+ */
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -21,9 +24,6 @@ import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.activities.MutualFundActivity;
 import com.wordpress.techanand.financialcalculator.app.models.MutualFundObject;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MutualFundSIP extends Fragment {
 
     public interface MutualFundSIPListener {

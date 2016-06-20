@@ -1,5 +1,8 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
+/**
+ * Created by Anand Rikka on 06/12/2016
+ */
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,9 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.TableLayout;
-import android.widget.TextView;
+import android.widget.Spinner;;
 
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
@@ -32,9 +33,6 @@ import java.util.Map;
 
 import static com.wordpress.techanand.financialcalculator.app.activities.StockPriceActivity.*;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class StocksBySharePrice extends Fragment {
 
     private StockListener stockListener;

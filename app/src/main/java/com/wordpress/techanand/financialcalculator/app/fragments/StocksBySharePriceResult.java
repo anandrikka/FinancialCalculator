@@ -14,9 +14,6 @@ import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.models.StockObject;
 import com.wordpress.techanand.financialcalculator.app.models.StockPreferencesObject;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class StocksBySharePriceResult extends Fragment {
 
 

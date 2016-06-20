@@ -1,5 +1,8 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
+/**
+ * Created by Anand Rikka on 06/12/2016
+ */
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,15 +14,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.models.RetirementObject;
 
-/**
- * Created by Anand Rikka on 06/12/2016
- */
+
 public class RetirementFragment extends Fragment {
 
     public interface RetirementFragmentListener {

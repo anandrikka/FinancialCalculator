@@ -12,8 +12,8 @@
     <string name="title_activity_stock_price">Stock Price Calculator</string>
     <string name="title_activity_mutual_fund">Mutual Fund Calculator</string>
     <string name="title_activity_fixed_deposit">Fixed Deposit Calculator</string>
-    <string name="title_activity_recurring_deposity">Recurring Deposity Calculator</string>
-    <string name="title_activity_loan">Loan Calculator</string>
+    <string name="title_activity_recurring_deposity">Recurring Deposit Calculator</string>
+    <string name="title_activity_loan">EMI Calculator</string>
     <string name="title_activity_tax">Tax Calculator</string>
     <string name="title_activity_ppf">PPF Calculator</string>
     <string name="title_activity_calculator">Calculator</string>
@@ -25,6 +25,14 @@
     <string name="stock_price_category">Category</string>
     <string name="title_activity_edit_calc_list">Settings</string>
 
+    <string name="main_activity_stock_calculator">Stock Calculator</string>
+    <string name="main_activity_mutual_fund_calculator">Mutual Fund Calculator</string>
+    <string name="main_activity_fixed_deposit_calculator">Fixed Deposit</string>
+    <string name="main_activity_recurring_deposit_calculator">Recurring Deposit</string>
+    <string name="main_activity_inflation_calculator">Inflation Calculator</string>
+    <string name="main_activity_emi_calculator">EMI Calculator</string>
+    <string name="main_activity_retirement_calculator">Retirement Calculator</string>
+    <string name="main_activity_goal_calculator">Goal Calculator</string>
 
     <!-- ......................Preferences Main Level: Start ....................................-->
 

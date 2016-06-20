@@ -1,5 +1,8 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
+/**
+ * Created by Anand Rikka on 6/6/2016.
+ */
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -16,17 +19,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TableRow;
 
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.activities.FixedDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.models.FixedDepositObject;
 
-import java.util.ArrayList;
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FixedDepositFragment extends Fragment {
 
     public interface FixedDepositListener {
@@ -85,12 +84,6 @@ public class FixedDepositFragment extends Fragment {
     }
 
     public void initializeData(View view){
-        /*pieChart = (PieChart) view.findViewById(R.id.chart);
-        pieChart.setVisibility(View.GONE);
-
-        resultsTable = (TableLayout) view.findViewById(R.id.resultsTable);
-        resultsTable.setVisibility(View.GONE);*/
-
         fdAmount = (EditText) view.findViewById(R.id.fd_amount);
         period = (EditText) view.findViewById(R.id.period_value);
         roi = (EditText) view.findViewById(R.id.roi);
@@ -116,6 +109,10 @@ public class FixedDepositFragment extends Fragment {
 
         reset = (Button) view.findViewById(R.id.reset);
         calculate = (Button) view.findViewById(R.id.calculate);
+
+        if(standard.isChecked()){
+            ((TableRow)view.findViewById(R.id.interest_payout_row)).setVisibility(View.GONE);
+        }
 
         periodUnitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

@@ -1,15 +1,13 @@
 package com.wordpress.techanand.financialcalculator.app.fragments;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.wordpress.techanand.financialcalculator.R;
-
 /**
  * Created by Anand Rikka on 6/6/2016.
  */
+
+import android.os.Bundle;
+
+import com.wordpress.techanand.financialcalculator.R;
+
 public class DeliveryPrefs extends CustomPreferenceFragment{
 
     public DeliveryPrefs(){
