@@ -2,15 +2,12 @@
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
   android:layout_height="40dp" android:orientation="horizontal">
     <TextView android:text="@+id/TextView01"
         android:id="@+id/TextView01"
         android:layout_width="0dp"
         android:layout_weight="9"
+        android:padding="16dp"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:textSize="16dp"/>

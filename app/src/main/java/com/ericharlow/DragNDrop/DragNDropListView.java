@@ -65,7 +65,7 @@ public class DragNDropListView extends ListView {
 		final int x = (int) ev.getX();
 		final int y = (int) ev.getY();	
 		
-		if (action == MotionEvent.ACTION_DOWN && x < this.getWidth()/4) {
+		if (action == MotionEvent.ACTION_DOWN && x < this.getWidth()) {
 			mDragMode = true;
 		}
 
