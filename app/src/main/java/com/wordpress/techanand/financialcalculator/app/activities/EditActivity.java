@@ -1,6 +1,10 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,11 +13,19 @@ import com.ericharlow.DragNDrop.DragListener;
 import com.ericharlow.DragNDrop.DragNDropAdapter;
 import com.ericharlow.DragNDrop.DragNDropListView;
 import com.ericharlow.DragNDrop.DropListener;
+import com.ericharlow.DragNDrop.EditListDragNDropAdapter;
 import com.ericharlow.DragNDrop.RemoveListener;
+import com.google.gson.Gson;
+import com.wordpress.techanand.financialcalculator.MainActivity;
 import com.wordpress.techanand.financialcalculator.R;
+import com.wordpress.techanand.financialcalculator.app.AppMain;
+import com.wordpress.techanand.financialcalculator.db.model.CalculatorListModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ImageView;
@@ -23,6 +35,7 @@ import android.widget.ListView;
 public class EditActivity extends AppCompatActivity {
 
     DragNDropListView listView;
+    ArrayList<CalculatorListModel> content;
 
     /** Called when the activity is first created. */
     @Override
@@ -33,14 +46,20 @@ public class EditActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ArrayList<String> content = new ArrayList<String>(mListContent.length);
-        for (int i=0; i < mListContent.length; i++) {
-            content.add(mListContent[i]);
-        }
+        Gson gson = new Gson();
+        final List<CalculatorListModel> calculators = CalculatorListModel.getCalculatorsList(getResources());
+        String defaultCalcOrder = gson.toJson(calculators);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String calcListOrder = sharedPreferences.getString("main_list", defaultCalcOrder);
+        CalculatorListModel[] calcArray = gson.fromJson(calcListOrder, CalculatorListModel[].class);
+        List<CalculatorListModel> list = Arrays.asList(calcArray);
+
+        content =  new ArrayList<>(list);
 
         listView = (DragNDropListView) findViewById(R.id.edit_list);
 
-        listView.setAdapter(new DragNDropAdapter(this, new int[]{R.layout.dragitem}, new int[]{R.id.TextView01}, content));//new DragNDropAdapter(this,content)
+        listView.setAdapter(new EditListDragNDropAdapter(this, new int[]{R.layout.dragitem}, new int[]{R.id.TextView01}, content));//new DragNDropAdapter(this,content)
 
         if (listView instanceof DragNDropListView) {
             ((DragNDropListView) listView).setDropListener(mDropListener);
@@ -49,12 +68,31 @@ public class EditActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        editor.putString("main_list", gson.toJson(content)).commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private DropListener mDropListener =
             new DropListener() {
                 public void onDrop(int from, int to) {
                     Adapter adapter = listView.getAdapter();
-                    if (adapter instanceof DragNDropAdapter) {
-                        ((DragNDropAdapter)adapter).onDrop(from, to);
+                    if (adapter instanceof EditListDragNDropAdapter) {
+                        ((EditListDragNDropAdapter)adapter).onDrop(from, to);
                         listView.invalidateViews();
                     }
                 }
@@ -64,8 +102,8 @@ public class EditActivity extends AppCompatActivity {
             new RemoveListener() {
                 public void onRemove(int which) {
                     Adapter adapter = listView.getAdapter();
-                    if (adapter instanceof DragNDropAdapter) {
-                        ((DragNDropAdapter)adapter).onRemove(which);
+                    if (adapter instanceof EditListDragNDropAdapter) {
+                        ((EditListDragNDropAdapter)adapter).onRemove(which);
                         listView.invalidateViews();
                     }
                 }
@@ -97,6 +135,4 @@ public class EditActivity extends AppCompatActivity {
                 }
 
             };
-
-    private static String[] mListContent={"Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"};
 }

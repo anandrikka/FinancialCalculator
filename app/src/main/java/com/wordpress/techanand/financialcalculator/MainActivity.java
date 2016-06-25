@@ -29,7 +29,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.wordpress.techanand.financialcalculator.app.activities.AppPreferencesActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.EditActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.FixedDepositActivity;
@@ -40,9 +39,6 @@ import com.wordpress.techanand.financialcalculator.app.activities.MutualFundActi
 import com.wordpress.techanand.financialcalculator.app.activities.RecurringDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.RetirementActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.StockPriceActivity;
-import com.wordpress.techanand.financialcalculator.db.AppOpenHelper;
-import com.wordpress.techanand.financialcalculator.db.datasources.CalculatorDataSource;
-import com.wordpress.techanand.financialcalculator.db.model.Calculator;
 import com.wordpress.techanand.financialcalculator.db.model.CalculatorListModel;
 import com.wordpress.techanand.financialcalculator.ui.listview.holders.TextViewHolder;
 
@@ -52,6 +48,8 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private List<CalculatorListModel> list;
+    GridView calcList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +74,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String calcListOrder = sharedPreferences.getString("main_list", defaultCalcOrder);
         CalculatorListModel[] calcArray = gson.fromJson(calcListOrder, CalculatorListModel[].class);
-        List<CalculatorListModel> list = Arrays.asList(calcArray);
-        list = new ArrayList<>(list);
-        GridView calcList = (GridView) findViewById(R.id.gridViewList);
-        CalculatorsListAdapter arrayAdapter = new CalculatorsListAdapter(this, R.id.gridText, calculators);
+        List<CalculatorListModel> arrayAslist = Arrays.asList(calcArray);
+        list = new ArrayList<>(arrayAslist);
+        calcList = (GridView) findViewById(R.id.gridViewList);
+        CalculatorsListAdapter arrayAdapter = new CalculatorsListAdapter(this, R.id.gridText, list);
         calcList.setAdapter(arrayAdapter);
         calcList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -120,6 +118,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        reloadList();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reloadList();
+    }
+
+    public void reloadList(){
+        Gson gson = new Gson();
+        final List<CalculatorListModel> calculators = CalculatorListModel.getCalculatorsList(getResources());
+        String defaultCalcOrder = gson.toJson(calculators);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String calcListOrder = sharedPreferences.getString("main_list", defaultCalcOrder);
+        CalculatorListModel[] calcArray = gson.fromJson(calcListOrder, CalculatorListModel[].class);
+        List<CalculatorListModel> arrayAslist = Arrays.asList(calcArray);
+        list = new ArrayList<>(arrayAslist);
+        CalculatorsListAdapter arrayAdapter = new CalculatorsListAdapter(this, R.id.gridText, list);
+        calcList.setAdapter(arrayAdapter);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
