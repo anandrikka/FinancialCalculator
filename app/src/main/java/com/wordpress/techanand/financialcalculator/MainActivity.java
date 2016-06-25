@@ -66,23 +66,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        reloadList();
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        reloadList();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reloadList();
+    }
+
+    public void reloadList(){
         Gson gson = new Gson();
         final List<CalculatorListModel> calculators = CalculatorListModel.getCalculatorsList(getResources());
         String defaultCalcOrder = gson.toJson(calculators);
-
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String calcListOrder = sharedPreferences.getString("main_list", defaultCalcOrder);
         CalculatorListModel[] calcArray = gson.fromJson(calcListOrder, CalculatorListModel[].class);
-        List<CalculatorListModel> arrayAslist = Arrays.asList(calcArray);
-        list = new ArrayList<>(arrayAslist);
+        List<CalculatorListModel> arrayAsList = Arrays.asList(calcArray);
+        list = new ArrayList<>(arrayAsList);
         calcList = (GridView) findViewById(R.id.gridViewList);
         CalculatorsListAdapter arrayAdapter = new CalculatorsListAdapter(this, R.id.gridText, list);
         calcList.setAdapter(arrayAdapter);
         calcList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CalculatorListModel item = calculators.get(position);
+                CalculatorListModel item = list.get(position);
                 Intent launchItem = null;
                 switch (item.getId()){
                     case CalculatorListModel.UniqueId.UNIQUE_FD:
@@ -117,31 +131,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        reloadList();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        reloadList();
-    }
-
-    public void reloadList(){
-        Gson gson = new Gson();
-        final List<CalculatorListModel> calculators = CalculatorListModel.getCalculatorsList(getResources());
-        String defaultCalcOrder = gson.toJson(calculators);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String calcListOrder = sharedPreferences.getString("main_list", defaultCalcOrder);
-        CalculatorListModel[] calcArray = gson.fromJson(calcListOrder, CalculatorListModel[].class);
-        List<CalculatorListModel> arrayAslist = Arrays.asList(calcArray);
-        list = new ArrayList<>(arrayAslist);
-        CalculatorsListAdapter arrayAdapter = new CalculatorsListAdapter(this, R.id.gridText, list);
-        calcList.setAdapter(arrayAdapter);
     }
 
 
