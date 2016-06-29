@@ -4,10 +4,12 @@ package com.wordpress.techanand.financialcalculator;
  * Created by Anand Rikka on 05/11/2016
  */
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
@@ -16,6 +18,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.wordpress.techanand.financialcalculator.app.activities.AboutActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.AppPreferencesActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.EditActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.FixedDepositActivity;
@@ -175,11 +179,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.settings) {
             startActivity(new Intent(this, AppPreferencesActivity.class));
         } else if (id == R.id.about) {
-
+            startActivity(new Intent(this, AboutActivity.class));
         } else if (id == R.id.nav_share) {
-
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.setType("text/html");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("<p>This is the text that will be shared.</p>"));
+            startActivity(Intent.createChooser(sharingIntent,"Share using"));
         } else if (id == R.id.nav_send) {
-
+            String packageName = this.getPackageName();
+            packageName = "com.facebook.katana";
+            Uri uri = Uri.parse("market://details?id=" + packageName);
+            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+            /*To count with Play market backstack, After pressing back button, to taken back to our application, we need to add following flags to intent.*/
+            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                    Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
+                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            try {
+                startActivity(goToMarket);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://play.google.com/store/apps/details?id=" + packageName)));
+            }
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

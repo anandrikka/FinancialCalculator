@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wordpress.techanand.financialcalculator">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:name=".CustomApplication"
         android:allowBackup="true"
@@ -111,6 +114,13 @@
         <activity
             android:name=".app.activities.EditActivity"
             android:label="Edit List Order"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wordpress.techanand.financialcalculator.MainActivity" />
+        </activity>
+        <activity android:name=".app.activities.AboutActivity"
+            android:label="About"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
