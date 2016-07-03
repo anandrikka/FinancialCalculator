@@ -68,7 +68,8 @@
                 android:text="@string/app.stocks.quantity_label"
                 android:gravity="center_horizontal" />
         </TableRow>
-        <TableRow>
+        <TableRow
+            android:padding="10dp">
             <EditText
                 android:id="@+id/stock_price_buy"
                 android:layout_width="0dp"
