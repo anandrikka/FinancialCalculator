@@ -11,7 +11,7 @@
         <item name="android:textViewStyle">@style/CustomTextViewStyle</item>
         <!--<item name="android:editTextStyle">@style/CustomTextViewStyle</item>-->
         <item name="android:buttonStyle">@style/CustomButtonStyle</item>
-       <!-- <item name="android:editTextBackground">@drawable/border</item>-->
+        <!-- <item name="android:editTextBackground">@drawable/border</item>-->
     </style>
 
     <style name="AppTheme.NoActionBar">

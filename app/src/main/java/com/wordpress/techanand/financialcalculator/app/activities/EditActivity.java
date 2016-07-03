@@ -1,6 +1,5 @@
 package com.wordpress.techanand.financialcalculator.app.activities;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -10,16 +9,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.ericharlow.DragNDrop.DragListener;
-import com.ericharlow.DragNDrop.DragNDropAdapter;
 import com.ericharlow.DragNDrop.DragNDropListView;
 import com.ericharlow.DragNDrop.DropListener;
 import com.ericharlow.DragNDrop.EditListDragNDropAdapter;
 import com.ericharlow.DragNDrop.RemoveListener;
 import com.google.gson.Gson;
-import com.wordpress.techanand.financialcalculator.MainActivity;
 import com.wordpress.techanand.financialcalculator.R;
-import com.wordpress.techanand.financialcalculator.app.AppMain;
-import com.wordpress.techanand.financialcalculator.db.model.CalculatorListModel;
+import com.wordpress.techanand.financialcalculator.db.model.CalculatorListContent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +31,7 @@ import android.widget.ListView;
 public class EditActivity extends AppCompatActivity {
 
     DragNDropListView listView;
-    ArrayList<CalculatorListModel> content;
+    ArrayList<CalculatorListContent.CalculatorItem> content;
 
     /** Called when the activity is first created. */
     @Override
@@ -47,13 +43,13 @@ public class EditActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Gson gson = new Gson();
-        final List<CalculatorListModel> calculators = CalculatorListModel.getCalculatorsList(getResources());
+        final List<CalculatorListContent.CalculatorItem> calculators = CalculatorListContent.getCalculatorsList(getResources());
         String defaultCalcOrder = gson.toJson(calculators);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String calcListOrder = sharedPreferences.getString("main_list", defaultCalcOrder);
-        CalculatorListModel[] calcArray = gson.fromJson(calcListOrder, CalculatorListModel[].class);
-        List<CalculatorListModel> list = Arrays.asList(calcArray);
+        CalculatorListContent.CalculatorItem[] calcArray = gson.fromJson(calcListOrder, CalculatorListContent.CalculatorItem[].class);
+        List<CalculatorListContent.CalculatorItem> list = Arrays.asList(calcArray);
 
         content =  new ArrayList<>(list);
 

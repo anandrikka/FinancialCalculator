@@ -11,24 +11,24 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.wordpress.techanand.financialcalculator.db.model.CalculatorListModel;
+import com.wordpress.techanand.financialcalculator.db.model.CalculatorListContent;
 
 public final class EditListDragNDropAdapter extends BaseAdapter implements RemoveListener, DropListener{
 
     private int[] mIds;
     private int[] mLayouts;
     private LayoutInflater mInflater;
-    private ArrayList<CalculatorListModel> mContent;
+    private ArrayList<CalculatorListContent.CalculatorItem> mContent;
 
-    public EditListDragNDropAdapter(Context context, ArrayList<CalculatorListModel> content) {
+    public EditListDragNDropAdapter(Context context, ArrayList<CalculatorListContent.CalculatorItem> content) {
         init(context,new int[]{android.R.layout.simple_list_item_1},new int[]{android.R.id.text1}, content);
     }
 
-    public EditListDragNDropAdapter(Context context, int[] itemLayouts, int[] itemIDs, ArrayList<CalculatorListModel> content) {
+    public EditListDragNDropAdapter(Context context, int[] itemLayouts, int[] itemIDs, ArrayList<CalculatorListContent.CalculatorItem> content) {
         init(context,itemLayouts,itemIDs, content);
     }
 
-    private void init(Context context, int[] layouts, int[] ids, ArrayList<CalculatorListModel> content) {
+    private void init(Context context, int[] layouts, int[] ids, ArrayList<CalculatorListContent.CalculatorItem> content) {
         // Cache the LayoutInflate to avoid asking for a new one each time.
         mInflater = LayoutInflater.from(context);
         mIds = ids;
@@ -52,7 +52,7 @@ public final class EditListDragNDropAdapter extends BaseAdapter implements Remov
      *
      * @see android.widget.ListAdapter#getItem(int)
      */
-    public CalculatorListModel getItem(int position) {
+    public CalculatorListContent.CalculatorItem getItem(int position) {
         return mContent.get(position);
     }
 
@@ -94,7 +94,7 @@ public final class EditListDragNDropAdapter extends BaseAdapter implements Remov
         }
 
         // Bind the data efficiently with the holder.
-        holder.text.setText(((CalculatorListModel)mContent.get(position)).getName());
+        holder.text.setText(((CalculatorListContent.CalculatorItem)mContent.get(position)).getName());
 
         return convertView;
     }
@@ -109,7 +109,7 @@ public final class EditListDragNDropAdapter extends BaseAdapter implements Remov
     }
 
     public void onDrop(int from, int to) {
-        CalculatorListModel temp = mContent.get(from);
+        CalculatorListContent.CalculatorItem temp = mContent.get(from);
         mContent.remove(from);
         mContent.add(to,temp);
     }

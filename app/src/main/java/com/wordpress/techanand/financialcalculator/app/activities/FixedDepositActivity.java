@@ -16,7 +16,7 @@ import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositFra
 import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositResult;
 import com.wordpress.techanand.financialcalculator.app.models.FixedDepositObject;
 
-public class FixedDepositActivity extends AppCompatActivity implements FixedDepositFragment.FixedDepositListener{
+public class FixedDepositActivity extends AppCompatActivity {
 
     public static final String[] PERIOD = {"Years", "Months", "Days"};
     public static final String[] COMPOUNDING_FREQ = {"Monthly", "Quarterly", "Half Yearly", "Yearly"};
@@ -64,12 +64,10 @@ public class FixedDepositActivity extends AppCompatActivity implements FixedDepo
         }
     }
 
-    @Override
     public void reset() {
        getSupportFragmentManager().beginTransaction().hide(fdResult).commit();
     }
 
-    @Override
     public void calculate(FixedDepositObject fixedDepositObject) {
         /*Formula for fixed deposit:
         *

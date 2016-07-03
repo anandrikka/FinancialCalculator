@@ -17,6 +17,9 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -43,6 +46,8 @@ import com.wordpress.techanand.financialcalculator.app.activities.MutualFundActi
 import com.wordpress.techanand.financialcalculator.app.activities.RecurringDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.RetirementActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.StockPriceActivity;
+import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositFragment;
+import com.wordpress.techanand.financialcalculator.db.model.CalculatorListContent;
 import com.wordpress.techanand.financialcalculator.db.model.CalculatorListModel;
 import com.wordpress.techanand.financialcalculator.ui.listview.holders.TextViewHolder;
 
@@ -52,8 +57,9 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private List<CalculatorListModel> list;
+    private List<CalculatorListContent.CalculatorItem> list;
     GridView calcList;
+    private boolean mTwoPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,14 +93,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void reloadList(){
         Gson gson = new Gson();
-        final List<CalculatorListModel> calculators = CalculatorListModel.getCalculatorsList(getResources());
+        final List<CalculatorListContent.CalculatorItem> calculators = CalculatorListContent.getCalculatorsList(getResources());
         String defaultCalcOrder = gson.toJson(calculators);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String calcListOrder = sharedPreferences.getString("main_list", defaultCalcOrder);
-        CalculatorListModel[] calcArray = gson.fromJson(calcListOrder, CalculatorListModel[].class);
-        List<CalculatorListModel> arrayAsList = Arrays.asList(calcArray);
+        CalculatorListContent.CalculatorItem[] calcArray = gson.fromJson(calcListOrder, CalculatorListContent.CalculatorItem[].class);
+        List<CalculatorListContent.CalculatorItem> arrayAsList = Arrays.asList(calcArray);
         list = new ArrayList<>(arrayAsList);
-        calcList = (GridView) findViewById(R.id.gridViewList);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.mainactivity_list);
+        assert recyclerView != null;
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(list));
+        RecyclerView.LayoutManager lLayout;
+        if (findViewById(R.id.mainactivity_detail_container) != null) {
+            mTwoPane = true;
+            lLayout = new LinearLayoutManager(MainActivity.this);
+            recyclerView.setLayoutManager(lLayout);
+        }else{
+            lLayout = new GridLayoutManager(MainActivity.this, 4);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(lLayout);
+        }
+        /*calcList = (GridView) findViewById(R.id.gridViewList);
         CalculatorsListAdapter arrayAdapter = new CalculatorsListAdapter(this, R.id.gridText, list);
         calcList.setAdapter(arrayAdapter);
         calcList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -134,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     MainActivity.this.startActivity(launchItem);
                 }
             }
-        });
+        });*/
     }
 
 
@@ -207,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    class CalculatorsListAdapter extends ArrayAdapter {
+    /*class CalculatorsListAdapter extends ArrayAdapter {
 
         private List<CalculatorListModel> objects;
 
@@ -243,5 +262,139 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return convertView;
         }
 
+    }*/
+
+    public class SimpleItemRecyclerViewAdapter
+            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+
+        private final List<CalculatorListContent.CalculatorItem> mValues;
+
+        public SimpleItemRecyclerViewAdapter(List<CalculatorListContent.CalculatorItem> items) {
+            mValues = items;
+        }
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.mainactivity_list_content, parent, false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(final ViewHolder holder, int position) {
+            holder.mItem = mValues.get(position);
+            String packageName = getApplicationContext().getPackageName();
+            Resources resources = getApplicationContext().getResources();
+            int resId =resources.getIdentifier(holder.mItem.getImageName(), "drawable", packageName);
+            holder.mIdView.setImageResource(resId);
+            holder.mContentView.setText(mValues.get(position).getName());
+
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mTwoPane) {
+                        Bundle arguments = new Bundle();
+                        switch (holder.mItem.getId()){
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_FD:
+                                arguments.putString(FixedDepositFragment.ID, Integer.toString(holder.mItem.getId()));
+                                FixedDepositFragment fragment = new FixedDepositFragment();
+                                fragment.setArguments(arguments);
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.mainactivity_detail_container, fragment, FixedDepositFragment.class.getName())
+                                        .commit();
+                                break;
+                            /*case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_RD:
+                                launchItem = new Intent(MainActivityListActivity.this, RecurringDepositActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_STOCK:
+                                launchItem = new Intent(MainActivityListActivity.this, StockPriceActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_MUTUAL_FUND:
+                                launchItem = new Intent(MainActivityListActivity.this, MutualFundActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_EMI:
+                                launchItem = new Intent(MainActivityListActivity.this, LoanActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_RETIREMENT:
+                                launchItem = new Intent(MainActivityListActivity.this, RetirementActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_GOAL:
+                                launchItem = new Intent(MainActivityListActivity.this, GoalActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_INFLATION:
+                                launchItem = new Intent(MainActivityListActivity.this, InflationActivity.class);
+                                break;*/
+                            default:
+                                Toast.makeText(MainActivity.this, holder.mItem.getName()+" Not Defined !", Toast.LENGTH_SHORT).show();
+                        }
+                        /*arguments.putString(MainActivityDetailFragment.ARG_ITEM_ID, Integer.toString(holder.mItem.getId()));
+                        MainActivityDetailFragment fragment = new MainActivityDetailFragment();
+                        fragment.setArguments(arguments);
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.mainactivity_detail_container, fragment)
+                                .commit();*/
+                    } else {
+                        Context context = v.getContext();
+                        //intent.putExtra(MainActivityDetailFragment.ARG_ITEM_ID, Integer.toString(holder.mItem.getId()));
+                        Intent launchItem = null;
+                        switch (holder.mItem.getId()){
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_FD:
+                                launchItem = new Intent(MainActivity.this, FixedDepositActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_RD:
+                                launchItem = new Intent(MainActivity.this, RecurringDepositActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_STOCK:
+                                launchItem = new Intent(MainActivity.this, StockPriceActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_MUTUAL_FUND:
+                                launchItem = new Intent(MainActivity.this, MutualFundActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_EMI:
+                                launchItem = new Intent(MainActivity.this, LoanActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_RETIREMENT:
+                                launchItem = new Intent(MainActivity.this, RetirementActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_GOAL:
+                                launchItem = new Intent(MainActivity.this, GoalActivity.class);
+                                break;
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_INFLATION:
+                                launchItem = new Intent(MainActivity.this, InflationActivity.class);
+                                break;
+                            default:
+                                Toast.makeText(MainActivity.this, holder.mItem.getName()+" Not Defined !", Toast.LENGTH_SHORT).show();
+                        }
+                        if(launchItem != null){
+                            context.startActivity(launchItem);
+                        }
+                    }
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return mValues.size();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            public final View mView;
+            public final ImageView mIdView;
+            public final TextView mContentView;
+            public CalculatorListContent.CalculatorItem mItem;
+
+            public ViewHolder(View view) {
+                super(view);
+                mView = view;
+                mIdView = (ImageView) view.findViewById(R.id.id);
+                mContentView = (TextView) view.findViewById(R.id.content);
+            }
+
+            @Override
+            public String toString() {
+                return super.toString() + " '" + mContentView.getText() + "'";
+            }
+        }
     }
 }
