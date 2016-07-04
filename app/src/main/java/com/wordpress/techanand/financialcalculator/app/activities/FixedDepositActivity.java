@@ -13,7 +13,6 @@ import android.widget.TableRow;
 
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositFragment;
-import com.wordpress.techanand.financialcalculator.app.models.FixedDepositObject;
 
 public class FixedDepositActivity extends AppCompatActivity {
 
