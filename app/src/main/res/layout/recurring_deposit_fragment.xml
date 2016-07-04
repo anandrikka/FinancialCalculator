@@ -1,87 +1,163 @@
-<TableLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:stretchColumns="1"
-    android:id="@+id/table"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16dp">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:padding="16dp">
 
-    <TableRow android:paddingBottom="16dp">
-        <CheckBox
-            android:layout_width="0dp"
-            android:layout_weight="1"
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:id="@+id/table">
+
+        <TableRow android:paddingBottom="16dp">
+            <CheckBox
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="MONTHLY"
+                android:id="@+id/by_monthly"
+                android:textSize="14sp"
+                android:checked="true"
+                android:onClick="recurringDepositTypeClicked"/>
+            <CheckBox
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:id="@+id/by_target"
+                android:layout_height="wrap_content"
+                android:text="TARGET MATURITY"
+                android:onClick="recurringDepositTypeClicked"/>
+        </TableRow>
+
+        <TableRow android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="4dp"
+                android:id="@+id/installment_or_maturity_label"
+                android:text="Installment Amount"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:id="@+id/installment_or_maturity"
+                android:inputType="numberDecimal"
+                android:background="@drawable/border"/>
+        </TableRow>
+
+        <TableRow android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Duration"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:layout_marginRight="4dp"
+                android:inputType="number"
+                android:id="@+id/period"/>
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:id="@+id/period_unit"
+                android:background="@drawable/border"/>
+        </TableRow>
+
+        <TableRow android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="4dp"
+                android:text="Rate of Interest(%)"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:layout_marginRight="4dp"
+                android:inputType="numberDecimal"
+                android:id="@+id/roi"/>
+        </TableRow>
+
+        <include layout="@layout/buttons"/>
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/results">
+
+        <TableRow android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="MONTHLY"
-            android:id="@+id/by_monthly"
-            android:textSize="14sp"
-            android:checked="true"
-            android:onClick="recurringDepositTypeClicked"/>
-        <CheckBox
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="14sp"
-            android:id="@+id/by_target"
-            android:layout_height="wrap_content"
-            android:text="TARGET MATURITY"
-            android:onClick="recurringDepositTypeClicked"/>
-    </TableRow>
+            android:padding="8dp">
+            <TextView android:layout_width="0dp"
+                android:gravity="center_horizontal"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_text"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="Results" />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView android:layout_width="0dp"
+                android:padding="8dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="Maturity Amount"
+                android:background="@drawable/rectangle_border"
+                android:id="@+id/monthly_or_maturity_label"/>
+            <TextView android:layout_width="0dp"
+                android:padding="8dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" android:text=""
+                android:id="@+id/monthly_or_maturity_amount"
+                android:background="@drawable/rectangle_border"/>
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView android:layout_width="0dp"
+                android:padding="8dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="Investment Amount"
+                android:background="@drawable/rectangle_border"/>
+            <TextView android:layout_width="0dp"
+                android:padding="8dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" android:text=""
+                android:id="@+id/investment_amount"
+                android:background="@drawable/rectangle_border"/>
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total Interest"
+                android:padding="8dp"
+                android:background="@drawable/rectangle_border"/>
+            <TextView android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_weight="1" android:text=""
+                android:id="@+id/interest"
+                android:background="@drawable/rectangle_border"/>
+        </TableRow>
 
-    <TableRow android:paddingBottom="8dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="4dp"
-            android:id="@+id/installment_or_maturity_label"
-            android:text="Installment Amount"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:id="@+id/installment_or_maturity"
-            android:inputType="numberDecimal"
-            android:background="@drawable/border"/>
-    </TableRow>
+    </TableLayout>
 
-    <TableRow android:paddingBottom="8dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Duration"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:background="@drawable/border"
-            android:layout_marginRight="4dp"
-            android:inputType="number"
-            android:id="@+id/period"/>
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:id="@+id/period_unit"
-            android:background="@drawable/border"/>
-    </TableRow>
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
 
-    <TableRow android:paddingBottom="8dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="4dp"
-            android:text="Rate of Interest(%)"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:background="@drawable/border"
-            android:layout_marginRight="4dp"
-            android:inputType="numberDecimal"
-            android:id="@+id/roi"/>
-    </TableRow>
+</LinearLayout>
 
-    <include layout="@layout/buttons"/>
 
-</TableLayout>

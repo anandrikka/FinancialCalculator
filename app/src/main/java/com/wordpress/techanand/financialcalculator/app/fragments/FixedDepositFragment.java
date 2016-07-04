@@ -62,7 +62,7 @@ public class FixedDepositFragment extends Fragment {
         Activity activity = this.getActivity();
         Toolbar appBarLayout = (Toolbar) activity.findViewById(R.id.toolbar);
         if (appBarLayout != null) {
-            appBarLayout.setTitle("Fixed Deposit 123");
+            appBarLayout.setTitle("Fixed Deposit Calculator");
         }
     }
 

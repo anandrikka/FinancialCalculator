@@ -4,6 +4,7 @@ package com.wordpress.techanand.financialcalculator.app.fragments;
  * Created by Anand Rikka on 06/12/2016
  */
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;;
+import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;;
 
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
@@ -35,13 +40,14 @@ import static com.wordpress.techanand.financialcalculator.app.activities.StockPr
 
 public class StocksBySharePrice extends Fragment {
 
-    private StockListener stockListener;
+    public static final String ID = StocksBySharePrice.class.getName();
 
     private String category, exchangeType, NSEString, BSEString;
     private Spinner selectCategory;
     private RadioGroup selectExchange;
     private EditText buyInput, sellInput, quantityInput;
     private Button reset, calculate;
+    private TableLayout resultsTable;
 
     private SharedPreferences sharedPreferences;
 
@@ -58,7 +64,12 @@ public class StocksBySharePrice extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true);
+        //setRetainInstance(true);
+        Activity activity = this.getActivity();
+        Toolbar appBarLayout = (Toolbar) activity.findViewById(R.id.toolbar);
+        if (appBarLayout != null) {
+            appBarLayout.setTitle("Stock Price Calculator");
+        }
     }
 
     @Override
@@ -84,16 +95,15 @@ public class StocksBySharePrice extends Fragment {
         reset = (Button)view.findViewById(R.id.reset);
         calculate = (Button) view.findViewById(R.id.calculate);
 
+        resultsTable = (TableLayout) view.findViewById(R.id.resultsTable);
+        resultsTable.setVisibility(View.GONE);
+
         NSEString = getResources().getString(R.string.app_stocks_nse);
         BSEString = getResources().getString(R.string.app_stocks_bse);
 
-        if(savedInstanceState== null){
-            preferences = AppPreferences.preferences(getContext());
-            stockPreferencesObject = new StockPreferencesObject();
-            stockObjectData = new StockObject();
-        }else{
-
-        }
+        preferences = AppPreferences.preferences(getContext());
+        stockPreferencesObject = new StockPreferencesObject();
+        stockObjectData = new StockObject();
 
         selectCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -124,9 +134,9 @@ public class StocksBySharePrice extends Fragment {
                 buyInput.setText("");
                 sellInput.setText("");
                 quantityInput.setText("");
-                stockListener.reset();
+                //stockListener.reset();
                 isCalcClicked = false;
-                //result.setVisibility(View.GONE);
+                resultsTable.setVisibility(View.GONE);
             }
         });
 
@@ -158,11 +168,11 @@ public class StocksBySharePrice extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        try{
-            stockListener = (StockListener)context;
+        /*try{
+            //stockListener = (StockListener)context;
         }catch (Exception e){
             throw new ClassCastException(getActivity().toString() + " must implement CalculateStockListener");
-        }
+        }*/
     }
 
     private void calculateAmount(boolean isFromInitialLoad, boolean isCalcClicked){
@@ -197,8 +207,130 @@ public class StocksBySharePrice extends Fragment {
         stockObjectData.setCategory(category);
         stockObjectData.setExchange(exchangeType);
 
-        stockListener.calculate(stockObjectData, stockPreferencesObject, isFromInitialLoad, isCalcClicked);
+        //stockListener.calculate(stockObjectData, stockPreferencesObject, isFromInitialLoad, isCalcClicked);
+        calculate(stockObjectData, stockPreferencesObject, isFromInitialLoad, isCalcClicked);
 
+    }
+
+    public void calculate(StockObject stockObjectData, StockPreferencesObject stockPreferencesObject, boolean isFromInitialLoad, boolean isCalcClicked) {
+        if(isFromInitialLoad && (stockObjectData.getSellPrice() <=0.0 || stockObjectData.getBuyPrice() <= 0.0) && stockObjectData.getQuantity() <=0.0){
+            return;
+        }
+        double tBuy, tSell, tTurnover, tQuantity, tBrokerage, tStt, tServiceTax, tExchangeTxCharges, tSEBICharges, tStampDutyCharges, profitOrLoss, breakEven;
+        tQuantity = stockObjectData.getQuantity();
+        tBuy = stockObjectData.getBuyPrice() * tQuantity;
+        tSell = stockObjectData.getSellPrice() * tQuantity;
+        tTurnover = tBuy + tSell;
+
+        //todo: which text views to  display based on buy price and sell price
+
+        //Brokerage
+        if(stockPreferencesObject.isFlatRateUsed()){
+            if(stockPreferencesObject.getFlatBrokerage() > 0){
+                tBrokerage = stockPreferencesObject.getFlatBrokerage();
+            }else{
+                tBrokerage = 0;
+            }
+        }else{
+            tBrokerage = stockPreferencesObject.getBrokeragePercent() * 0.01 * tTurnover;
+        }
+        stockObjectData.setBrokerage(tBrokerage);
+
+        //Stt charges
+        if(stockObjectData.getCategory().equals(CATEGORIES[0])){
+            tStt = tTurnover * stockPreferencesObject.getSttCharges() * 0.01;
+        }else if(stockObjectData.getCategory().equals(CATEGORIES[4]) || stockObjectData.getCategory().equals(CATEGORIES[5])){
+            tStt = 0;
+        }else{
+            tStt = tSell * stockPreferencesObject.getSttCharges() * 0.01;
+        }
+        stockObjectData.setSttCharges(tStt);
+
+        //Exchange Charges
+        tExchangeTxCharges = tTurnover * stockPreferencesObject.getExchangeTxCharges() * 0.01;
+        stockObjectData.setExchangeTxCharges(tExchangeTxCharges);
+
+        //SEBI Charges
+        tSEBICharges = tTurnover * stockPreferencesObject.getSebiCharges() * 0.0000001;
+        stockObjectData.setSebiCharges(tSEBICharges);
+
+        //Stampduty Charges
+        tStampDutyCharges = tTurnover * stockPreferencesObject.getStampDutyPercentage() * 0.01;
+        if (tStampDutyCharges < stockPreferencesObject.getStampDutyMinimum()) {
+            tStampDutyCharges = stockPreferencesObject.getStampDutyMinimum();
+        }
+        if (tStampDutyCharges > stockPreferencesObject.getStampDutyMaximum()) {
+            tStampDutyCharges = stockPreferencesObject.getStampDutyMaximum();
+        }
+        stockObjectData.setStampDutyCharges(tStampDutyCharges);
+
+        //Service Tax
+        tServiceTax = (tBrokerage + tExchangeTxCharges) * stockPreferencesObject.getServiceTax() * 0.01;
+        stockObjectData.setServiceCharges(tServiceTax);
+
+        breakEven = (tTurnover + tBrokerage + tStt + tExchangeTxCharges + tSEBICharges + tStampDutyCharges + tServiceTax) / tQuantity;
+
+        if(tBuy > 0 && tSell > 0){
+            breakEven = breakEven - (stockObjectData.getBuyPrice()+ stockObjectData.getSellPrice());
+        }else{
+            double price = 0.0;
+            if(tBuy > 0){
+                price = stockObjectData.getBuyPrice();
+            }
+            if(tSell > 0){
+                price = stockObjectData.getSellPrice();
+            }
+            breakEven = breakEven - price;
+        }
+        stockObjectData.setBreakEven(breakEven);
+
+        profitOrLoss = tSell - tBuy - tBrokerage
+                - tStt - tExchangeTxCharges - tSEBICharges - tStampDutyCharges - tServiceTax;
+        stockObjectData.setProfitOrLoss(profitOrLoss);
+        /*getSupportFragmentManager()
+                .beginTransaction().setCustomAnimations(R.anim.slide_left, R.anim.slide_right).commit();*/
+        if((stockObjectData.getSellPrice()>0 || stockObjectData.getBuyPrice()>0) && stockObjectData.getQuantity()>0){
+            displayResult(stockObjectData, stockPreferencesObject);
+            resultsTable.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    public void displayResult(StockObject stockObjectData, StockPreferencesObject stockPreferencesObject){
+        String turnover = MainPrefs.getFormattedNumber((stockObjectData.getBuyPrice()+ stockObjectData.getSellPrice()) * stockObjectData.getQuantity());
+        String brokerage = "0";
+        String exchgTxPlusTaxes;
+        String breakEven;
+        String profitLoss;
+        double totalCharges = stockObjectData.getBrokerage() + stockObjectData.getSttCharges() +
+                stockObjectData.getExchangeTxCharges() + stockObjectData.getSebiCharges() +
+                stockObjectData.getServiceCharges() + stockObjectData.getStampDutyCharges();
+        ((TextView)getView().findViewById(R.id.totalTurnOver)).setText(turnover);
+        if(stockObjectData.getBrokerage() > 0){
+            brokerage = MainPrefs.getFormattedNumber(stockObjectData.getBrokerage());
+        }
+        ((TextView)getView().findViewById(R.id.brokerage)).setText(brokerage);
+        exchgTxPlusTaxes = MainPrefs.getFormattedNumber(
+                (stockObjectData.getSttCharges()+ stockObjectData.getExchangeTxCharges()+ stockObjectData.getServiceCharges()+ stockObjectData.getSebiCharges()+ stockObjectData.getStampDutyCharges()));
+        ((TextView)getView().findViewById(R.id.otherCharges)).setText(exchgTxPlusTaxes);
+        TextView breakEvenLabel = (TextView) getView().findViewById(R.id.break_even_label);
+        TextView profitLossLabel = (TextView) getView().findViewById(R.id.prfit_loss_label);
+        TableRow profitLossRow = (TableRow) getView().findViewById(R.id.net_profit_loss);
+        double profitLossVal = stockObjectData.getProfitOrLoss();
+        if(stockObjectData.getBuyPrice()>0 && stockObjectData.getSellPrice()>0){
+            profitLossLabel.setText("Net Profit/Loss");
+            profitLossVal = stockObjectData.getProfitOrLoss();
+        }else if(stockObjectData.getBuyPrice()>0){
+            profitLossLabel.setText("Net Worth Bought");
+            profitLossVal = (stockObjectData.getBuyPrice() * stockObjectData.getQuantity()) - totalCharges;
+        }else if(stockObjectData.getSellPrice()>0){
+            profitLossLabel.setText("Net Worth Sold");
+            profitLossVal = (stockObjectData.getSellPrice() * stockObjectData.getQuantity()) - totalCharges;
+        }
+        breakEven = MainPrefs.getFormattedNumber(stockObjectData.getBreakEven());
+        ((TextView)getView().findViewById(R.id.breakEvenPrice)).setText(breakEven);
+        profitLoss = MainPrefs.getFormattedNumber(profitLossVal);
+        ((TextView)getView().findViewById(R.id.profitOrLoss)).setText(profitLoss);
     }
 
     private void calcPreferences(){
@@ -348,10 +480,5 @@ public class StocksBySharePrice extends Fragment {
             stockPreferencesObject.setStampDutyMaximum(0);
             stockPreferencesObject.setStampDutyPercentage(0);
         }
-    }
-
-    public interface StockListener {
-        public void calculate(StockObject stockObject, StockPreferencesObject stockPreferencesObject, boolean isFromInitialLoad, boolean isCalcClicked);
-        public void reset();
     }
 }

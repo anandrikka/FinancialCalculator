@@ -43,13 +43,6 @@
                     android:name="com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositFragment"
                     tools:layout="@layout/fixed_deposit_fragment" />
 
-                <fragment
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fixed_deposit_result"
-                    android:name="com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositResult"
-                    tools:layout="@layout/fixed_deposit_result" />
-
             </LinearLayout>
 
         </ScrollView>

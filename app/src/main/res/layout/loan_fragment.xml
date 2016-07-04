@@ -1,81 +1,110 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:stretchColumns="1"
-    android:id="@+id/table">
+    android:padding="16dp">
 
-    <TableRow android:paddingBottom="8dp">
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:id="@+id/table">
+
+        <TableRow android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="4dp"
+                android:text="Total Loan Amount"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:id="@+id/loan_amount"
+                android:inputType="numberDecimal" />
+        </TableRow>
+
+        <TableRow android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="4dp"
+                android:text="Interest Rate (%)"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:id="@+id/interest_rate"
+                android:inputType="numberDecimal" />
+        </TableRow>
+
+        <TableRow android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="4dp"
+                android:text="Tenure"/>
+        </TableRow>
+
+        <TableRow android:paddingBottom="8dp">
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginRight="4dp"
+                android:id="@+id/tenure"
+                android:inputType="number"/>
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/tenure_unit"
+                android:background="@drawable/border"/>
+        </TableRow>
+
+        <TableRow>
+            <Space android:layout_width="0dp"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Reset"
+                android:id="@+id/reset"/>
+
+            <Button android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Calculate"
+                android:id="@+id/calculate"/>
+            <Space android:layout_width="0dp"
+                android:layout_weight="1"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:elevation="8dp"
+        android:id="@+id/result_card">
+
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="4dp"
-            android:text="Total Loan Amount"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:id="@+id/loan_amount"
-            android:inputType="numberDecimal" />
-    </TableRow>
+            android:id="@+id/result_text_view"
+            android:padding="8dp" />
 
-    <TableRow android:paddingBottom="8dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="4dp"
-            android:text="Interest Rate (%)"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:id="@+id/interest_rate"
-            android:inputType="numberDecimal" />
-    </TableRow>
+    </android.support.v7.widget.CardView>
 
-    <TableRow android:paddingBottom="8dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="4dp"
-            android:text="Tenure"/>
-    </TableRow>
+    <com.github.mikephil.charting.charts.PieChart
+        android:layout_marginTop="8dp"
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
 
-    <TableRow android:paddingBottom="8dp">
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:layout_marginRight="4dp"
-            android:id="@+id/tenure"
-            android:inputType="number"/>
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/tenure_unit"
-            android:background="@drawable/border"/>
-    </TableRow>
-
-    <TableRow>
-        <Space android:layout_width="0dp"
-            android:layout_weight="1"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Reset"
-            android:id="@+id/reset"/>
-
-        <Button android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Calculate"
-            android:id="@+id/calculate"/>
-        <Space android:layout_width="0dp"
-            android:layout_weight="1"/>
-    </TableRow>
-
-</TableLayout>
+</LinearLayout>

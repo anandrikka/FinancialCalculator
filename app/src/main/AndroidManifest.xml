@@ -21,24 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity
-            android:name=".MainActivityListActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>-->
-        <activity
-            android:name=".MainActivityDetailActivity"
-            android:label="@string/title_mainactivity_detail"
-            android:parentActivityName=".MainActivityListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.wordpress.techanand.financialcalculator.MainActivityListActivity" />
-        </activity>
         <activity
             android:name=".app.activities.StockPriceActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -122,7 +104,6 @@
             android:name=".app.activities.AppPreferencesActivity"
             android:label="Settings"
             android:theme="@style/AppTheme.NoActionBar">
-
             <!--
                 <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

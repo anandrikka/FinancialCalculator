@@ -13,7 +13,6 @@ import android.widget.TableRow;
 
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositFragment;
-import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositResult;
 import com.wordpress.techanand.financialcalculator.app.models.FixedDepositObject;
 
 public class FixedDepositActivity extends AppCompatActivity {
@@ -23,7 +22,6 @@ public class FixedDepositActivity extends AppCompatActivity {
     public static final String[] PAYOUT_FREQ = {"Monthly", "Quarterly"};
 
     private FixedDepositFragment fdFragment;
-    private FixedDepositResult fdResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +33,6 @@ public class FixedDepositActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fdFragment = (FixedDepositFragment) getSupportFragmentManager().findFragmentById(R.id.fixed_deposit_form);
-        fdResult = (FixedDepositResult) getSupportFragmentManager().findFragmentById(R.id.fixed_deposit_result);
-
-        getSupportFragmentManager().beginTransaction().hide(fdResult).commit();
 
     }
 
@@ -62,85 +57,5 @@ public class FixedDepositActivity extends AppCompatActivity {
             default:
                 break;
         }
-    }
-
-    public void reset() {
-       getSupportFragmentManager().beginTransaction().hide(fdResult).commit();
-    }
-
-    public void calculate(FixedDepositObject fixedDepositObject) {
-        /*Formula for fixed deposit:
-        *
-        * A = P * (1+r/n)^nt
-        *
-        * P - Principle Amount
-        * r - Rate of Interest
-        * t - Number of Years
-        * n - No' of compounding periods, example: for quarterly (4), for half yearly (2) etc..
-        *
-        * */
-        double P, r, t, n, A;
-        String tUnit, nUnit;
-        P = fixedDepositObject.getFdAmount();
-        r = fixedDepositObject.getRoi() * 0.01;
-        t = fixedDepositObject.getTime();
-        tUnit = fixedDepositObject.getTimeUnit();
-        nUnit = fixedDepositObject.getCompoundingUnit();
-        if(tUnit == FixedDepositActivity.PERIOD[0]){
-
-        }else if(tUnit == FixedDepositActivity.PERIOD[1]){
-            t = t/12.0;
-        }else {
-            t = t/365.0;
-        }
-        if(fixedDepositObject.isInterestPayoutFD()){
-            if(fixedDepositObject.getPayoutUnit().equals(FixedDepositActivity.PAYOUT_FREQ[0])){
-                t = 1.0/12.0;
-            }else{
-                t = 3.0/12.0;
-            }
-        }
-        if(nUnit == FixedDepositActivity.COMPOUNDING_FREQ[0]){
-            n = 12;
-        }else if(nUnit == FixedDepositActivity.COMPOUNDING_FREQ[1]){
-            n = 4;
-        }else if(nUnit == FixedDepositActivity.COMPOUNDING_FREQ[2]){
-            n = 2;
-        }else {
-            n = 1;
-        }
-        //A = P * (Math.pow((1+r/n), (n*t)));
-        A = P * (Math.pow((1+r/n), (n*t)));
-        if(fixedDepositObject.isStandardFD()){
-            fixedDepositObject.setMaturityAmount(A);
-            fixedDepositObject.setInterest(A-P);
-        }
-        if(fixedDepositObject.isInterestPayoutFD()){
-            double totalMonths, payout;
-            payout = A-P;
-            fixedDepositObject.setPayoutAmount(payout);
-            if(tUnit.equals(FixedDepositActivity.PERIOD[0])){
-                totalMonths = fixedDepositObject.getTime() * 12;
-            }else if(tUnit.equals(FixedDepositActivity.PERIOD[1])){
-                totalMonths = fixedDepositObject.getTime();
-            }else {
-                totalMonths = fixedDepositObject.getTime()/30.0;
-            }
-            if(fixedDepositObject.getPayoutUnit().equals(FixedDepositActivity.PAYOUT_FREQ[0])){
-                fixedDepositObject.setInterest(payout * totalMonths);
-                if(totalMonths < 1){
-                    fixedDepositObject.setPayoutAmount(fixedDepositObject.getInterest());
-                }
-            }else{
-                double quarters = totalMonths/3.0;
-                if(quarters < 1){
-                    fixedDepositObject.setPayoutAmount(fixedDepositObject.getInterest());
-                }
-                fixedDepositObject.setInterest(payout * quarters);
-            }
-
-        }
-        fdResult.displayResult(fixedDepositObject);
-        getSupportFragmentManager().beginTransaction().show(fdResult).commit();
     }
 }

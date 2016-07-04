@@ -1,95 +1,124 @@
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:stretchColumns="1"
-    android:id="@+id/table">
+    android:padding="16dp">
 
-    <TableRow android:paddingBottom="8dp">
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:id="@+id/table">
+
+        <TableRow android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="50dp"
+                android:text="Total cost in Today's value"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:id="@+id/today_value"/>
+        </TableRow>
+
+        <TableRow android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="50dp"
+                android:text="Already saved amount (Optional)"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:id="@+id/saved_amount"/>
+        </TableRow>
+
+        <TableRow android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="right"
+                android:paddingRight="50dp"
+                android:text="Years to reach Goal"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:id="@+id/years_to_reach"/>
+        </TableRow>
+
+        <TableRow android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:gravity="right"
+                android:paddingRight="50dp"
+                android:text="Expected Inflation(%)"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:id="@+id/inflation"/>
+        </TableRow>
+
+        <TableRow android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:paddingRight="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Expected Return(%)"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:id="@+id/expected_return"/>
+        </TableRow>
+
+        <include layout="@layout/buttons"/>
+
+    </TableLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:elevation="8dp"
+        android:id="@+id/results">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="right"
-            android:layout_gravity="center_vertical"
-            android:paddingRight="50dp"
-            android:text="Total cost in Today's value"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-            android:id="@+id/today_value"/>
-    </TableRow>
+            android:id="@+id/result_text_view"
+            android:padding="8dp" />
+    </android.support.v7.widget.CardView>
 
-    <TableRow android:paddingBottom="8dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="right"
-            android:layout_gravity="center_vertical"
-            android:paddingRight="50dp"
-            android:text="Already saved amount (Optional)"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-            android:id="@+id/saved_amount"/>
-    </TableRow>
+    <com.github.mikephil.charting.charts.PieChart
+        android:layout_marginTop="8dp"
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
 
-    <TableRow android:paddingBottom="8dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_gravity="center_vertical"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="right"
-            android:paddingRight="50dp"
-            android:text="Years to reach Goal"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-            android:id="@+id/years_to_reach"/>
-    </TableRow>
+</LinearLayout>
 
-    <TableRow android:paddingBottom="8dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="2"
-            android:gravity="right"
-            android:paddingRight="50dp"
-            android:text="Expected Inflation(%)"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-            android:id="@+id/inflation"/>
-    </TableRow>
 
-    <TableRow android:paddingBottom="8dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_gravity="center_vertical"
-            android:gravity="right"
-            android:paddingRight="50dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Expected Return(%)"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:inputType="numberDecimal"
-            android:id="@+id/expected_return"/>
-    </TableRow>
-
-    <include layout="@layout/buttons"/>
-
-</TableLayout>

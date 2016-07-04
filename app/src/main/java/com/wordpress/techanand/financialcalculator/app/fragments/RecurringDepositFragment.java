@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,28 +19,32 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
+import com.wordpress.techanand.financialcalculator.app.PieChartConfig;
 import com.wordpress.techanand.financialcalculator.app.activities.RecurringDepositActivity;
 import com.wordpress.techanand.financialcalculator.app.models.RecurringDepositObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecurringDepositFragment extends Fragment {
 
-
-    public interface RecurringDepositListener {
-        public void calculate(RecurringDepositObject recurringDepositObject);
-        public void reset();
-    }
-
+    public static final String ID = RecurringDepositFragment.class.getName();
 
     private EditText installmentOrMaturityText, periodText, roiText;
     private Spinner periodUnitSelect;
     private Button resetButton, calculateButton;
     private CheckBox byMonthly, byTarget;
+    private TableLayout resultsTable;
+    private PieChart pieChart;
 
     private RecurringDepositObject recurringDepositObject;
-    private RecurringDepositListener recurringDepositListener;
 
     private boolean isCalcClicked;
 
@@ -51,14 +56,16 @@ public class RecurringDepositFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         recurringDepositObject = new RecurringDepositObject();
+        Toolbar appBarLayout = (Toolbar) this.getActivity().findViewById(R.id.toolbar);
+        if (appBarLayout != null) {
+            appBarLayout.setTitle("Recurring Deposit Calculator");
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.recurring_deposit_fragment, container, false);
-        setRetainInstance(true);
         initializeData(view);
         return view;
     }
@@ -76,11 +83,6 @@ public class RecurringDepositFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        try{
-            recurringDepositListener = (RecurringDepositActivity)getContext();
-        }catch (ClassCastException e){
-            throw new ClassCastException(getActivity().toString()+" must implement RecurringDepositListener");
-        }
     }
 
     @Override
@@ -101,6 +103,10 @@ public class RecurringDepositFragment extends Fragment {
         byTarget = (CheckBox) view.findViewById(R.id.by_target);
         resetButton = (Button) view.findViewById(R.id.reset);
         calculateButton = (Button) view.findViewById(R.id.calculate);
+        resultsTable = (TableLayout) view.findViewById(R.id.results);
+        resultsTable.setVisibility(View.GONE);
+        pieChart = (PieChart) view.findViewById(R.id.chart);
+        pieChart.setVisibility(View.GONE);
 
         periodUnitSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -121,8 +127,9 @@ public class RecurringDepositFragment extends Fragment {
                 periodText.setText("");
                 periodUnitSelect.setSelection(1);
                 roiText.setText("");
-                recurringDepositListener.reset();
                 isCalcClicked = false;
+                resultsTable.setVisibility(View.GONE);
+                pieChart.setVisibility(View.GONE);
             }
         });
 
@@ -170,15 +177,38 @@ public class RecurringDepositFragment extends Fragment {
             recurringDepositObject.setDuration(Double.parseDouble(duration));
             recurringDepositObject.setRoi(Double.parseDouble(roi));
             recurringDepositObject.setDurationUnit(selectedPeriod);
-            recurringDepositListener.calculate(recurringDepositObject);
-            /*R = Double.parseDouble(installmentText.getText().toString());
-            r = Double.parseDouble(roiText.getText().toString());
-            period = Double.parseDouble(periodText.getText().toString());
+            calculate(recurringDepositObject);
+        }else if(!isFromInitialLoad){
+            AppMain.dialogBuilder(getContext(),
+                    "Fill Fields",
+                    "Give Input for all fields !",
+                    "OK").create().show();
+        }
+    }
 
+    private void calculate(RecurringDepositObject recurringDepositData) {
+        /**
+         *   M = ( R * [(1+r)^n - 1 ] ) / (1-(1+r)^-1/3)
+         *
+         *   M = Maturity value
+         *   R = Monthly Installment
+         *   r = Rate of Interest (i) / 400
+         *   n = Number of Quarters
+         * */
 
-            r = r/400;
+        double R, r, n, M, P, I;
 
-            //M = ( R * [(1+r)^n - 1 ] ) / (1-(1+r)^-1/3)
+        if(recurringDepositData.getDurationUnit().equals(RecurringDepositActivity.PERIOD[0])){
+            n = recurringDepositData.getDuration()/3.0;
+        }else{
+            n = recurringDepositData.getDuration() * 4;
+        }
+
+        r = recurringDepositData.getRoi();
+        r = r/400;
+
+        if(recurringDepositData.isMonthly()){
+            R = recurringDepositData.getMonthlyInvestment();
             double x = 1+r;
             x = Math.pow(x, n);
             x = x-1;
@@ -190,40 +220,62 @@ public class RecurringDepositFragment extends Fragment {
             y = 1-y;
             M  = x/y;
             P = R*n*3;
-            interestEarned = M-P;*/
-            /*investmentAmountText.setText(Math.round(P)+"");
-            maturityAmountText.setText(Math.round(M)+"");
-            interestEarnedText.setText(Math.round(interestEarned)+"");
-            results.setVisibility(View.VISIBLE);
-            createPieChart((float)P, (float)interestEarned);
-            pieChart.setVisibility(View.VISIBLE);*/
-        }else if(!isFromInitialLoad){
-            AppMain.dialogBuilder(getContext(),
-                    "Fill Fields",
-                    "Give Input for all fields !",
-                    "OK").create().show();
+            I = M-P;
+            recurringDepositData.setMaturityAmount(M);
+            recurringDepositData.setInvestedAmount(P);
+            recurringDepositData.setTotalInterest(I);
         }
+        if(recurringDepositData.isByTargetAmount()){
+            M = recurringDepositData.getMaturityAmount();
+            double x = 1+r;
+            double y1 = 1.0/3.0;
+            x = Math.pow(x, y1);
+            x = 1/x;
+            x = 1-x;
+            x = M*x;
+            double y = 1+r;
+            y = Math.pow(y, n);
+            y = y-1;
+            R = x/y;
+            R = Math.round(R);
+            P = R*n*3;
+            I = M-P;
+            recurringDepositData.setMonthlyInvestment(R);
+            recurringDepositData.setInvestedAmount(P);
+            recurringDepositData.setTotalInterest(I);
+        }
+        displayResults(recurringDepositData);
     }
 
-    /*private void createPieChart(float P, float I){
+    private void displayResults(RecurringDepositObject recurringDepositData){
+        View view = getView();
         pieChart.clear();
 
-        ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(P, 0));
-        entries.add(new Entry(I, 1));
+        if(recurringDepositData.isMonthly()){
+            ((TextView)view.findViewById(R.id.monthly_or_maturity_label)).setText("Maturity Amount");
+            ((TextView)view.findViewById(R.id.monthly_or_maturity_amount)).setText(
+                    MainPrefs.getFormattedNumber(recurringDepositData.getMaturityAmount()));
+        }
+        if(recurringDepositData.isByTargetAmount()){
+            ((TextView)view.findViewById(R.id.monthly_or_maturity_label)).setText("Monthly Investment");
+            ((TextView)view.findViewById(R.id.monthly_or_maturity_amount)).setText(
+                    MainPrefs.getFormattedNumber(recurringDepositData.getMonthlyInvestment()));
+        }
 
-        PieDataSet dataset = new PieDataSet(entries, "");
-        ArrayList<String> labels = new ArrayList<String>();
+        ((TextView)view.findViewById(R.id.investment_amount)).setText(
+                MainPrefs.getFormattedNumber(recurringDepositData.getInvestedAmount()));
+        ((TextView)view.findViewById(R.id.interest)).setText(
+                MainPrefs.getFormattedNumber(recurringDepositData.getTotalInterest()));
 
+        List entries = new ArrayList();
+        entries.add(new Entry((float)recurringDepositData.getInvestedAmount(), 0));
+        entries.add(new Entry((float)recurringDepositData.getTotalInterest(), 1));
+        List labels = new ArrayList();
         labels.add("Investment");
         labels.add("Interest");
-
-        PieData data = new PieData(labels, dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS);
-
-        pieChart.setData(data);
+        pieChart = PieChartConfig.createPieChart(getActivity(), pieChart, entries, labels, "");
+        resultsTable.setVisibility(View.VISIBLE);
         pieChart.setVisibility(View.VISIBLE);
-        pieChart.setDescription("");
-    }*/
+    }
 
 }

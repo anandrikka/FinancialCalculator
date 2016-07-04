@@ -43,18 +43,9 @@
                     android:id="@+id/mutualfund_form"
                     android:name="com.wordpress.techanand.financialcalculator.app.fragments.MutualFundSIP"
                     tools:layout="@layout/mutual_funds_sip" />
-
-                <fragment
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/mutualfund_result"
-                    android:name="com.wordpress.techanand.financialcalculator.app.fragments.MutualFundSIPResult"
-                    tools:layout="@layout/mutual_funds_sip_results" />
             </LinearLayout>
         </ScrollView>
 
     </RelativeLayout>
-
-
 
 </android.support.design.widget.CoordinatorLayout>

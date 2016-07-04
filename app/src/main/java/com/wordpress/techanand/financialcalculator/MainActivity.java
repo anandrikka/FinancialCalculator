@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -47,6 +48,13 @@ import com.wordpress.techanand.financialcalculator.app.activities.RecurringDepos
 import com.wordpress.techanand.financialcalculator.app.activities.RetirementActivity;
 import com.wordpress.techanand.financialcalculator.app.activities.StockPriceActivity;
 import com.wordpress.techanand.financialcalculator.app.fragments.FixedDepositFragment;
+import com.wordpress.techanand.financialcalculator.app.fragments.GoalFragment;
+import com.wordpress.techanand.financialcalculator.app.fragments.InflationFragment;
+import com.wordpress.techanand.financialcalculator.app.fragments.LoanFragment;
+import com.wordpress.techanand.financialcalculator.app.fragments.MutualFundSIP;
+import com.wordpress.techanand.financialcalculator.app.fragments.RecurringDepositFragment;
+import com.wordpress.techanand.financialcalculator.app.fragments.RetirementFragment;
+import com.wordpress.techanand.financialcalculator.app.fragments.StocksBySharePrice;
 import com.wordpress.techanand.financialcalculator.db.model.CalculatorListContent;
 import com.wordpress.techanand.financialcalculator.db.model.CalculatorListModel;
 import com.wordpress.techanand.financialcalculator.ui.listview.holders.TextViewHolder;
@@ -113,47 +121,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(lLayout);
         }
-        /*calcList = (GridView) findViewById(R.id.gridViewList);
-        CalculatorsListAdapter arrayAdapter = new CalculatorsListAdapter(this, R.id.gridText, list);
-        calcList.setAdapter(arrayAdapter);
-        calcList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CalculatorListModel item = list.get(position);
-                Intent launchItem = null;
-                switch (item.getId()){
-                    case CalculatorListModel.UniqueId.UNIQUE_FD:
-                        launchItem = new Intent(MainActivity.this, FixedDepositActivity.class);
-                        break;
-                    case CalculatorListModel.UniqueId.UNIQUE_RD:
-                        launchItem = new Intent(MainActivity.this, RecurringDepositActivity.class);
-                        break;
-                    case CalculatorListModel.UniqueId.UNIQUE_STOCK:
-                        launchItem = new Intent(MainActivity.this, StockPriceActivity.class);
-                        break;
-                    case CalculatorListModel.UniqueId.UNIQUE_MUTUAL_FUND:
-                        launchItem = new Intent(MainActivity.this, MutualFundActivity.class);
-                        break;
-                    case CalculatorListModel.UniqueId.UNIQUE_EMI:
-                        launchItem = new Intent(MainActivity.this, LoanActivity.class);
-                        break;
-                    case CalculatorListModel.UniqueId.UNIQUE_RETIREMENT:
-                        launchItem = new Intent(MainActivity.this, RetirementActivity.class);
-                        break;
-                    case CalculatorListModel.UniqueId.UNIQUE_GOAL:
-                        launchItem = new Intent(MainActivity.this, GoalActivity.class);
-                        break;
-                    case CalculatorListModel.UniqueId.UNIQUE_INFLATION:
-                        launchItem = new Intent(MainActivity.this, InflationActivity.class);
-                        break;
-                    default:
-                        Toast.makeText(MainActivity.this, item.getName()+" Not Defined !", Toast.LENGTH_SHORT).show();
-                }
-                if(launchItem != null){
-                    MainActivity.this.startActivity(launchItem);
-                }
-            }
-        });*/
     }
 
 
@@ -166,16 +133,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        //int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         //if (id == R.id.action_settings) {
         //    return true;
         //}
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -225,45 +186,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-
-    /*class CalculatorsListAdapter extends ArrayAdapter {
-
-        private List<CalculatorListModel> objects;
-
-        @Override
-        public int getViewTypeCount() {
-            return 1;
-        }
-
-        public CalculatorsListAdapter(Context context, int resource, List<CalculatorListModel> objects) {
-            super(context, resource, objects);
-            this.objects = objects;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            TextViewHolder viewHolder = null;
-            CalculatorListModel listViewItem = objects.get(position);
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.main_calculator_list, null);
-                TextView textView = (TextView) convertView.findViewById(R.id.gridText);
-                textView.setText(listViewItem.getName());
-                ImageView image = (ImageView) convertView.findViewById(R.id.gridImage);
-                String packageName = getContext().getPackageName();
-                Resources resources = getContext().getResources();
-                int resId =resources.getIdentifier(listViewItem.getImageName(), "drawable", packageName);
-                image.setImageResource(resId);
-                viewHolder = new TextViewHolder(textView);
-                convertView.setTag(viewHolder);
-            } else {
-                viewHolder = (TextViewHolder) convertView.getTag();
-            }
-            viewHolder.getText().setText(listViewItem.getName());
-            return convertView;
-        }
-
-    }*/
-
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
@@ -288,54 +210,54 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             int resId =resources.getIdentifier(holder.mItem.getImageName(), "drawable", packageName);
             holder.mIdView.setImageResource(resId);
             holder.mContentView.setText(mValues.get(position).getName());
-
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
-                        Bundle arguments = new Bundle();
+                        Fragment fragment = null;
+                        String tag = "";
                         switch (holder.mItem.getId()){
                             case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_FD:
-                                arguments.putString(FixedDepositFragment.ID, Integer.toString(holder.mItem.getId()));
-                                FixedDepositFragment fragment = new FixedDepositFragment();
-                                fragment.setArguments(arguments);
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.mainactivity_detail_container, fragment, FixedDepositFragment.class.getName())
-                                        .commit();
+                                fragment = new FixedDepositFragment();
+                                tag = FixedDepositFragment.ID;
                                 break;
-                            /*case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_RD:
-                                launchItem = new Intent(MainActivityListActivity.this, RecurringDepositActivity.class);
+                            case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_RD:
+                                fragment = new RecurringDepositFragment();
+                                tag = RecurringDepositFragment.ID;
                                 break;
                             case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_STOCK:
-                                launchItem = new Intent(MainActivityListActivity.this, StockPriceActivity.class);
+                                fragment = new StocksBySharePrice();
+                                tag = StocksBySharePrice.ID;
                                 break;
                             case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_MUTUAL_FUND:
-                                launchItem = new Intent(MainActivityListActivity.this, MutualFundActivity.class);
+                                fragment = new MutualFundSIP();
+                                tag = MutualFundSIP.ID;
                                 break;
                             case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_EMI:
-                                launchItem = new Intent(MainActivityListActivity.this, LoanActivity.class);
+                                fragment = new LoanFragment();
+                                tag = LoanFragment.ID;
                                 break;
                             case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_RETIREMENT:
-                                launchItem = new Intent(MainActivityListActivity.this, RetirementActivity.class);
+                                fragment = new RetirementFragment();
+                                tag = RetirementFragment.ID;
                                 break;
                             case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_GOAL:
-                                launchItem = new Intent(MainActivityListActivity.this, GoalActivity.class);
+                                fragment = new GoalFragment();
+                                tag = GoalFragment.ID;
                                 break;
                             case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_INFLATION:
-                                launchItem = new Intent(MainActivityListActivity.this, InflationActivity.class);
-                                break;*/
+                                fragment = new InflationFragment();
+                                tag = InflationFragment.ID;
+                                break;
                             default:
                                 Toast.makeText(MainActivity.this, holder.mItem.getName()+" Not Defined !", Toast.LENGTH_SHORT).show();
+                                return;
                         }
-                        /*arguments.putString(MainActivityDetailFragment.ARG_ITEM_ID, Integer.toString(holder.mItem.getId()));
-                        MainActivityDetailFragment fragment = new MainActivityDetailFragment();
-                        fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.mainactivity_detail_container, fragment)
-                                .commit();*/
+                                .replace(R.id.mainactivity_detail_container, fragment, tag)
+                                .commit();
                     } else {
                         Context context = v.getContext();
-                        //intent.putExtra(MainActivityDetailFragment.ARG_ITEM_ID, Integer.toString(holder.mItem.getId()));
                         Intent launchItem = null;
                         switch (holder.mItem.getId()){
                             case CalculatorListContent.CalculatorItem.UniqueId.UNIQUE_FD:
@@ -389,6 +311,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mView = view;
                 mIdView = (ImageView) view.findViewById(R.id.id);
                 mContentView = (TextView) view.findViewById(R.id.content);
+                view.setClickable(true);
             }
 
             @Override

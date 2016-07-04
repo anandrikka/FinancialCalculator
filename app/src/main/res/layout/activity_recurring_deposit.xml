@@ -45,13 +45,6 @@
                     android:name="com.wordpress.techanand.financialcalculator.app.fragments.RecurringDepositFragment"
                     tools:layout="@layout/recurring_deposit_fragment" />
 
-                <fragment
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/recurring_deposit_result"
-                    android:name="com.wordpress.techanand.financialcalculator.app.fragments.RecurringDepositResult"
-                    tools:layout="@layout/recurring_deposit_result" />
-
             </LinearLayout>
 
         </ScrollView>

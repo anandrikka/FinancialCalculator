@@ -34,8 +34,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/appArea"
-                android:padding="16dp">
+                android:id="@+id/appArea">
 
                 <fragment
                     android:layout_width="match_parent"
@@ -44,35 +43,6 @@
                     tools:layout="@layout/loan_fragment"
                     android:name="com.wordpress.techanand.financialcalculator.app.fragments.LoanFragment">
                 </fragment>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/result">
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:elevation="8dp"
-                        android:id="@+id/result_card">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/result_text_view"
-                            android:padding="8dp" />
-
-                    </android.support.v7.widget.CardView>
-
-                    <com.github.mikephil.charting.charts.PieChart
-                        android:layout_marginTop="8dp"
-                        android:id="@+id/chart"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp" />
-
-                </LinearLayout>
 
             </LinearLayout>
 

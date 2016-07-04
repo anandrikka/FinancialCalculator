@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 
+import com.github.mikephil.charting.charts.PieChart;
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
 import com.wordpress.techanand.financialcalculator.app.models.RetirementObject;
@@ -22,17 +24,15 @@ import com.wordpress.techanand.financialcalculator.app.models.RetirementObject;
 
 public class RetirementFragment extends Fragment {
 
-    public interface RetirementFragmentListener {
-        public void calculate(RetirementObject retirementData);
-        public void reset();
-    }
+    public static final String ID = RetirementFragment.class.getName();
 
-    private RetirementFragmentListener retirementFragmentListener;
     private RetirementObject retirementData;
 
     private EditText currentAgeText, retirementAgeText, lifeExpectancyText,
             monthlyExpText, inflationText, existingInvestmentText, expectedReturnsText;
     private Button resetButton, calculateButton;
+    private CardView results;
+    private PieChart pieChart;
 
     public RetirementFragment() {
         // Required empty public constructor
@@ -42,13 +42,13 @@ public class RetirementFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         retirementData = new RetirementObject();
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.retirement_fragment, container, false);
-        setRetainInstance(true);
         currentAgeText = (EditText) view.findViewById(R.id.current_age);
         retirementAgeText = (EditText) view.findViewById(R.id.retirement_age);
         lifeExpectancyText = (EditText) view.findViewById(R.id.life_expentency);
@@ -58,7 +58,10 @@ public class RetirementFragment extends Fragment {
         expectedReturnsText = (EditText) view.findViewById(R.id.expected_return);
         resetButton = (Button) view.findViewById(R.id.reset);
         calculateButton = (Button) view.findViewById(R.id.calculate);
-
+        results = (CardView) view.findViewById(R.id.result_card);
+        results.setVisibility(View.GONE);
+        pieChart = (PieChart) view.findViewById(R.id.chart);
+        pieChart.setVisibility(View.GONE);
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +72,7 @@ public class RetirementFragment extends Fragment {
                 inflationText.setText("");
                 existingInvestmentText.setText("");
                 expectedReturnsText.setText("");
-                retirementFragmentListener.reset();
+                results.setVisibility(View.GONE);
             }
         });
 
@@ -81,8 +84,6 @@ public class RetirementFragment extends Fragment {
             }
         });
 
-        seekBarListeners(view);
-
         calculate(true);
 
         return view;
@@ -91,115 +92,6 @@ public class RetirementFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        retirementFragmentListener = (RetirementFragmentListener)context;
-    }
-
-    private void seekBarListeners(View view){
-        SeekBar currentAgeSeekbar = (SeekBar) view.findViewById(R.id.current_age_seekbar);
-        currentAgeSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //int min = 18;
-                seekBar.setProgress(progress);
-                currentAgeText.setText(progress+"");
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
-
-        SeekBar retirementAge = (SeekBar) view.findViewById(R.id.retirement_age_seekbar);
-        retirementAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //int min = 18;
-                seekBar.setProgress(progress);
-                retirementAgeText.setText(progress+"");
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
-
-        SeekBar lifeExpectancy = (SeekBar) view.findViewById(R.id.life_expentency_seekbar);
-        lifeExpectancy.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //int min = 18;
-                seekBar.setProgress(progress);
-                lifeExpectancyText.setText(progress+"");
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
-
-        SeekBar presentExpenses = (SeekBar) view.findViewById(R.id.monthly_expenses_seekbar);
-        presentExpenses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int stepSize = 1000;
-                progress = ((int)Math.round(progress/stepSize))*stepSize;
-                seekBar.setProgress(progress);
-                monthlyExpText.setText(progress+"");
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
-
-        SeekBar inflation = (SeekBar) view.findViewById(R.id.inflation_seekbar);
-        inflation.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //int min = 18;
-                seekBar.setProgress(progress);
-                inflationText.setText(progress+"");
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
-
-        SeekBar existingInvestment = (SeekBar) view.findViewById(R.id.existing_investment_seekbar);
-        existingInvestment.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //int min = 18;
-                seekBar.setProgress(progress);
-                existingInvestmentText.setText(progress+"");
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
-
-        SeekBar expectedReturns = (SeekBar) view.findViewById(R.id.expected_return_seekbar);
-        expectedReturns.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //int min = 18;
-                seekBar.setProgress(progress);
-                expectedReturnsText.setText(progress+"");
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
     }
 
     public void calculate(boolean isFromInitialLoad){
@@ -228,8 +120,7 @@ public class RetirementFragment extends Fragment {
                 retirementData.setExistingInvestment(Double.parseDouble(existingInvestmentString));
             }
             retirementData.setExpectedReturns(Double.parseDouble(expectedReturnsString));
-
-            retirementFragmentListener.calculate(retirementData);
+            calculateResult(retirementData);
         }else if(!isFromInitialLoad){
             AppMain.dialogBuilder(getContext(),
                     "Fill Fields",
@@ -238,5 +129,22 @@ public class RetirementFragment extends Fragment {
         }
     }
 
+    public void calculateResult(RetirementObject retirementData) {
+        //Inflated Monthly Amount at the age of retirement
+        //A = P * (1+r)^t
+        double P = retirementData.getMonthlyExpenses() * 12;
+        double r = retirementData.getInflation() * 0.01;
+        double t = retirementData.getWorkYearsLeft();
+        double A = 0.0;
+        int length = (int)t+(int)retirementData.getYearsToSurvive();
+        for(int i=(int)t; i<length; i++){
+            A = A + (P * Math.pow((1+r), i));
+            //A = P * Math.pow((1+r), i);
+            //A = A + ((P * Math.pow(1+r, i)) - A);
+            AppMain.debug(MainPrefs.getFormattedNumber(A));
+        }
+        AppMain.debug("Monthly Exp: "+MainPrefs.getFormattedNumber(A)+" - "+MainPrefs.getFormattedNumber(A*12*retirementData.getYearsToSurvive()));
+        results.setVisibility(View.VISIBLE);
+    }
 
 }

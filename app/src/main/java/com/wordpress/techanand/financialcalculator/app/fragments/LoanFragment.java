@@ -5,6 +5,9 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +18,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
 import com.wordpress.techanand.financialcalculator.R;
 import com.wordpress.techanand.financialcalculator.app.AppMain;
+import com.wordpress.techanand.financialcalculator.app.PieChartConfig;
 import com.wordpress.techanand.financialcalculator.app.activities.LoanActivity;
 import com.wordpress.techanand.financialcalculator.app.models.LoanObject;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 /**
  * Created by Anand Rikka on 6/12/2016.
@@ -26,17 +36,16 @@ import com.wordpress.techanand.financialcalculator.app.models.LoanObject;
 
 public class LoanFragment extends Fragment{
 
-    public interface LoanFragmentListener {
-        public void calculate(LoanObject loanData);
-        public void reset();
-    }
+    public static final String ID = LoanFragment.class.getName();
 
-    private LoanFragmentListener loanFragmentListener;
     private LoanObject loanObject;
 
     private EditText loanAmountText, tenureText, interestText;
     private Spinner tenureUnitSelection;
     private Button resetButton, calculateButton;
+    private CardView results;
+    private PieChart pieChart;
+    private TextView resultText;
 
     private boolean isCalcClicked;
 
@@ -44,6 +53,10 @@ public class LoanFragment extends Fragment{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loanObject = new LoanObject();
+        Toolbar appBarLayout = (Toolbar) this.getActivity().findViewById(R.id.toolbar);
+        if (appBarLayout != null) {
+            appBarLayout.setTitle("Loan Calculator");
+        }
     }
 
     @Override
@@ -58,7 +71,6 @@ public class LoanFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.loan_fragment, container, false);
-        setRetainInstance(true);
         loanAmountText = (EditText) view.findViewById(R.id.loan_amount);
         tenureText = (EditText) view.findViewById(R.id.tenure);
         interestText = (EditText) view.findViewById(R.id.interest_rate);
@@ -68,7 +80,11 @@ public class LoanFragment extends Fragment{
         tenureUnitSelection.setAdapter(tenureUnitAdapter);
         resetButton = (Button) view.findViewById(R.id.reset);
         calculateButton = (Button) view.findViewById(R.id.calculate);
-
+        results = (CardView) view.findViewById(R.id.result_card);
+        pieChart = (PieChart) view.findViewById(R.id.chart);
+        results.setVisibility(View.GONE);
+        pieChart.setVisibility(View.GONE);
+        resultText = (TextView)view.findViewById(R.id.result_text_view);
         tenureUnitSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -88,7 +104,8 @@ public class LoanFragment extends Fragment{
                 interestText.setText("");
                 tenureText.setText("");
                 isCalcClicked = false;
-                loanFragmentListener.reset();
+                results.setVisibility(View.GONE);
+                pieChart.setVisibility(View.GONE);
             }
         });
 
@@ -107,7 +124,6 @@ public class LoanFragment extends Fragment{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        loanFragmentListener = (LoanFragmentListener)getContext();
     }
 
     private void calculate(boolean isFromInitialLoad, boolean isCalcClicked){
@@ -129,7 +145,7 @@ public class LoanFragment extends Fragment{
             loanObject.setInterestRate(interest);
             loanObject.setPeriodUnit((String)tenureUnitSelection.getSelectedItem());
 
-            loanFragmentListener.calculate(loanObject);
+            calculateResult(loanObject);
 
         }else if(!isFromInitialLoad){
             AppMain.dialogBuilder(getContext(),
@@ -137,5 +153,61 @@ public class LoanFragment extends Fragment{
                     "Give Input for all fields !",
                     "OK").create().show();
         }
+    }
+
+    public void calculateResult(LoanObject loanData) {
+        /*
+        * [P * r * (1+r)^n)]/[((1+r)^n)-1]
+        *
+        * P = Loan amount;
+        * r = rate of interest;
+        * n = total months
+        *
+        * */
+        double tenure = loanData.getTenure();
+        double interest = loanData.getInterestRate();
+        double loanAmount = loanData.getLoanAmount();
+
+        if(loanData.getPeriodUnit().equals(LoanActivity.TENURE_UNITS[0])){
+            tenure = tenure * 12;
+        }
+        //[P * r * (1+r)^n)]/[((1+r)^n)-1]
+        double r = interest/12.0;
+        r = r/100.0;
+        double n = tenure;
+        double P = loanAmount;
+        double x = 1+r;
+        x = Math.pow(x, n);
+        x = P * r * x;
+        double y = 1+r;
+        y = Math.pow(y, n);
+        y = y - 1;
+        double emi = x/y;
+        double totalPaid = emi * n;
+        double interestPaid = totalPaid - P;
+        loanData.setTotalInterestPaid(interestPaid);
+
+        String resultString = String.format(getResources().getString(R.string.app_loan_result_text),
+                Math.round(emi), Math.round(P), Double.toString(interest), Math.round(tenure), Math.round(totalPaid));
+        CharSequence resultSq = Html.fromHtml(resultString);
+        resultText.setText(resultSq);
+        createPieChart(loanData);
+        results.setVisibility(View.VISIBLE);
+    }
+
+    private void createPieChart(LoanObject loanData){
+        pieChart.clear();
+
+        ArrayList<Entry> entries = new ArrayList<>();
+        entries.add(new Entry((float)loanData.getLoanAmount(), 0));
+        entries.add(new Entry((float)(loanData.getTotalInterestPaid()), 1));
+
+        ArrayList<String> labels = new ArrayList<String>();
+        labels.add("Principle");
+        labels.add("Interest");
+
+        pieChart = PieChartConfig.createPieChart(getActivity(), pieChart, entries, labels, "");
+        pieChart.setVisibility(View.VISIBLE);
+
     }
 }
